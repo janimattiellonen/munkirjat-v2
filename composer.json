@@ -34,7 +34,8 @@
         "besimple/i18n-routing-bundle": "dev-master",
         "friendsofsymfony/user-bundle": "*",
         "willdurand/expose-translation-bundle": "dev-master",
-        "doctrine/doctrine-migrations-bundle": "dev-master"
+        "doctrine/doctrine-migrations-bundle": "dev-master",
+        "knplabs/knp-menu-bundle": "v1.1.0"
     },
     "scripts": {
         "post-install-cmd": [
@@ -48,18 +49,6 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
-        ]
-    },
-    "scripts": {
-        "post-install-cmd": [
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets"
-        ],
-        "post-update-cmd": [
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets"
         ]
     },
     "config": {

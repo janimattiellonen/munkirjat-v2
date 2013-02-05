@@ -1,0 +1,8 @@
+menu:
+    frontpage:      "Etusivu"
+    about:          "Tiedot"
+    list-authors:
+    list-genres:
+    statistics:
+    login:
+    logout:

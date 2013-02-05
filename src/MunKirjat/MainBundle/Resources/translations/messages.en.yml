@@ -1,0 +1,8 @@
+menu:
+    frontpage:      "Frontpage"
+    about:          "About"
+    list-authors:   "List authors"
+    list-genres:    "List genres"
+    statistics:     "Statistics"
+    login:          "Login"
+    logout:         "Logout"

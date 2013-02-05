@@ -2,6 +2,10 @@ _jmesf2_generic_bundle:
     resource: "@JmeSf2GenericBundle/Resources/config/routing.yml"
     type: be_simple_i18n
 
+_munkirjat_main_bundle:
+    resource: "@MunKirjatMainBundle/Resources/config/routing.yml"
+    type: be_simple_i18n
+
 _munkirjat_book_bundle:
     resource: "@MunKirjatBookBundle/Resources/config/routing.yml"
     type: be_simple_i18n

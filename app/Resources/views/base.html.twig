@@ -9,6 +9,7 @@
 
         {% stylesheets filter='yui_css' output='/css/generic.css'
             '@JmeSf2GenericBundle/Resources/less/generic.less'
+            '@MunKirjatMainBundle/Resources/less/main.less'
         %}
 
         <link href="{{ asset_url }}" rel="stylesheet" media="screen" />
@@ -17,6 +18,7 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+        <nav>{{ knp_menu_render('primary_menu') }}</nav>
         {% block content %}{% endblock %}
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>

@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
 
             new JmeSf2\GenericBundle\JmeSf2GenericBundle(),
+            new MunKirjat\MainBundle\MunKirjatMainBundle(),
             new MunKirjat\BookBundle\MunKirjatBookBundle(),
             new MunKirjat\UserBundle\MunKirjatUserBundle(),
 
@@ -29,6 +30,7 @@ class AppKernel extends Kernel
             new BeSimple\I18nRoutingBundle\BeSimpleI18nRoutingBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new JmeSf2\GenericUserBundle\JmeSf2GenericUserBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -53,7 +53,7 @@ class PrimaryMenuBuilder extends ContainerAware
 
         if($this->securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED') )
         {
-            $menu->addChild($this->translator->trans('menu.logout'), array('route' => 'mun_kirjat_book_test') );
+            $menu->addChild($this->translator->trans('menu.logout'), array('route' => 'fos_user_security_logout') );
         }
         else
         {

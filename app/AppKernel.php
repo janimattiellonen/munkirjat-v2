@@ -22,6 +22,9 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
 
             new JmeSf2\GenericBundle\JmeSf2GenericBundle(),
+            new MunKirjat\BookBundle\MunKirjatBookBundle(),
+            new MunKirjat\UserBundle\MunKirjatUserBundle(),
+
             //new Doctrine\Bundle\MongoDBBundle\DoctrineMongoDBBundle(),
             new BeSimple\I18nRoutingBundle\BeSimpleI18nRoutingBundle(),
             new FOS\UserBundle\FOSUserBundle(),

@@ -1,6 +1,8 @@
 <?php
 namespace MunKirjat\BookBundle\Entity;
 
+use \DateTime;
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,12 +10,15 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
+ * @ORM\Entity()
  * @ORM\Table(name="book")
  * @ORM\HasLifecycleCallbacks
  */
 class Book
 {
 	/**
+     * @var int
+     *
 	 * @ORM\Column(name="id", type="integer")
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="AUTO")
@@ -21,11 +26,15 @@ class Book
 	protected $id;
 	
 	/**
+     * @var string
+     *
 	 * @ORM\Column(name="title", type="string", length=128)
 	 */
 	protected $title;
 	
 	/**
+     * @var string
+     *
 	 * @ORM\Column(name="language_id", type="string", length=3)
 	 */
 	protected $language;
@@ -33,116 +42,162 @@ class Book
     /**
      * @ORM\ManyToMany(targetEntity="Author", inversedBy="books")
      * @ORM\JoinTable(name="book_author",
-     * 		joinColumns={@JoinColumn(name="book_id", referencedColumnName="id")},
-     * 		inverseJoinColumns={@JoinColumn(name="author_id", referencedColumnName="id")}
+     * 		joinColumns={@ORM\JoinColumn(name="book_id", referencedColumnName="id")},
+     * 		inverseJoinColumns={@ORM\JoinColumn(name="author_id", referencedColumnName="id")}
      * )
      */	
 	protected $authors;
 	
     /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     *
      * @ORM\ManyToMany(targetEntity="Genre", inversedBy="books")
      * @ORM\JoinTable(name="book_genre",
-     * 		joinColumns={@JoinColumn(name="book_id", referencedColumnName="id")},
-     * 		inverseJoinColumns={@JoinColumn(name="genre_id", referencedColumnName="id")}
+     * 		joinColumns={@ORM\JoinColumn(name="book_id", referencedColumnName="id")},
+     * 		inverseJoinColumns={@ORM\JoinColumn(name="genre_id", referencedColumnName="id")}
      * )
      */	
 	protected $genres;	
 	
     /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     *
      * @ORM\ManyToMany(targetEntity="Tag", inversedBy="books")
      * @ORM\JoinTable(name="book_tag",
-     * 		joinColumns={@JoinColumn(name="book_id", referencedColumnName="id")},
-     * 		inverseJoinColumns={@JoinColumn(name="tag_id", referencedColumnName="id")}
+     * 		joinColumns={@ORM\JoinColumn(name="book_id", referencedColumnName="id")},
+     * 		inverseJoinColumns={@ORM\JoinColumn(name="tag_id", referencedColumnName="id")}
      * )
      */	
 	protected $tags;
 	
 	/**
+     * @var int
+     *
 	 * @ORM\Column(name="page_count", type="integer", length=5)
 	 */
 	protected $pageCount;
 	
 	/**
+     * @var boolean
+     *
 	 * @ORM\Column(name="is_read", type="integer", length=1)
 	 */
 	protected $isRead;
 	
 	/**
+     * @var string
+     *
 	 * @ORM\Column(name="isbn", type="string", length=40)
 	 */	
 	protected $isbn;
 	
 	/**
+     * @var \DateTime
+     *
 	 * @ORM\Column(name="created_at", type="datetime")
 	 */
 	protected $created;
 	
 	/**
+     * @var \DateTime
+     *
 	 * @ORM\Column(name="updated_at", type="datetime")
 	 */
 	protected $updated;
 	
 	/**
+     * @var \DateTime
+     *
 	 * @ORM\Column(name="started_reading", type="datetime")
 	 */
 	protected $startedReading;
 	
 	/**
+     * @var \DateTime
+     *
 	 * @ORM\Column(name="finished_reading", type="datetime")
 	 */	
 	protected $finishedReading;
 	
 	/**
-	 * @Column(name="rating", type="float")
+     * @var float
+     *
+	 * @ORM\Column(name="rating", type="float")
 	 */
 	protected $rating;
 	
 	public function __construct()
 	{
-	    $this->authors = new ArrayCollection();
-	    $this->genres = new ArrayCollection();
-	    $this->tags = new ArrayCollection();
-	    $this->created = $this->updated = new \DateTime();
-	    $this->rating = 0.0;
-        $this->isRead = 0;
+	    $this->authors  = new ArrayCollection();
+	    $this->genres   = new ArrayCollection();
+	    $this->tags     = new ArrayCollection();
+	    $this->created  = $this->updated = new DateTime();
+	    $this->rating   = 0.0;
+        $this->isRead   = 0;
 	}
-	
-	public function setId($id)
+
+    /**
+     * @param int $id
+     * @return Book
+     */
+    public function setId($id)
 	{
 		$this->id = $id;
-	}	
-	
-	public function getId()
+
+        return $this;
+	}
+
+    /**
+     * @return int
+     */
+    public function getId()
 	{
 		return $this->id;
 	}
-	
-	public function setTitle($title)
+
+    /**
+     * @param string $title
+     * @return Book
+     */
+    public function setTitle($title)
 	{
 		$this->title = $title;
+
+        return $this;
 	}
-	
-	public function getTitle()
+
+    /**
+     * @return string
+     */
+    public function getTitle()
 	{
 		return $this->title;
 	}
-	
-	public function setLanguage($language)
+
+    /**
+     * @param string $language
+     * @return Book
+     */
+    public function setLanguage($language)
 	{
 		$this->language = $language;
+
+        return $this;
 	}
-	
-	public function getLanguage()
+
+    /**
+     * @return string
+     */
+    public function getLanguage()
 	{
 		return $this->language;
-	}	
-	
+	}
+
     /**
-     * Add an author.
-     * @param \Model\Entity\Author $author
-     * @return \Model\Entity\Book 
+     * @param Author $author
+     * @return Book
      */
-    public function addAuthor(Entity\Author $author)
+    public function addAuthor(Author $author)
     {
         if (!$this->authors->contains($author)) {
             $this->authors->add($author);
@@ -151,7 +206,10 @@ class Book
         
         return $this;
     }
-    
+
+    /**
+     * @return Book
+     */
     public function removeAuthors()
     {
         foreach($this->authors as $author)
@@ -159,13 +217,15 @@ class Book
             $author->removeBook($this);
             $this->authors->removeElement($author);
         }
+
+        return $this;
     }
+
     /**
-     * Remove an author.
-     * @param \Model\Entity\Author $author
-     * @return \Model\Entity\Book 
+     * @param Author $author
+     * @return Book
      */
-    public function removeAuthor(Entity\Author $author)
+    public function removeAuthor(Author $author)
     {
         if ($this->authors->contains($author)) {
             $this->authors->removeElement($author);
@@ -173,8 +233,11 @@ class Book
         }
         
         return $this;
-    }	
-    
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
     public function getAuthors()
     {
         return $this->authors;
@@ -194,7 +257,10 @@ class Book
         
         return $array;
     }
-    
+
+    /**
+     * @return string
+     */
     public function getAuthorsAsString()
     {
         $str = '';
@@ -206,13 +272,12 @@ class Book
         
         return rtrim($str, ', ');
     }
-    
+
     /**
-     * Add a genre.
-     * @param \Model\Entity\Genre $genre
-     * @return \Model\Entity\Book 
+     * @param Genre $genre
+     * @return Book
      */
-    public function addGenre(Entity\Genre $genre)
+    public function addGenre(Genre $genre)
     {
         if (!$this->genres->contains($genre)) {
             $this->genres->add($genre);
@@ -221,7 +286,10 @@ class Book
         
         return $this;
     }
-    
+
+    /**
+     * @return Book
+     */
     public function removeGenres()
     {
         foreach($this->genres as $genre)
@@ -229,13 +297,15 @@ class Book
             $genre->removeBook($this);
             $this->genres->removeElement($genre);
         }
+
+        return $this;
     }
+
     /**
-     * Remove a genre.
-     * @param \Model\Entity\Genre $genre
-     * @return \Model\Entity\Book 
+     * @param Genre $genre
+     * @return Book
      */
-    public function removeGenre(Entity\Genre $genre)
+    public function removeGenre(Genre $genre)
     {
         if ($this->genres->contains($genre)) {
             $this->genres->removeElement($genre);
@@ -243,13 +313,19 @@ class Book
         }
         
         return $this;
-    }	
-    
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
     public function getGenres()
     {
         return $this->genres;
-    }    
-    
+    }
+
+    /**
+     * @return string
+     */
     public function getGenresAsString()
     {
         $str = '';
@@ -260,14 +336,13 @@ class Book
         }
         
         return rtrim($str, ', ');
-    }        
-    
+    }
+
     /**
-     * Add a genre.
-     * @param \Model\Entity\Tag $tag
-     * @return \Model\Entity\Book 
+     * @param Tag $tag
+     * @return Book
      */
-    public function addTag(Entity\Tag $tag)
+    public function addTag(Tag $tag)
     {
         if (!$this->tags->contains($tag)) {
             $this->tags->add($tag);
@@ -276,7 +351,10 @@ class Book
         
         return $this;
     }
-    
+
+    /**
+     * @return Book
+     */
     public function removeTags()
     {
         foreach($this->tags as $tag)
@@ -284,13 +362,15 @@ class Book
             $tag->removeBook($this);
             $this->tags->removeElement($tag);
         }
+
+        return $this;
     }
+
     /**
-     * Remove a genre.
-     * @param \Model\Entity\Tag $tag
-     * @return \Model\Entity\Book 
+     * @param Tag $tag
+     * @return Book
      */
-    public function removeTag(Entity\Tag $tag)
+    public function removeTag(Tag $tag)
     {
         if ($this->tags->contains($genre)) {
             $this->tags->removeElement($tag);
@@ -298,13 +378,19 @@ class Book
         }
         
         return $this;
-    }	
-    
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
     public function getTags()
     {
         return $this->tags;
-    }        
-    
+    }
+
+    /**
+     * @return string
+     */
     public function getTagsAsString()
     {
         $str = '';
@@ -315,47 +401,67 @@ class Book
         }
         
         return rtrim($str, ', ');
-    }    
-    
-	public function setPageCount($pageCount)
+    }
+
+    /**
+     * @param int $pageCount
+     * @return Book
+     */
+    public function setPageCount($pageCount)
 	{
 		$this->pageCount = $pageCount;
+
+        return $this;
 	}
-	
-	public function getPageCount()
+
+    /**
+     * @return int
+     */
+    public function getPageCount()
 	{
 		return $this->pageCount;
 	}
-	
-	public function setIsbn($isbn)
+
+    /**
+     * @param string $isbn
+     * @return Book
+     */
+    public function setIsbn($isbn)
 	{
 		$this->isbn = $isbn;
+
+        return $this;
 	}
-	
-	public function getIsbn()
+
+    /**
+     * @return string
+     */
+    public function getIsbn()
 	{
 		return $this->isbn;
 	}
-		
-	
-	public function setIsRead($isRead)
+
+    /**
+     * @param boolean $isRead
+     * @return Book
+     */
+    public function setIsRead($isRead)
 	{
 		$this->isRead = $isRead;
+
+        return $this;
 	}
-	
-	public function isRead()
+
+    /**
+     * @return boolean
+     */
+    public function isRead()
 	{
 		return $this->isRead;
-	}	
-	/*
-	public function getIsRead()
-	{
-	    return $this->isRead;
 	}
-	*/
 	
 	/**
-	 * @PreUpdate
+	 * @ORM\PreUpdate
 	 */
 	public function updated()
 	{
@@ -377,8 +483,12 @@ class Book
 	{
 	    return $this->updated;
 	}
-	
-	public function setStartedReading($startedReading)
+
+    /**
+     * @param int $startedReading
+     * @return Book
+     */
+    public function setStartedReading($startedReading)
 	{
 	    if(isset($startedReading) )
 	    {
@@ -388,14 +498,23 @@ class Book
 	    {
 	        $this->startedReading = null;
 	    }
+
+        return $this;
 	}
-	
-	public function getStartedReading()
+
+    /**
+     * @return \DateTime
+     */
+    public function getStartedReading()
 	{
 		return $this->startedReading;
-	}	
+	}
 
-	public function setFinishedReading($finishedReading)
+    /**
+     * @param int $finishedReading
+     * @return Book
+     */
+    public function setFinishedReading($finishedReading)
 	{
 	    if(isset($finishedReading) )
 	    {
@@ -405,19 +524,33 @@ class Book
 	    {
 	        $this->finishedReading = null;
 	    }
+
+        return $this;
 	}
-	
-	public function getFinishedReading()
+
+    /**
+     * @return \DateTime
+     */
+    public function getFinishedReading()
 	{
 		return $this->finishedReading;
-	}	
-	
-	public function setRating($rating)
+	}
+
+    /**
+     * @param float $rating
+     * @return Book
+     */
+    public function setRating($rating)
 	{
 		$this->rating = $rating;
+
+        return $this;
 	}
-	
-	public function getRating()
+
+    /**
+     * @return float
+     */
+    public function getRating()
 	{
 	    return $this->rating;
 	}

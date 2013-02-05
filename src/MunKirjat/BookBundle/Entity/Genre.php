@@ -8,9 +8,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="author")
+ * @ORM\Table(name="genre")
  */
-class Author
+class Genre
 {
 	/**
      * @var int
@@ -24,19 +24,13 @@ class Author
 	/**
      * @var string
      *
-	 * @ORM\Column(name="firstname", type="string", length=45)
+	 * @ORM\Column(name="name", type="string", length=45)
 	 */
-	protected $firstName;
-	
-	/**
-     * @var string
-     *
-	 * @ORM\Column(name="lastname", type="string", length=45)
-	 */	
-	protected $lastName;
+	protected $name;
 	
     /**
-     * @ORM\ManyToMany(targetEntity="Book", mappedBy="authors")
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="Book", mappedBy="genres")
      */
 	protected $books;
 	
@@ -46,48 +40,18 @@ class Author
     }
 
     /**
-     * @param int $id
-     * @return Author
+     * @param string $name
+     * @return Genre
      */
-    public function setId($id)
+    public function setName($name)
 	{
-		$this->id = $id;
+		$this->name = $name;
 
         return $this;
 	}
 
     /**
-     * @param string $firstName
-     * @return Author
-     */
-    public function setFirstName($firstName)
-	{
-		$this->firstName = $firstName;
-
-        return $this;
-	}
-
-    /**
-     * @param string $lastName
-     * @return Author
-     */
-    public function setLastname($lastName)
-	{
-		$this->lastName = $lastName;
-
-        return $this;
-	}
-
-    /**
-     * @return string
-     */
-    public function getFullName()
-	{
-	    return $this->firstName . ' ' . $this->lastName;
-	}
-
-    /**
-     * @return int
+     * @return int mixed
      */
     public function getId()
 	{
@@ -95,30 +59,22 @@ class Author
 	}
 
     /**
-     * @return string
+     * @return String
      */
-    public function getFirstName()
+    public function getName()
 	{
-		return $this->firstName;
-	}
-
-    /**
-     * @return string
-     */
-    public function getLastName()
-	{
-		return $this->lastName;
+		return $this->name;
 	}
 
     /**
      * @param Book $book
-     * @return Author
+     * @return Genre
      */
     public function addBook(Book $book)
     {
         if (!$this->books->contains($book)) {
             $this->books->add($book);
-            $book->addAuthor($this);
+            $book->addGenre($this);
         }
         
         return $this;
@@ -126,13 +82,13 @@ class Author
 
     /**
      * @param Book $book
-     * @return Author
+     * @return Genre
      */
     public function removeBook(Book $book)
     {
         if ($this->books->contains($book)) {
             $this->books->removeElement($book);
-            $book->removeAuthor($this);
+            $book->removeGenre($this);
         }
         
         return $this;

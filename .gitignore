@@ -12,4 +12,5 @@ app/config/parameters.yml
 node_modules
 /web/css/*
 /web/css/!jquery-ui
+/web/css/!normalize
 /web/js/*

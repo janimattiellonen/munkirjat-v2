@@ -1,3 +1,3 @@
 mun_kirjat_main_frontpage:
     pattern: /
-    defaults: { _controller: MunKirjatBookBundle:Default:index }
+    defaults: { _controller: MunKirjatMainBundle:Default:index }

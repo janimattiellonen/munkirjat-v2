@@ -1,1 +1,16 @@
 services:
+    munkirjat_book.repository.book:
+        class: MunKirjat\BookBundle\Repository\BookRepository
+        arguments: [MunKirjat\BookBundle\Entity\Book]
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+
+    munkirjat_book.service.book:
+        class:     MunKirjat\BookBundle\Service\BookService
+        arguments: ["@doctrine.orm.entity_manager", "@munkirjat_book.repository.book"]
+
+    tags.twig.extension:
+        class: MunKirjat\BookBundle\Twig\Extensions\Book
+        arguments: ["@twig", "@munkirjat_book.service.book"]
+        tags:
+            - {name: twig.extension}

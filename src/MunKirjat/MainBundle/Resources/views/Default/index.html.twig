@@ -1,7 +1,33 @@
 {% extends '::base.html.twig' %}
 
 {% block content %}
+
+    <script type="text/template" id="user-template">
+        <div id="test">
+
+            Name: <%= name %>
+            Age: <%= age %>
+        </div>
+
+    </script>
+
     <article>
         {{ munkirjat_latestReadBook() }}
     </article>
+
+
+    <div id="foo"></div>
+
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+
+
+            new app.TestRouter();
+            Backbone.history.start();
+        });
+
+    </script>
 {% endblock %}
+
+

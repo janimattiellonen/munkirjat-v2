@@ -9,4 +9,9 @@ class DefaultController extends Controller
     {
         die("LUSS");
     }
+
+    public function viewAction($id)
+    {
+        die('Book id: ' . $id);
+    }
 }

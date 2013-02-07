@@ -25,21 +25,36 @@
         {% endstylesheets %}
 
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        <nav>{{ knp_menu_render('primary_menu') }}</nav>
-        {% block content %}{% endblock %}
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
 
+        <script type="text/javascript">
+
+            var app = app || {};
+        </script>
+
         {% javascripts output="/js/generic.js" filter="?yui_js"
-            '@MunKirjatMainBundle/Resources/js/modernizr.js'
+        '@MunKirjatMainBundle/Resources/js/modernizr.js'
+        '@MunKirjatMainBundle/Resources/js/json2.js'
+        '@MunKirjatMainBundle/Resources/js/underscore.js'
+        '@MunKirjatMainBundle/Resources/js/backbone-min.js'
+        '@MunKirjatMainBundle/Resources/coffee/model/TestModel.coffee'
+        '@MunKirjatMainBundle/Resources/coffee/view/TestView.coffee'
+        '@MunKirjatMainBundle/Resources/coffee/router/TestRouter.coffee'
         %}
 
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
 
         {% block javascripts %}{% endblock %}
+    </head>
+    <body>
+        <nav>{{ knp_menu_render('primary_menu') }}</nav>
+        {% block content %}{% endblock %}
+
+
+
+
     </body>
 </html>

@@ -1,3 +1,7 @@
 mun_kirjat_main_frontpage:
     pattern: /
     defaults: { _controller: MunKirjatMainBundle:Default:index }
+
+mun_kirjat_main_template:
+    pattern: /tpl
+    defaults: { _controller: MunKirjatMainBundle:Default:template }

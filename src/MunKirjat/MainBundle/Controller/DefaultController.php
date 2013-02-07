@@ -9,4 +9,9 @@ class DefaultController extends Controller
     {
         return $this->render('MunKirjatMainBundle:Default:index.html.twig');
     }
+
+    public function templateAction()
+    {
+        return $this->render('MunKirjatMainBundle:Default:template.html.twig');
+    }
 }

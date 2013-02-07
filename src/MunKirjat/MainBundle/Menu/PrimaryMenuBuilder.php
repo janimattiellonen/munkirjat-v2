@@ -45,15 +45,18 @@ class PrimaryMenuBuilder extends ContainerAware
         $menu = $this->factory->createItem('root');
         $menu->setCurrentUri($request->getRequestUri() );
 
-        $menu->addChild($this->translator->trans('menu.frontpage'), array('route' => 'mun_kirjat_book_test') );
-        $menu->addChild($this->translator->trans('menu.about'), array('route' => 'mun_kirjat_book_test') );
-        $menu->addChild($this->translator->trans('menu.list-authors'), array('route' => 'mun_kirjat_book_test') );
-        $menu->addChild($this->translator->trans('menu.list-genres'), array('route' => 'mun_kirjat_book_test') );
-        $menu->addChild($this->translator->trans('menu.statistics'), array('route' => 'mun_kirjat_book_test') );
+        $menu->addChild($this->translator->trans('menu.frontpage'), array('route' => 'munkirjat_book_test') );
+        $menu->addChild($this->translator->trans('menu.about'), array('route' => 'munkirjat_book_test') );
+        $menu->addChild($this->translator->trans('menu.list-authors'), array('route' => 'munkirjat_book_test') );
+        $menu->addChild($this->translator->trans('menu.list-genres'), array('route' => 'munkirjat_book_test') );
+        $menu->addChild($this->translator->trans('menu.statistics'), array('route' => 'munkirjat_book_test') );
 
         if($this->securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED') )
         {
-            $menu->addChild($this->translator->trans('menu.logout'), array('route' => 'fos_user_security_logout') );
+            $menu->addChild($this->translator->trans('menu.add-new-book'), array('route' => 'munkirjat_book_test') );
+            $menu->addChild($this->translator->trans('menu.add-new-author'), array('route' => 'munkirjat_book_test') );
+            $menu->addChild($this->translator->trans('menu.add-new-genre'), array('route' => 'munkirjat_book_test') );
+            $menu->addChild($this->translator->trans('menu.logout'), array('route' => 'munkirjat_book_test') );
         }
         else
         {

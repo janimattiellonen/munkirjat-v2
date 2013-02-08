@@ -50,11 +50,7 @@
         {% block javascripts %}{% endblock %}
     </head>
     <body>
-        <nav>{{ knp_menu_render('primary_menu') }}</nav>
+        <nav class="mobile">{{ knp_menu_render('primary_menu') }}</nav>
         {% block content %}{% endblock %}
-
-
-
-
     </body>
 </html>

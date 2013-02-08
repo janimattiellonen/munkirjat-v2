@@ -88,3 +88,8 @@ fos_user:
 
     ## mongodb
     #user_class: JmeSf2\GenericUserBundle\Document\User
+
+knp_menu:
+    twig:
+        template: MunKirjatMainBundle:Menu:knp_menu.html.twig
+

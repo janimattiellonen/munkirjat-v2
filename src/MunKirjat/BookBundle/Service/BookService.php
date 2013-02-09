@@ -14,7 +14,7 @@ class BookService
     protected $em;
 
     /**
-     * @var \MunKirjat\BookBundle\Repository\BookRpository
+     * @var \MunKirjat\BookBundle\Repository\BookRepository
      */
     protected $bookRepository;
 

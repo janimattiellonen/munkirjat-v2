@@ -2,6 +2,10 @@ body {
     margin: 20px 30px;
 }
 
+section.container {
+    display: none;
+}
+
 nav {
 
     width: 59px;
@@ -32,6 +36,7 @@ nav {
 
         background: #3c3c3c;
         border: solid #d3d3d3 3px;
+        border-radius: 10px;
 
         li {
             padding: 5px 0;
@@ -130,6 +135,53 @@ nav {
                 height: 32px;
                 display: block;
             }
+        }
+    }
+}
+
+article {
+    float: left;
+    margin-bottom: 15px;
+
+    border: solid black 1px;
+    border-radius: 10px;
+    padding: 2% 15px;
+
+    width: 96%;
+
+    background: #3c3c3c;
+    color: white;
+
+    a {
+        color: white;
+    }
+}
+
+article h1, article h2 {
+    margin-top: 0;
+}
+
+
+article#book-statistics {
+
+    float: left;
+
+    h3 {
+        font-size: 1em;
+        margin-bottom: 0;
+    }
+
+    p {
+        font-size: 0.8em;
+        margin-top: 0;
+    }
+
+    div {
+        float:left;
+        width: 50%;
+
+        h3 {
+            margin-top: 0;
         }
     }
 }

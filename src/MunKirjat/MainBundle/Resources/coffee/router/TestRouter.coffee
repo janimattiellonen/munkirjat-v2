@@ -1,27 +1,35 @@
 
 app.TestRouter = Backbone.Router.extend(
     routes:
-        "help":             "help"
-        "search/:query":    "search"
+        "frontpage":        "frontpage"
+        "about":            "about"
 
+    initialize: (options) ->
+        _.extend @, Backbone.Events
 
-    help: () ->
-        model = new app.TestModel(
-            name: "Janimatti Ellonen"
-            age: 32
-        )
+        @dispatcher = _.extend({}, Backbone.Events)
 
-        view = new app.TestView(model: model)
-        view.render()
+        @frontPageView = new app.FrontPageView({dispatcher: @dispatcher});
+        @aboutView = new app.AboutView({dispatcher: @dispatcher});
 
-    search: (query) ->
+    frontpage: () ->
 
-        model = new app.TestModel(
-            name: query
-            age: 32
-        )
+        @dispatcher.trigger "container:hide"
 
-        view = new app.TestView(model: model)
-        view.render()
+        @frontPageView.show()
+
+    about: () ->
+
+        @dispatcher.trigger "container:hide"
+
+        @aboutView.show()
+
+        #model = new app.TestModel(
+        #    name: query
+        #    age: 32
+        #)
+
+        #view = new app.TestView(model: model)
+        #view.render()
 
 )

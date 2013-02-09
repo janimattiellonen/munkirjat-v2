@@ -15,12 +15,53 @@
         {{ munkirjat_latestReadBook() }}
     </article>
 
+    <article id="book-statistics">
+        <h2>{{ 'stats.statistics'|trans }}</h2>
+
+        <div>
+            <h3>{{ 'stats.books-in-bookshelf'|trans }}</h3>
+            <p>252</p>
+
+            <h3>{{ 'stats.authors-in-bookshelf'|trans }}</h3>
+            <p>95</p>
+
+            <h3>{{ 'stats.unread-books'|trans }}</h3>
+            <p>44</p>
+
+            <h3>{{ 'stats.pages-read'|trans }}</h3>
+            <p>95000</p>
+
+            <h3>{{ 'stats.unrated-books'|trans }}</h3>
+            <p>56</p>
+        </div>
+
+        <div>
+            <h3>{{ 'stats.slowest-read-time'|trans }}</h3>
+            <p>47 days</p>
+
+            <h3>{{ 'stats.fastest-read-time'|trans }}</h3>
+            <p>2 days</p>
+
+            <h3>{{ 'stats.average-read-time'|trans }}</h3>
+            <p>12.3 days</p>
+
+            <h3>{{ 'stats.estimated-time'|trans }}</h3>
+            <p>541.2 (1.48 years)</p>
+
+            <h3>{{ 'stats.average-rating'|trans }}</h3>
+            <p>3.87</p>
+        </div>
+
+    </article>
+
 
     <div id="foo"></div>
 
     <script type="text/javascript">
 
         $(document).ready(function(){
+
+            new app.TestView();
 
 
             new app.TestRouter();

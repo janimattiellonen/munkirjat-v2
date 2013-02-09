@@ -41,6 +41,8 @@
         '@MunKirjatMainBundle/Resources/js/backbone-min.js'
         '@MunKirjatMainBundle/Resources/coffee/model/TestModel.coffee'
         '@MunKirjatMainBundle/Resources/coffee/view/TestView.coffee'
+        '@MunKirjatMainBundle/Resources/coffee/view/FrontPageView.coffee'
+        '@MunKirjatMainBundle/Resources/coffee/view/AboutView.coffee'
         '@MunKirjatMainBundle/Resources/coffee/router/TestRouter.coffee'
         %}
 
@@ -50,7 +52,15 @@
         {% block javascripts %}{% endblock %}
     </head>
     <body>
-        <nav class="mobile">{{ knp_menu_render('primary_menu') }}</nav>
-        {% block content %}{% endblock %}
+        <header>
+            <nav class="mobile">{{ knp_menu_render('primary_menu') }}</nav>
+        </header>
+        <section id="frontpage" class="container">
+            {% block content %}{% endblock %}
+        </section>
+
+        <section id="about" class="container">
+            <h1>About</h1>
+        </section>
     </body>
 </html>

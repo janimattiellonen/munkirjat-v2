@@ -45,8 +45,8 @@ class PrimaryMenuBuilder extends ContainerAware
         $menu = $this->factory->createItem('root');
         $menu->setCurrentUri($request->getRequestUri() );
 
-        $menu->addChild($this->translator->trans('menu.frontpage'), array('route' => 'munkirjat_book_test', 'attributes' => array('id' => 'primary-menu-frontpage') ) );
-        $menu->addChild($this->translator->trans('menu.about'), array('route' => 'munkirjat_book_test', 'attributes' => array('id' => 'primary-menu-about') ) );
+        $menu->addChild($this->translator->trans('menu.frontpage'), array('uri' => '#/frontpage', 'attributes' => array('id' => 'primary-menu-frontpage') ) );
+        $menu->addChild($this->translator->trans('menu.about'), array('uri' => '#/about', 'attributes' => array('id' => 'primary-menu-about') ) );
         $menu->addChild($this->translator->trans('menu.list-authors'), array('route' => 'munkirjat_book_test', 'attributes' => array('id' => 'primary-menu-list-authors') ) );
         $menu->addChild($this->translator->trans('menu.list-genres'), array('route' => 'munkirjat_book_test', 'attributes' => array('id' => 'primary-menu-list-genres') ) );
         $menu->addChild($this->translator->trans('menu.statistics'), array('route' => 'munkirjat_book_test', 'attributes' => array('id' => 'primary-menu-statistics') ) );

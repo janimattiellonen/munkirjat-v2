@@ -6,20 +6,27 @@ $ ->
         el: '#frontpage'
 
         initialize: (options) ->
-
+            @loaded = false
             _.bindAll this, 'hide'
             options.dispatcher.on("container:hide", @hide)
 
         render: () ->
 
-            self = @
-            $.get 'statistics', (data) ->
-                template = _.template(data)
-                self.$el.html template(self.model.toJSON() )
+            if @loaded == false
+                template = _.template $('#stats-template').html()
+
+                self = @
+                $.ajax(
+                    url: 'statistics',
+                    dataType: 'json'
+                    success: (data) =>
+                        self.$el.html template(data)
+                        self.loaded = true
+                )
 
         show: () ->
             @$el.show()
-            #@render()
+            @render()
 
         hide: () ->
             @$el.hide()

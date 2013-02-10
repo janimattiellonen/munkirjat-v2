@@ -2,30 +2,10 @@
 
 {% block content %}
 
-    <script type="text/template" id="user-template">
-        <div id="test">
-
-            Name: <%= name %>
-            Age: <%= age %>
-        </div>
-
-    </script>
-
     <script type="text/template" id="stats-template">
         {% include 'MunKirjatMainBundle:Default:stats.html.twig' %}
     </script>
 
-    <article>
-        {{ munkirjat_latestReadBook() }}
-    </article>
-
-    <article id="book-statistics">
-        <h2>{{ 'stats.statistics'|trans }}</h2>
-
-        <div id="stats-template-container"></div>
-    </article>
-
-    <div id="foo"></div>
 
 
 {% endblock %}

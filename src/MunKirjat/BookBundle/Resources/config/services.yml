@@ -5,23 +5,13 @@ services:
         factory_service: doctrine.orm.entity_manager
         factory_method: getRepository
 
-    munkirjat_book.repository.statistics2:
-        class: MunKirjat\BookBundle\Repository\StatisticsRepository
-        arguments: [MunKirjat\BookBundle\Entity\Book]
-        factory_service: doctrine.orm.entity_manager
-        factory_method: getRepository
-
-    munkirjat_book.repository.statistics:
-        class: MunKirjat\BookBundle\Repository\StatisticsRepository
-        arguments: ["@doctrine.orm.entity_manager"]
-
     munkirjat_book.service.book:
         class:     MunKirjat\BookBundle\Service\BookService
         arguments: ["@doctrine.orm.entity_manager", "@munkirjat_book.repository.book"]
 
     munkirjat_book.service.statistics:
         class:     MunKirjat\BookBundle\Service\StatisticsService
-        arguments: ["@doctrine.orm.entity_manager", "@munkirjat_book.repository.statistics"]
+        arguments: ["@doctrine.orm.entity_manager", "@munkirjat_book.repository.book"]
 
     tags.twig.extension:
         class: MunKirjat\BookBundle\Twig\Extensions\Book

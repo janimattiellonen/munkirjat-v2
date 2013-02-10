@@ -1,35 +1,44 @@
+<article>
+    <h2>{{ 'Latest read book'|trans }}</h2>
+
+    <%= latest_read_book.id %>
+    <%= latest_read_book.title %>
+</article>
+
 <article id="book-statistics">
-<div>
-    <h3>{{ 'stats.books-in-bookshelf'|trans }}</h3>
-    <p><%= book_count %></p>
+    <h2>{{ 'stats.statistics'|trans }}</h2>
 
-    <h3>{{ 'stats.authors-in-bookshelf'|trans }}</h3>
-    <p><%= author_count %></p>
+    <div>
+        <h3>{{ 'stats.books-in-bookshelf'|trans }}</h3>
+        <p><%= book_count %></p>
 
-    <h3>{{ 'stats.unread-books'|trans }}</h3>
-    <p><%= unread_book_count %></p>
+        <h3>{{ 'stats.authors-in-bookshelf'|trans }}</h3>
+        <p><%= author_count %></p>
 
-    <h3>{{ 'stats.pages-read'|trans }}</h3>
-    <p><%= read_page_count %></p>
+        <h3>{{ 'stats.unread-books'|trans }}</h3>
+        <p><%= unread_book_count %></p>
 
-    <h3>{{ 'stats.unrated-books'|trans }}</h3>
-    <p><%= unrated_book_count %></p>
-</div>
+        <h3>{{ 'stats.pages-read'|trans }}</h3>
+        <p><%= read_page_count %></p>
 
-<div>
-    <h3>{{ 'stats.slowest-read-time'|trans }}</h3>
-    <p><%= slowest_pace %> days</p>
+        <h3>{{ 'stats.unrated-books'|trans }}</h3>
+        <p><%= unrated_book_count %></p>
+    </div>
 
-    <h3>{{ 'stats.fastest-read-time'|trans }}</h3>
-    <p><%= fastest_pace %></p>
+    <div>
+        <h3>{{ 'stats.slowest-read-time'|trans }}</h3>
+        <p><%= slowest_pace %> days</p>
 
-    <h3>{{ 'stats.average-read-time'|trans }}</h3>
-    <p>1<%= average_pace %> days</p>
+        <h3>{{ 'stats.fastest-read-time'|trans }}</h3>
+        <p><%= fastest_pace %></p>
 
-    <h3>{{ 'stats.estimated-time'|trans }}</h3>
-    <p><%= estimated_time_to_read_all %></p>
+        <h3>{{ 'stats.average-read-time'|trans }}</h3>
+        <p>1<%= average_pace %> days</p>
 
-    <h3>{{ 'stats.average-rating'|trans }}</h3>
-    <p><%= average_rating %></p>
-</div>
+        <h3>{{ 'stats.estimated-time'|trans }}</h3>
+        <p><%= estimated_time_to_read_all %></p>
+
+        <h3>{{ 'stats.average-rating'|trans }}</h3>
+        <p><%= average_rating %></p>
+    </div>
 </article>

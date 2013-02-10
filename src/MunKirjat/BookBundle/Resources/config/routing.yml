@@ -7,3 +7,9 @@ munkirjat_book_view:
     defaults: { _controller: MunKirjatBookBundle:Default:view }
     requirements: { _method: get, id:  \d+ }
 
+
+munkirjat_statistics_statistics:
+    pattern: /statistics
+    defaults: { _controller: MunKirjatBookBundle:Statistics:statistics }
+    requirements: { _method: get}
+

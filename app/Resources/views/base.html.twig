@@ -26,31 +26,9 @@
 
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
 
-        <script type="text/javascript">
-
-            var app = app || {};
-        </script>
-
-        {% javascripts output="/js/generic.js" filter="?yui_js"
-        '@MunKirjatMainBundle/Resources/js/modernizr.js'
-        '@MunKirjatMainBundle/Resources/js/json2.js'
-        '@MunKirjatMainBundle/Resources/js/underscore.js'
-        '@MunKirjatMainBundle/Resources/js/backbone-min.js'
-        '@MunKirjatMainBundle/Resources/coffee/model/TestModel.coffee'
-        '@MunKirjatMainBundle/Resources/coffee/view/TestView.coffee'
-        '@MunKirjatMainBundle/Resources/coffee/view/FrontPageView.coffee'
-        '@MunKirjatMainBundle/Resources/coffee/view/AboutView.coffee'
-        '@MunKirjatMainBundle/Resources/coffee/router/TestRouter.coffee'
-        %}
-
-        <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-
-        {% block javascripts %}{% endblock %}
     </head>
+
     <body>
         <header>
             <nav class="mobile">{{ knp_menu_render('primary_menu') }}</nav>
@@ -62,5 +40,41 @@
         <section id="about" class="container">
 
         </section>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js "></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.10/backbone-min.js "></script>
+
+        <script type="text/javascript">
+            var app = app || {};
+        </script>
+
+        {% javascripts output="/js/generic.js" filter="?yui_js"
+        '@MunKirjatMainBundle/Resources/js/modernizr.js'
+        '@MunKirjatMainBundle/Resources/coffee/model/TestModel.coffee'
+        '@MunKirjatMainBundle/Resources/coffee/view/TestView.coffee'
+        '@MunKirjatMainBundle/Resources/coffee/view/FrontPageView.coffee'
+        '@MunKirjatMainBundle/Resources/coffee/view/AboutView.coffee'
+        '@MunKirjatMainBundle/Resources/coffee/router/TestRouter.coffee'
+        %}
+
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+
+        <script type="text/javascript">
+
+            $(document).ready(function() {
+
+                new app.TestView();
+
+                new app.TestRouter();
+                Backbone.history.start();
+            });
+
+        </script>
+
+        {% block javascripts %}{% endblock %}
+
     </body>
 </html>

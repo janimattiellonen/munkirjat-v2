@@ -1,10 +1,23 @@
 <?php
 namespace MunKirjat\BookBundle\Repository;
 
-use MunKirjat\Component\Repository\BaseRepository;
+use Doctrine\ORM\EntityManager;
 
-class StatisticsRepository extends BaseRepository
+class StatisticsRepository
 {
+    /**
+     * @var \Doctrine\ORM\EntityManager
+     */
+    protected $em;
+
+    /**
+     * @param \Doctrine\ORM\EntityManager $em
+     */
+    public function __construct(EntityManager $em)
+    {
+        $this->em = $em;
+    }
+
     /**
      * @return int
      */
@@ -326,5 +339,21 @@ class StatisticsRepository extends BaseRepository
         }
 
         return $rows;
+    }
+
+    /**
+     * @return \Doctrine\ORM\EntityManager
+     */
+    public function getEntitymanager()
+    {
+        return $this->em;
+    }
+
+    /**
+     * @return Doctrine\ORM\QueryBuilder
+     */
+    public function getQueryBuilder()
+    {
+        return $this->getEntityManager()->createQueryBuilder();
     }
 }

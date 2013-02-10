@@ -1,0 +1,33 @@
+<div>
+    <h3>{{ 'stats.books-in-bookshelf'|trans }}</h3>
+    <p><%= book_count %></p>
+
+    <h3>{{ 'stats.authors-in-bookshelf'|trans }}</h3>
+    <p><%= author_count %></p>
+
+    <h3>{{ 'stats.unread-books'|trans }}</h3>
+    <p><%= unread_book_count %></p>
+
+    <h3>{{ 'stats.pages-read'|trans }}</h3>
+    <p><%= read_page_count %></p>
+
+    <h3>{{ 'stats.unrated-books'|trans }}</h3>
+    <p><%= unrated_book_count %></p>
+</div>
+
+<div>
+    <h3>{{ 'stats.slowest-read-time'|trans }}</h3>
+    <p><%= slowest_pace %> days</p>
+
+    <h3>{{ 'stats.fastest-read-time'|trans }}</h3>
+    <p><%= fastest_pace %></p>
+
+    <h3>{{ 'stats.average-read-time'|trans }}</h3>
+    <p>1<%= average_pace %> days</p>
+
+    <h3>{{ 'stats.estimated-time'|trans }}</h3>
+    <p><%= estimated_time_to_read_all %></p>
+
+    <h3>{{ 'stats.average-rating'|trans }}</h3>
+    <p><%= average_rating %></p>
+</div>

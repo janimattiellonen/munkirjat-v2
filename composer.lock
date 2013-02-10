@@ -1,5 +1,5 @@
 {
-    "hash": "c952450f8301eb79fd3548687917fcb8",
+    "hash": "6e1e55878ce8a08e2ed58068c5ce60fd",
     "packages": [
         {
             "name": "beberlei/DoctrineExtensions",
@@ -1929,19 +1929,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/willdurand/BazingaExposeTranslationBundle",
-                "reference": "1672c99e3160b04223903e4b0cc78006b714a9f6"
+                "reference": "5ef8b7b0a0c97bc919fa25722fa7cb2e6c29a57b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/willdurand/BazingaExposeTranslationBundle/zipball/1672c99e3160b04223903e4b0cc78006b714a9f6",
-                "reference": "1672c99e3160b04223903e4b0cc78006b714a9f6",
+                "url": "https://api.github.com/repos/willdurand/BazingaExposeTranslationBundle/zipball/5ef8b7b0a0c97bc919fa25722fa7cb2e6c29a57b",
+                "reference": "5ef8b7b0a0c97bc919fa25722fa7cb2e6c29a57b",
                 "shasum": ""
             },
             "require": {
                 "symfony/finder": ">=2.0,<2.3-dev",
                 "symfony/framework-bundle": ">=2.0,<2.3-dev"
             },
-            "time": "2013-01-23 22:50:31",
+            "time": "2013-02-07 22:12:35",
             "type": "symfony-bundle",
             "autoload": {
                 "psr-0": {

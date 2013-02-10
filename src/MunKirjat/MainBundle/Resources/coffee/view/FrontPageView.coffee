@@ -12,14 +12,20 @@ $ ->
 
         render: () ->
 
+            self = @
+            $.get 'statistics', (data) ->
+                template = _.template(data)
+                self.$el.html template(self.model.toJSON() )
 
         show: () ->
             @$el.show()
+            #@render()
 
         hide: () ->
             @$el.hide()
 
-
     )
+
+
 
 

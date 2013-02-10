@@ -1,6 +1,8 @@
 <?php
 namespace MunKirjat\BookBundle\Service;
 
+use Doctrine\ORM\EntityManager;
+
 use MunKirjat\BookBundle\Repository\StatisticsRepository;
 
 class StatisticsService

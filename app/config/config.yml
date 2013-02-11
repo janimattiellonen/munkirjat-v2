@@ -45,6 +45,10 @@ assetic:
             bin:  %kernel.root_dir%/../node_modules/coffee-script/bin/coffee
             node: %node_bin%
             apply_to: "\.coffee$"
+
+fos_js_routing:
+    routes_to_expose: [".*"]
+
 # Doctrine Configuration
 doctrine:
     dbal:

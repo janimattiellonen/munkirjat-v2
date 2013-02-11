@@ -5,7 +5,7 @@ munkirjat_book_test:
 munkirjat_book_view:
     locales: {fi: "/kirja/{id}", en: "/book/{id}" }
     defaults: { _controller: MunKirjatBookBundle:Default:view }
-    requirements: { _method: get, id:  \d+ }
+    requirements: { _method: get }
 
 
 munkirjat_statistics_statistics:

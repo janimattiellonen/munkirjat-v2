@@ -22,3 +22,5 @@ stats:
     average-read-time:    "Average read time"
     estimated-time:       "Estimated time to read all unread books"
     average-rating:       "Average rating"
+    latest-read-book:     "Latest read book"
+    latest-added-book:    "Latest added book"

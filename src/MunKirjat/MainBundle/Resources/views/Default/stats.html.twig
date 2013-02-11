@@ -1,14 +1,21 @@
 <article>
-    <h2>{{ 'Latest read book'|trans }}</h2>
+    <div class="col50">
+        <h2>{{ 'stats.latest-read-book'|trans }}</h2>
 
-    <%= latest_read_book.id %>
-    <%= latest_read_book.title %>
+        <a href="<%=Routing.generate('munkirjat_book_view.en', {id: latest_read_book.id})%>"><%= latest_read_book.title %></a>
+    </div>
+
+    <div class="col50">
+        <h2>{{ 'stats.latest-added-book'|trans }}</h2>
+
+        <a href="<%=Routing.generate('munkirjat_book_view.en', {id: latest_added_book.id})%>"><%= latest_added_book.title %></a>
+    </div>
 </article>
 
 <article id="book-statistics">
     <h2>{{ 'stats.statistics'|trans }}</h2>
 
-    <div>
+    <div class="col50">
         <h3>{{ 'stats.books-in-bookshelf'|trans }}</h3>
         <p><%= book_count %></p>
 
@@ -25,7 +32,7 @@
         <p><%= unrated_book_count %></p>
     </div>
 
-    <div>
+    <div class="col50">
         <h3>{{ 'stats.slowest-read-time'|trans }}</h3>
         <p><%= slowest_pace %> days</p>
 

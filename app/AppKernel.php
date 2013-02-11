@@ -32,7 +32,8 @@ class AppKernel extends Kernel
             new JmeSf2\GenericUserBundle\JmeSf2GenericUserBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
 
-            //new Bazinga\ExposeTranslationBundle\BazingaExposeTranslationBundle(),
+            new Bazinga\ExposeTranslationBundle\BazingaExposeTranslationBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

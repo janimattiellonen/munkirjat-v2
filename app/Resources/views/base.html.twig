@@ -34,9 +34,7 @@
             <nav class="mobile">{{ knp_menu_render('primary_menu') }}</nav>
         </header>
         <section id="frontpage" class="container">
-
                 {% block content %}{% endblock %}
-
         </section>
 
         <section id="about" class="container">
@@ -52,19 +50,26 @@
         </script>
 
         {% javascripts output="/js/generic.js" filter="?yui_js"
-        '@MunKirjatMainBundle/Resources/js/modernizr.js'
-        '@MunKirjatMainBundle/Resources/js/json2.js'
-        '@MunKirjatMainBundle/Resources/js/underscore.js'
-        '@MunKirjatMainBundle/Resources/js/backbone-min.js'
-        '@MunKirjatMainBundle/Resources/coffee/model/TestModel.coffee'
-        '@MunKirjatMainBundle/Resources/coffee/view/TestView.coffee'
-        '@MunKirjatMainBundle/Resources/coffee/view/FrontPageView.coffee'
-        '@MunKirjatMainBundle/Resources/coffee/view/AboutView.coffee'
-        '@MunKirjatMainBundle/Resources/coffee/router/TestRouter.coffee'
+            '@MunKirjatMainBundle/Resources/js/modernizr.js'
+            '@MunKirjatMainBundle/Resources/js/json2.js'
+            '@MunKirjatMainBundle/Resources/js/underscore.js'
+            '@MunKirjatMainBundle/Resources/js/backbone-min.js'
+            '@MunKirjatMainBundle/Resources/coffee/model/TestModel.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/view/TestView.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/view/FrontPageView.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/view/AboutView.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/router/TestRouter.coffee'
+            'bundles/fosjsrouting/js/router.js'
+            'js/fos_js_routes.js'
         %}
 
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
+
+        <script type="text/javascript">
+            window.baseUrl = '{{ app.request.getBaseURL() }}';
+            Routing.setBaseUrl(window.baseUrl);
+        </script>
 
         <script type="text/javascript">
 

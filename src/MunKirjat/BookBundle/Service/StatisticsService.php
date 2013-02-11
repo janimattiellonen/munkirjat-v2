@@ -3,7 +3,8 @@ namespace MunKirjat\BookBundle\Service;
 
 use Doctrine\ORM\EntityManager;
 
-use MunKirjat\BookBundle\Repository\BookRepository;
+use MunKirjat\BookBundle\Service\AuthorService;
+use MunKirjat\BookBundle\Service\BookService;
 
 class StatisticsService
 {
@@ -13,18 +14,25 @@ class StatisticsService
     protected $em;
 
     /**
-     * @var \MunKirjat\BookBundle\Repository\BookRepository
+     * @var BookService
      */
-    protected $bookRepository;
+    protected $bookService;
 
     /**
-     * @param EntityManager     $em
-     * @param BookRepository    $bookRepository
+     * @var AuthorService
      */
-    public function __construct(EntityManager $em, BookRepository $bookRepository)
+    protected $authorService;
+
+    /**
+     * @param EntityManager $em
+     * @param BookService   $bookService
+     * @param AuthorService $authorService
+     */
+    public function __construct(EntityManager $em, BookService $bookService, AuthorService $authorService)
     {
         $this->em               = $em;
-        $this->bookRepository   = $bookRepository;
+        $this->bookService      = $bookService;
+        $this->authorService    = $authorService;
     }
 
     /**
@@ -35,17 +43,17 @@ class StatisticsService
     public function getBookStatistics()
     {
         $stats = array(
-            'latest_read_book'              => $this->bookRepository->getLatestReadBook(),
-            'latest_added_book'             => $this->bookRepository->getLatestReadBook(),
-            'author_count'                  => $this->bookRepository->getAuthorCount(),
-            'read_page_count'               => $this->bookRepository->getReadPageCount(),
-            'book_count'                    => $this->bookRepository->getBookCount(),
-            'unread_book_count'             => $this->bookRepository->getUnreadBookCount(),
-            'unrated_book_count'            => $this->bookRepository->getUnratedBookCount(),
-            'average_pace'                  => $this->bookRepository->getAverageBookReadPace(),
-            'slowest_pace'                  => $this->bookRepository->getSlowestBookReadPace(),
-            'fastest_pace'                  => $this->bookRepository->getFastestBookReadPace(),
-            'average_rating'                => $this->bookRepository->getAverageRating(),
+            'latest_read_book'              => $this->bookService->getLatestReadBook(),
+            'latest_added_book'             => $this->bookService->getLatestAddedBook(),
+            'author_count'                  => $this->authorService->getAuthorCount(),
+            'read_page_count'               => $this->bookService->getReadPageCount(),
+            'book_count'                    => $this->bookService->getBookCount(),
+            'unread_book_count'             => $this->bookService->getUnreadBookCount(),
+            'unrated_book_count'            => $this->bookService->getUnratedBookCount(),
+            'average_pace'                  => $this->bookService->getAverageBookReadPace(),
+            'slowest_pace'                  => $this->bookService->getSlowestBookReadPace(),
+            'fastest_pace'                  => $this->bookService->getFastestBookReadPace(),
+            'average_rating'                => $this->bookService->getAverageRating(),
             'estimated_time_to_read_all'    => $this->getEstimatedTimeToReadAllUnreadBooks(),
         );
 
@@ -57,8 +65,8 @@ class StatisticsService
      */
     protected function getEstimatedTimeToReadAllUnreadBooks()
     {
-        $pace       = (double)$this->bookRepository->getAverageBookReadPace();
-        $amount     = (int)$this->bookRepository->getUnreadBookCount();
+        $pace       = (double)$this->bookService->getAverageBookReadPace();
+        $amount     = (int)$this->bookService->getUnreadBookCount();
         $timeLeft   = round($amount  * $pace, 2);
 
         return round($timeLeft / 365, 2);

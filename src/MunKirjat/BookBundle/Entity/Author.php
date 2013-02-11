@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="MunKirjat\BookBundle\Repository\AuthorRepository")
  * @ORM\Table(name="author")
  */
 class Author

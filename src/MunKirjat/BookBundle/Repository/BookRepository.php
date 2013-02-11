@@ -186,21 +186,6 @@ class BookRepository extends BaseRepository
     /**
      * @return int
      */
-    public function getAuthorCount()
-    {
-        $qb = $this->getQueryBuilder();
-
-        $qb->select('count(a.id) AS amount')
-            ->from('MunKirjat\BookBundle\Entity\Author', 'a');
-
-        $authors = $qb->getQuery()->getSingleResult();
-
-        return isset($authors['amount']) ? $authors['amount'] : 0;
-    }
-
-    /**
-     * @return int
-     */
     public function getBookCount()
     {
         $qb = $this->getQueryBuilder();
@@ -343,7 +328,7 @@ class BookRepository extends BaseRepository
     }
 
     /**
-     * @return double
+     * @return float
      */
     public function getAverageBookReadPace()
     {
@@ -369,7 +354,7 @@ class BookRepository extends BaseRepository
     }
 
     /**
-     * @return double
+     * @return float
      */
     public function getFastestBookReadPace()
     {
@@ -397,7 +382,7 @@ class BookRepository extends BaseRepository
     }
 
     /**
-     * @return double
+     * @return float
      */
     public function getSlowestBookReadPace()
     {
@@ -503,13 +488,4 @@ class BookRepository extends BaseRepository
 
         return $rows;
     }
-
-    /**
-     * @return Doctrine\ORM\QueryBuilder
-     */
-    public function getQueryBuilder()
-    {
-        return $this->getEntityManager()->createQueryBuilder();
-    }
-
 }

@@ -26,4 +26,12 @@ class BaseRepository extends EntityRepository
             return null;
         }
     }
+
+    /**
+     * @return Doctrine\ORM\QueryBuilder
+     */
+    public function getQueryBuilder()
+    {
+        return $this->getEntityManager()->createQueryBuilder();
+    }
 }

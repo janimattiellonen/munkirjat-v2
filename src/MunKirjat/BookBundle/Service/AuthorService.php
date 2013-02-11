@@ -29,6 +29,16 @@ class AuthorService
     }
 
     /**
+     * @param int $minBooks the minimum amount of books by an author
+     * @param int $limit
+     * @return array
+     */
+    public function getFavouriteAuthors($minBooks = 3, $limit = 20)
+    {
+        return $this->authorRepository->getFavouriteAuthors($minBooks, $limit);
+    }
+
+    /**
      * @return int
      */
     public function getAuthorCount()

@@ -8,7 +8,7 @@ app.TestRouter = Backbone.Router.extend(
         @dispatcher     = _.extend({}, Backbone.Events)
 
         @frontPageView  = new app.FrontPageView({dispatcher: @dispatcher} );
-        @aboutView      = new app.AboutView({dispatcher: @dispatcher, url: '/about'} );
+        @aboutView      = new app.AboutView({dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/about'} );
 
     frontpage: () ->
         @dispatcher.trigger "container:hide"

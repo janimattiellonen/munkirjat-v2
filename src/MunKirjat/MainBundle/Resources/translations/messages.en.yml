@@ -24,3 +24,8 @@ stats:
     average-rating:       "Average rating"
     latest-read-book:     "Latest read book"
     latest-added-book:    "Latest added book"
+
+bookshelf:
+    favourite-authors:    "Favourite authors"
+    recently-read:        "Recently read"
+    unread:               "Unread"

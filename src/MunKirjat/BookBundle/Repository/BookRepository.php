@@ -10,11 +10,11 @@ use MunKirjat\Component\Utils\Name;
 class BookRepository extends BaseRepository
 {
     /**
-     * @param int $diff
      * @param int $limit
+     * @param int $diff
      * @return mixed
      */
-    public function getRecentlyReadBooks($diff = 183, $limit = 20)
+    public function getRecentlyReadBooks($limit = 20, $diff = 183)
     {
         $dateStr = date('Y-m-d H:i:s');
 
@@ -30,7 +30,7 @@ class BookRepository extends BaseRepository
             ->orderBy('b.finishedReading', 'DESC')
             ->setMaxResults($limit);
 
-        return $qb->getQuery()->getResult();
+        return $qb->getQuery()->getResult(AbstractQuery::HYDRATE_ARRAY);
     }
 
     /**
@@ -46,7 +46,7 @@ class BookRepository extends BaseRepository
             ->where('b.isRead != 1')
             ->setMaxResults($limit);
 
-        return $qb->getQuery()->getResult();
+        return $qb->getQuery()->getResult(AbstractQuery::HYDRATE_ARRAY);
     }
 
     /**

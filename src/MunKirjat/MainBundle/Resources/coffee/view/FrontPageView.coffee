@@ -17,7 +17,7 @@ $ ->
 
                 self = @
                 $.ajax(
-                    url: 'statistics',
+                    url: Routing.getBaseUrl() + '/statistics',
                     dataType: 'json'
                     success: (data) =>
                         self.$el.html template(data)

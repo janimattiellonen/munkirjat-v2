@@ -107,4 +107,23 @@ class BookService
     {
         return $this->bookRepository->getAverageRating();
     }
+
+    /**
+     * @param int $limit
+     * @param int $diff
+     * @return mixed
+     */
+    public function getRecentlyReadBooks($limit = 20, $diff = 183)
+    {
+        return $this->bookRepository->getRecentlyReadBooks($limit, $diff);
+    }
+
+    /**
+     * @param int $limit
+     * @return mixed
+     */
+    public function getUnreadBooks($limit = 20)
+    {
+        return $this->bookRepository->getUnreadBooks($limit);
+    }
 }

@@ -25,14 +25,21 @@
         {% endstylesheets %}
 
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-
-
     </head>
 
     <body>
+        <script type="text/template" id="tpl-favourite-author">
+            <li><%= firstName %> <%=lastName %> (<%= amount %>)</li>
+        </script>
+
+        <script type="text/template" id="tpl-generic">
+            <li><%= name %></li>
+        </script>
+
         <header>
             <nav class="mobile">{{ knp_menu_render('primary_menu') }}</nav>
         </header>
+
         <section id="frontpage" class="container">
                 {% block content %}{% endblock %}
         </section>
@@ -75,8 +82,6 @@
         <script type="text/javascript">
 
             $(document).ready(function() {
-
-                new app.TestView();
 
                 new app.TestRouter();
                 Backbone.history.start();

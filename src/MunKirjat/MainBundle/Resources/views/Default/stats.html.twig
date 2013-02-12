@@ -1,21 +1,73 @@
 <article>
-    <div class="col50">
+    <div class="col _50">
         <h2>{{ 'stats.latest-read-book'|trans }}</h2>
 
         <a href="<%=Routing.generate('munkirjat_book_view.en', {id: latest_read_book.id})%>"><%= latest_read_book.title %></a>
     </div>
 
-    <div class="col50">
+    <div class="col _50">
         <h2>{{ 'stats.latest-added-book'|trans }}</h2>
 
         <a href="<%=Routing.generate('munkirjat_book_view.en', {id: latest_added_book.id})%>"><%= latest_added_book.title %></a>
     </div>
 </article>
 
+<article id="bookshelf">
+    <div class="col _33">
+        <h2>{{ 'bookshelf.favourite-authors'|trans }}</h2>
+
+        <ul>
+            <% _.each(favourite_authors, function(author) {
+                var compiled = _.template($('#tpl-favourite-author').html() );
+
+                print(compiled({
+                    id:         author[0].id,
+                    firstName:  author[0].firstName,
+                    lastName:   author[0].lastName,
+                    amount:     author.amount
+                }));
+            });
+            %>
+        </ul>
+
+    </div>
+
+    <div class="col _33">
+        <h2>{{ 'bookshelf.recently-read'|trans }}</h2>
+
+        <ul>
+            <% _.each(recently_read, function(book) {
+                var compiled = _.template($('#tpl-generic').html() );
+
+                print(compiled({
+                    name:     book.title
+                }));
+            });
+            %>
+        </ul>
+    </div>
+
+    <div class="col _33">
+        <h2>{{ 'bookshelf.unread'|trans }}</h2>
+
+        <ul>
+            <% _.each(unread_books, function(book) {
+            var compiled = _.template($('#tpl-generic').html() );
+
+            print(compiled({
+            name:     book.title
+            }));
+            });
+            %>
+        </ul>
+    </div>
+
+</article>
+
 <article id="book-statistics">
     <h2>{{ 'stats.statistics'|trans }}</h2>
 
-    <div class="col50">
+    <div class="col _50">
         <h3>{{ 'stats.books-in-bookshelf'|trans }}</h3>
         <p><%= book_count %></p>
 
@@ -32,7 +84,7 @@
         <p><%= unrated_book_count %></p>
     </div>
 
-    <div class="col50">
+    <div class="col _50">
         <h3>{{ 'stats.slowest-read-time'|trans }}</h3>
         <p><%= slowest_pace %> days</p>
 

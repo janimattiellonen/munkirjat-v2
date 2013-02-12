@@ -1,7 +1,7 @@
 $ ->
     "use strict"
 
-    app.StatisticsModelModel = Backbone.Model.extend(
+    app.StatisticsModel = Backbone.Model.extend(
         defaults:
             book_count: ""
             author_count: ""

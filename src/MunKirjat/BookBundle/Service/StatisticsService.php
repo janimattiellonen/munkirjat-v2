@@ -55,6 +55,9 @@ class StatisticsService
             'fastest_pace'                  => $this->bookService->getFastestBookReadPace(),
             'average_rating'                => $this->bookService->getAverageRating(),
             'estimated_time_to_read_all'    => $this->getEstimatedTimeToReadAllUnreadBooks(),
+            'favourite_authors'             => $this->authorService->getFavouriteAuthors(1, 10),
+            'recently_read'                 => $this->bookService->getRecentlyReadBooks(10),
+            'unread_books'                  => $this->bookService->getUnreadBooks(10),
         );
 
         return $stats;

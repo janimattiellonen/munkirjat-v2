@@ -63,6 +63,13 @@ doctrine:
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
+        dql:
+            string_functions:
+                concat_ws: DoctrineExtensions\Query\Mysql\ConcatWs
+            datetime_functions:
+                month: DoctrineExtensions\Query\Mysql\Month
+                year: DoctrineExtensions\Query\Mysql\Year
+                datediff: DoctrineExtensions\Query\Mysql\DateDiff
 
 #doctrine_mongodb:
 #    connections:
@@ -92,6 +99,13 @@ fos_user:
 
     ## mongodb
     #user_class: JmeSf2\GenericUserBundle\Document\User
+
+stof_doctrine_extensions:
+    default_locale: en_US
+    orm:
+        default:
+            timestampable: true
+            sluggable:     true
 
 knp_menu:
     twig:

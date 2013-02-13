@@ -38,6 +38,7 @@
 
         <header>
             <nav class="mobile">{{ knp_menu_render('primary_menu') }}</nav>
+            <nav class="mobile" id="menu"><ul></ul></nav>
         </header>
 
         <section id="frontpage" class="container">
@@ -55,6 +56,7 @@
 
         <script type="text/javascript">
             var app = app || {};
+
         </script>
 
         {% javascripts output="/js/generic.js" filter="?yui_js"
@@ -67,6 +69,10 @@
             '@MunKirjatMainBundle/Resources/coffee/view/FrontPageView.coffee'
             '@MunKirjatMainBundle/Resources/coffee/view/AboutView.coffee'
             '@MunKirjatMainBundle/Resources/coffee/router/TestRouter.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/model/menu/MenuItemModel.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/view/menu/MenuItem.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/view/menu/Menu.coffee'
+
             'bundles/fosjsrouting/js/router.js'
             'js/fos_js_routes.js'
         %}
@@ -83,6 +89,9 @@
 
             $(document).ready(function() {
 
+                var menu = new app.Menu({el: $('nav#menu')});
+                menu.buildMenu();
+                menu.render();
                 new app.TestRouter();
                 Backbone.history.start();
             });

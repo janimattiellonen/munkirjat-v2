@@ -8,6 +8,10 @@ section.container {
 
 nav {
 
+    &#menu {
+        display: none;
+    }
+
     width: 59px;
     float: left;
     margin-right: 30px;
@@ -53,7 +57,7 @@ nav {
             &#primary-menu-frontpage {
                 background: url('/images/icons/silver/fancy-globe.png') no-repeat;
 
-                &:hover {
+                &:hover, &.selected {
                     background: url('/images/icons/orange-yellow/fancy-globe.png') no-repeat;
                 }
             }

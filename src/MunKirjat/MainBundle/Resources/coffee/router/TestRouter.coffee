@@ -12,10 +12,14 @@ app.TestRouter = Backbone.Router.extend(
 
     frontpage: () ->
         @dispatcher.trigger "container:hide"
+
         @frontPageView.show()
+        @dispatcher.trigger "url:changed", 'primary-menu-frontpage'
 
     about: () ->
         @dispatcher.trigger "container:hide"
+        @dispatcher.trigger "url:changed", 'primary-menu-about'
+
         @aboutView.show()
 
 )

@@ -10,19 +10,20 @@ $ ->
             @el         = null
             @dispatcher = options.dispatcher
 
-            @render()
-            @initListener()
+            _.bindAll this
+            @dispatcher.on "url:changed", @urlChangeEvent
 
-        initListener: () ->
-            self = @
-            $('a', '#' + @id).on 'click', (e) ->
-                self.dispatcher.trigger('menu:selected')
-                self.select()
+            @render()
+
+        urlChangeEvent: (id) ->
+            if id == @id
+                @select()
 
         getId: () ->
             return @id
 
         select: () ->
+            @dispatcher.trigger('menu:selected')
             $('#' + @id).addClass "selected"
 
         deselect: () ->

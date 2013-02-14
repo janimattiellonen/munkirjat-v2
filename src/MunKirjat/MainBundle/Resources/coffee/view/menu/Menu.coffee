@@ -18,7 +18,6 @@ $ ->
         # convenience method for bootstrapping the menu right away
         buildMenu: () ->
             frontPage   = new app.MenuItem(dispatcher: @dispatcher, id: "primary-menu-frontpage", url: Routing.getBaseUrl() + '/#frontpage', parent: @$el)
-
             about       = new app.MenuItem(dispatcher: @dispatcher, id: "primary-menu-about", url: Routing.getBaseUrl() + '/#about', parent: @$el)
 
             @addMenuItem frontPage

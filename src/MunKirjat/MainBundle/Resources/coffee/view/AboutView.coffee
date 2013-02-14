@@ -4,19 +4,18 @@ $ ->
     app.AboutView = Backbone.View.extend(
 
         el:         '#about'
-        rendered:   false
+        loaded:   false
 
         initialize: (options) ->
-
             _.bindAll this, 'hide'
             options.dispatcher.on("container:hide", @hide)
 
         render: () ->
-            if !@rendered
+            if !@loaded
                 self = @
                 $.get @options.url, (data) ->
                     self.$el.html data
-                    @rendered = true
+                    self.loaded = true
 
         show: () ->
             @$el.show()
@@ -26,8 +25,5 @@ $ ->
         hide: () ->
 
             @$el.hide()
-
-
     )
-
 

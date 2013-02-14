@@ -6,17 +6,20 @@ $ ->
         initialize: (options) ->
             @$el            = options.el
             #@router        = options.router
-            #@dispatcher    = options.dispatcher
+            @dispatcher    = options.dispatcher
             @menuItems      = []
+
+            _.bindAll this, 'deselectAllMenuItems'
+            @dispatcher.on "menu:selected", @deselectAllMenuItems
 
         addMenuItem: (menuItem) ->
             @menuItems.push menuItem
 
         # convenience method for bootstrapping the menu right away
         buildMenu: () ->
-            frontPage   = new app.MenuItem(id: "primary-menu-frontpage", url: Routing.getBaseUrl() + '/#frontpage', parent: @$el)
+            frontPage   = new app.MenuItem(dispatcher: @dispatcher, id: "primary-menu-frontpage", url: Routing.getBaseUrl() + '/#frontpage', parent: @$el)
 
-            about       = new app.MenuItem(id: "primary-menu-about", url: Routing.getBaseUrl() + '/#about', parent: @$el)
+            about       = new app.MenuItem(dispatcher: @dispatcher, id: "primary-menu-about", url: Routing.getBaseUrl() + '/#about', parent: @$el)
 
             @addMenuItem frontPage
             @addMenuItem about
@@ -36,7 +39,7 @@ $ ->
         render: () ->
             for menuItem in @menuItems
                 do (menuItem) ->
-                    menuItem.render()
+                    #menuItem.render()
                     # test code
                     menuItem.select()
 

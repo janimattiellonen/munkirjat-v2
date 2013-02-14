@@ -88,10 +88,12 @@
 
             $(document).ready(function() {
 
-                var menu = new app.Menu({el: $('nav#menu')});
+                var dispatcher = _.extend({}, Backbone.Events);
+
+                var menu = new app.Menu({el: $('nav#menu'), dispatcher: dispatcher});
                 menu.buildMenu();
                 menu.render();
-                new app.TestRouter();
+                new app.TestRouter({dispatcher: dispatcher});
                 Backbone.history.start();
             });
 

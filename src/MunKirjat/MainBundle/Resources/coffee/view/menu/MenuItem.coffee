@@ -7,7 +7,17 @@ $ ->
             @id         = options.id
             @url        = options.url
             @$parent    = options.parent
-            @el        = null
+            @el         = null
+            @dispatcher = options.dispatcher
+
+            @render()
+            @initListener()
+
+        initListener: () ->
+            self = @
+            $('a', '#' + @id).on 'click', (e) ->
+                self.dispatcher.trigger('menu:selected')
+                self.select()
 
         getId: () ->
             return @id

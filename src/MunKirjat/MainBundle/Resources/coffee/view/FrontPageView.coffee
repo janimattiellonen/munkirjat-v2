@@ -7,7 +7,7 @@ $ ->
 
         initialize: (options) ->
             @loaded = false
-            _.bindAll this, 'hide'
+            _.bindAll @, 'hide'
             options.dispatcher.on("container:hide", @hide)
 
         render: () ->

@@ -5,7 +5,7 @@ app.TestRouter = Backbone.Router.extend(
         "about":            "about"
 
     initialize: (options) ->
-        @dispatcher     = _.extend({}, Backbone.Events)
+        @dispatcher     = options.dispatcher
 
         @frontPageView  = new app.FrontPageView({dispatcher: @dispatcher} );
         @aboutView      = new app.AboutView({dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/about'} );

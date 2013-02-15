@@ -20,7 +20,6 @@
         "beberlei/DoctrineExtensions": "dev-master",
         "stof/doctrine-extensions-bundle": "dev-master",
         "doctrine/doctrine-migrations-bundle": "dev-master",
-        "doctrine/mongodb-odm-bundle": "dev-master",
         "twig/extensions": "dev-master",
         "symfony/assetic-bundle": "2.1.*",
         "symfony/swiftmailer-bundle": "2.1.*",

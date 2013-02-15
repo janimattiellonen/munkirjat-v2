@@ -631,6 +631,25 @@ $this->addSql("INSERT INTO `book_author` (`book_id`, `author_id`) VALUES
 (260, 62),
 (261, 38);");
 
+
+        $this->addSql("INSERT INTO `genre` (`id`, `name`) VALUES
+(3, 'Action'),
+(4, 'Adventure'),
+(16, 'Biography'),
+(13, 'Comedy'),
+(7, 'Computer science'),
+(10, 'Counter terrorism'),
+(5, 'Crime'),
+(12, 'Documentary'),
+(2, 'Drama'),
+(9, 'Fantasy'),
+(14, 'Music'),
+(15, 'Mystery'),
+(1, 'Sci-fi'),
+(11, 'Thriller'),
+(8, 'War');
+");
+
         $this->addSql("INSERT INTO `book_genre` (`book_id`, `genre_id`) VALUES
 (1, 4),
 (2, 4),
@@ -995,23 +1014,7 @@ $this->addSql("INSERT INTO `book_author` (`book_id`, `author_id`) VALUES
 (171, 72),
 (173, 73);");
 
-    $this->addSql("INSERT INTO `genre` (`id`, `name`) VALUES
-(3, 'Action'),
-(4, 'Adventure'),
-(16, 'Biography'),
-(13, 'Comedy'),
-(7, 'Computer science'),
-(10, 'Counter terrorism'),
-(5, 'Crime'),
-(12, 'Documentary'),
-(2, 'Drama'),
-(9, 'Fantasy'),
-(14, 'Music'),
-(15, 'Mystery'),
-(1, 'Sci-fi'),
-(11, 'Thriller'),
-(8, 'War');
-");
+
 
     }
 

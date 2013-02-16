@@ -86,18 +86,18 @@
 
     <div class="col _50">
         <h3>{{ 'stats.slowest-read-time'|trans }}</h3>
-        <p><%= slowest_pace %> days</p>
+        <p><%= numeral(parseFloat(slowest_pace) ).format('00.00') %> days</p>
 
         <h3>{{ 'stats.fastest-read-time'|trans }}</h3>
-        <p><%= fastest_pace %></p>
+        <p><%= numeral(parseFloat(fastest_pace) ).format('00.00') %> days </p>
 
         <h3>{{ 'stats.average-read-time'|trans }}</h3>
         <p><%= numeral(parseFloat(average_pace) ).format('00.00') %> days</p>
 
         <h3>{{ 'stats.estimated-time'|trans }}</h3>
-        <p><%= estimated_time_to_read_all %> years</p>
+        <p><%= numeral(parseFloat(estimated_time_to_read_all) ).format('00.00') %> years</p>
 
         <h3>{{ 'stats.average-rating'|trans }}</h3>
-        <p><%= average_rating %></p>
+        <p><%= numeral(parseFloat(average_rating) ).format('00.00') %></p>
     </div>
 </article>

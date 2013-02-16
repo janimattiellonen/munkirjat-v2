@@ -36,14 +36,5 @@ $ ->
                 menuItem.deselect()
 
         render: () ->
-            for menuItem in @menuItems
-                do (menuItem) ->
-                    #menuItem.render()
-                    # test code
-                    menuItem.select()
-
             @$el.show()
-
-            # test code
-            @setSelectedMenuItem('primary-menu-frontpage')
     )

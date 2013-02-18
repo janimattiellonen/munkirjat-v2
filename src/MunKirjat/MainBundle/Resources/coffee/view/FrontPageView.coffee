@@ -1,9 +1,9 @@
 $ ->
     "use strict"
 
-    app.FrontPageView = Backbone.View.extend(
+    App.FrontPageView = Backbone.View.extend(
 
-        el: '#frontpage'
+        el: '#section-frontpage'
 
         initialize: (options) ->
             @loaded = false
@@ -32,7 +32,3 @@ $ ->
             @$el.hide()
 
     )
-
-
-
-

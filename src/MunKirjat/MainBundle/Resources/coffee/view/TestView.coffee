@@ -1,7 +1,7 @@
 $ ->
     "use strict"
 
-    app.TestView = Backbone.View.extend(
+    App.TestView = Backbone.View.extend(
 
         el: '#foo'
 

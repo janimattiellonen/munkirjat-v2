@@ -19,6 +19,8 @@
             '@MunKirjatMainBundle/Resources/css/main.css'
             '@MunKirjatMainBundle/Resources/less/base.less'
             '@MunKirjatMainBundle/Resources/less/main.less'
+            '@XiAjaxBundle/Resources/assets/css/errorizers.css'
+            '@MunKirjatUserBundle/Resources/less/login.less'
         %}
 
         <link href="{{ asset_url }}" rel="stylesheet" media="screen" />
@@ -40,12 +42,16 @@
             <nav class="mobile" id="menu"><ul></ul></nav>
         </header>
 
-        <section id="frontpage" class="container">
+        <section id="section-frontpage" class="container">
                 {% block content %}{% endblock %}
         </section>
 
-        <section id="about" class="container">
+        <section id="section-about" class="container">
 
+        </section>
+
+        <section id="section-login" class="container">
+            {% include 'MunKirjatUserBundle:Login:login.js.twig' %}
         </section>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -54,7 +60,7 @@
 
 
         <script type="text/javascript">
-            var app = app || {};
+            var App = App || {};
 
         </script>
 
@@ -63,10 +69,15 @@
             '@MunKirjatMainBundle/Resources/js/json2.js'
             '@MunKirjatMainBundle/Resources/js/underscore.js'
             '@MunKirjatMainBundle/Resources/js/backbone-min.js'
+            '@XiAjaxBundle/Resources/assets/js/jquery.form.js'
+            '@XiAjaxBundle/Resources/coffee/ajax-abstract-logic.coffee'
+            '@XiAjaxBundle/Resources/coffee/ajax-form.coffee'
+            '@XiAjaxBundle/Resources/coffee/ajax-loader.coffee'
             '@MunKirjatMainBundle/Resources/coffee/model/TestModel.coffee'
             '@MunKirjatMainBundle/Resources/coffee/view/TestView.coffee'
             '@MunKirjatMainBundle/Resources/coffee/view/FrontPageView.coffee'
             '@MunKirjatMainBundle/Resources/coffee/view/AboutView.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/view/LoginView.coffee'
             '@MunKirjatMainBundle/Resources/coffee/router/TestRouter.coffee'
             '@MunKirjatMainBundle/Resources/coffee/model/menu/MenuItemModel.coffee'
             '@MunKirjatMainBundle/Resources/coffee/view/menu/MenuItem.coffee'
@@ -74,6 +85,8 @@
 
             'bundles/fosjsrouting/js/router.js'
             'js/fos_js_routes.js'
+
+            '@MunKirjatMainBundle/Resources/coffee/main.coffee'
         %}
 
         <script type="text/javascript" src="{{ asset_url }}"></script>
@@ -90,11 +103,18 @@
 
                 var dispatcher = _.extend({}, Backbone.Events);
 
-                var menu = new app.Menu({el: $('nav#menu'), dispatcher: dispatcher});
-                menu.buildMenu();
-                menu.render();
-                new app.TestRouter({dispatcher: dispatcher});
-                Backbone.history.start();
+                var menu = new App.Menu({el: $('nav#menu'), dispatcher: dispatcher});
+
+                $.ajax({
+                    url: Routing.getBaseUrl() + '/allowed-actions',
+                    dataType: 'json',
+                    success: function(data) {
+                        menu.buildMenu(data['logged-in'], data['data']);
+                        menu.render();
+                        new App.TestRouter({dispatcher: dispatcher});
+                        Backbone.history.start();
+                    }
+                });
             });
 
         </script>

@@ -1,8 +1,7 @@
 <?php
 namespace MunKirjat\BookBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use MunKirjat\Component\Controller\Controller;
 
 class StatisticsController extends Controller
 {
@@ -10,9 +9,9 @@ class StatisticsController extends Controller
     {
         $stats = $this->getStatisticsService()->getBookStatistics();
 
-        $response = new JsonResponse($stats);
+        $this->getCurrentUser();
 
-        return $response;
+        return $this->getJsonResponse($stats);
     }
 
     /**

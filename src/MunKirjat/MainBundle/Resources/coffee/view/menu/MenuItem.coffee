@@ -1,7 +1,7 @@
 $ ->
     "use strict"
 
-    app.MenuItem = Backbone.View.extend(
+    App.MenuItem = Backbone.View.extend(
 
         initialize: (options) ->
             @id         = options.id

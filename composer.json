@@ -20,6 +20,7 @@
         "beberlei/DoctrineExtensions": "dev-master",
         "stof/doctrine-extensions-bundle": "dev-master",
         "doctrine/doctrine-migrations-bundle": "dev-master",
+        "doctrine/mongodb-odm-bundle": "dev-master",
         "twig/extensions": "dev-master",
         "symfony/assetic-bundle": "2.1.*",
         "symfony/swiftmailer-bundle": "2.1.*",
@@ -36,7 +37,9 @@
         "doctrine/doctrine-migrations-bundle": "dev-master",
         "knplabs/knp-menu-bundle": "v1.1.0",
         "willdurand/expose-translation-bundle": "dev-master",
-        "friendsofsymfony/jsrouting-bundle": "dev-master"
+        "friendsofsymfony/jsrouting-bundle": "dev-master",
+
+        "xi/ajax-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

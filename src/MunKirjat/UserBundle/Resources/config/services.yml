@@ -1,1 +1,21 @@
 services:
+    munkirjat_user.service.security:
+        class:     MunKirjat\UserBundle\Service\SecurityService
+        arguments: []
+
+    munkirjat_user.login.form:
+        class: Symfony\Component\Form\Form
+        factory_service: form.factory
+        factory_method: createNamed
+        arguments: ["munkirjat_user_login", "@munkirjat_user.login.form.type"]
+
+    munkirjat_user.login.form.type:
+        class: MunKirjat\UserBundle\Form\Type\LoginFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: munkirjat_user_login }
+
+    munkirjat_user.login.form.handler:
+          class: MunKirjat\UserBundle\Form\Handler\LoginFormHandler
+          arguments: ["@munkirjat_user.login.form", "@request", "@fos_user.user_manager"]
+          scope: request

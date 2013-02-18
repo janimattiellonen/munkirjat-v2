@@ -1,9 +1,9 @@
 $ ->
     "use strict"
 
-    app.AboutView = Backbone.View.extend(
+    App.AboutView = Backbone.View.extend(
 
-        el:         '#about'
+        el:         '#section-about'
         loaded:   false
 
         initialize: (options) ->

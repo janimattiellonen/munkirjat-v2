@@ -1,7 +1,7 @@
 $ ->
     "use strict"
 
-    app.Menu = Backbone.View.extend(
+    App.Menu = Backbone.View.extend(
 
         initialize: (options) ->
             @$el            = options.el
@@ -16,12 +16,20 @@ $ ->
             @menuItems.push menuItem
 
         # convenience method for bootstrapping the menu right away
-        buildMenu: () ->
-            frontPage   = new app.MenuItem(dispatcher: @dispatcher, id: "primary-menu-frontpage", url: Routing.getBaseUrl() + '/#frontpage', parent: @$el)
-            about       = new app.MenuItem(dispatcher: @dispatcher, id: "primary-menu-about", url: Routing.getBaseUrl() + '/#about', parent: @$el)
+        buildMenu: (loggedIn, menuItems) ->
+
+            frontPage   = new App.MenuItem(dispatcher: @dispatcher, id: "primary-menu-frontpage", url: Routing.getBaseUrl() + menuItems['frontpage'], parent: @$el)
+            about       = new App.MenuItem(dispatcher: @dispatcher, id: "primary-menu-about", url: Routing.getBaseUrl() + menuItems['about'], parent: @$el)
 
             @addMenuItem frontPage
             @addMenuItem about
+
+            if loggedIn
+                logout      = new App.MenuItem(dispatcher: @dispatcher, id: "primary-menu-logout", url: Routing.getBaseUrl() + menuItems['logout'], parent: @$el)
+                @addMenuItem logout
+            else
+                login       = new App.MenuItem(dispatcher: @dispatcher, id: "primary-menu-login", url: Routing.getBaseUrl() + menuItems['login'], parent: @$el)
+                @addMenuItem login
 
         setSelectedMenuItem: (id) ->
             @deselectAllMenuItems()

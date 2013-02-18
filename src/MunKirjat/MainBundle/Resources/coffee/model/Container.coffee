@@ -1,4 +1,4 @@
-class app.Container
+class App.Container
 
     addContainer: (container) ->
 

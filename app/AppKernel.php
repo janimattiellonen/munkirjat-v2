@@ -35,6 +35,8 @@ class AppKernel extends Kernel
             new Bazinga\ExposeTranslationBundle\BazingaExposeTranslationBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+
+            new Xi\Bundle\AjaxBundle\XiAjaxBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

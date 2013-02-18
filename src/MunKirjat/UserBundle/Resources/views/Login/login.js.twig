@@ -1,0 +1,20 @@
+<script type="text/template" id="tpl-login">
+
+    <div id="login-box">
+        <form class="ajax-form" action="/app_dev.php/login_check" method="post" novalidate>
+            <input type="hidden" name="_csrf_token" value="<%= csrf_token %>" />
+
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="_username" value="" required="required" />
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="_password" required="required" />
+
+            <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+            <label for="remember_me">Remember me</label>
+
+            <input type="submit" id="_submit" name="_submit" value="Login" />
+        </form>
+    </div>
+
+</script>

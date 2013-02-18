@@ -21,15 +21,15 @@ security:
         main:
             pattern: ^/
             form_login:
-                login_path:  /login
-                check_path:  /login_check
+                login_path:                     /login
+                check_path:                     /login_check
                 always_use_default_target_path: true
                 default_target_path:            /login_success
                 use_referer:                    false
-                failure_path:                   /login
+                failure_path:                   /login_failure
 
             logout:
-                target: /%locale%
+                target: /
             anonymous: true
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/

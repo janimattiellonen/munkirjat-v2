@@ -1,5 +1,5 @@
 {
-    "hash": "74cc4088b310ec1c97ef4e18638ee6b0",
+    "hash": "7e8a98fe9b40e941387e36adca240137",
     "packages": [
         {
             "name": "beberlei/DoctrineExtensions",
@@ -2018,6 +2018,46 @@
                 "javascript",
                 "translation"
             ]
+        },
+        {
+            "name": "xi/ajax-bundle",
+            "version": "dev-master",
+            "target-dir": "Xi/Bundle/AjaxBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/xi-project/xi-bundle-ajax.git",
+                "reference": "b6bdb7ddca0235805bb045fd2b0acee289453429"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/xi-project/xi-bundle-ajax/zipball/b6bdb7ddca0235805bb045fd2b0acee289453429",
+                "reference": "b6bdb7ddca0235805bb045fd2b0acee289453429",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/dependency-injection": "2.1.*",
+                "symfony/form": "2.1.*",
+                "symfony/framework-bundle": "2.1.*"
+            },
+            "time": "2013-01-10 15:07:05",
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Xi\\Bundle\\AjaxBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "xi-project",
+                    "email": "xi.devs@gmail.com"
+                }
+            ],
+            "description": "Xi Ajax Bundle for basic ajax functionality with forms and elements. Includes customizable loading animations and error handler stack",
+            "keywords": [
+                "ajax",
+                "json"
+            ]
         }
     ],
     "packages-dev": null,
@@ -2035,6 +2075,7 @@
         "kriswallsmith/assetic": 20,
         "besimple/i18n-routing-bundle": 20,
         "willdurand/expose-translation-bundle": 20,
-        "friendsofsymfony/jsrouting-bundle": 20
+        "friendsofsymfony/jsrouting-bundle": 20,
+        "xi/ajax-bundle": 20
     }
 }

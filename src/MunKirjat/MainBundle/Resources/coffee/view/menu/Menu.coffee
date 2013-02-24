@@ -25,7 +25,10 @@ $ ->
             @addMenuItem about
 
             if loggedIn
+                newAuthor   = new App.MenuItem(dispatcher: @dispatcher, id: "primary-menu-new-author", url: Routing.getBaseUrl() + menuItems['add-new-author'], parent: @$el)
                 logout      = new App.MenuItem(dispatcher: @dispatcher, id: "primary-menu-logout", url: Routing.getBaseUrl() + menuItems['logout'], parent: @$el)
+
+                @addMenuItem newAuthor
                 @addMenuItem logout
             else
                 login       = new App.MenuItem(dispatcher: @dispatcher, id: "primary-menu-login", url: Routing.getBaseUrl() + menuItems['login'], parent: @$el)

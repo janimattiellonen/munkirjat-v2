@@ -30,7 +30,7 @@ class Author
 	
 	/**
      * @var string
-     *
+     * @Assert\NotBlank()
 	 * @ORM\Column(name="lastname", type="string", length=45)
 	 */	
 	protected $lastName;

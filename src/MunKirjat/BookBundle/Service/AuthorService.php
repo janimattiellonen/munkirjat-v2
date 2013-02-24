@@ -3,29 +3,56 @@ namespace MunKirjat\BookBundle\Service;
 
 use Doctrine\ORM\EntityManager;
 
+use MunKirjat\BookBundle\Form\Type\AuthorType;
 use MunKirjat\BookBundle\Entity\Author;
 use MunKirjat\BookBundle\Repository\AuthorRepository;
+
+use Symfony\Component\Form\Form;
+use Symfony\Component\Form\FormFactory;
 
 class AuthorService
 {
     /**
-     * @var EntityManager
+     * @var \Doctrine\ORM\EntityManager
      */
     protected $em;
 
     /**
-     * @var AuthorRepository
+     * @var \MunKirjat\BookBundle\Repository\AuthorRepository
      */
     protected $authorRepository;
 
     /**
-     * @param EntityManager     $em
-     * @param AuthorRepository  $authorRepository
+     * @var \Symfony\Component\Form\FormFactory
      */
-    public function __construct(EntityManager $em, AuthorRepository $authorRepository)
+    protected $formFactory;
+
+    /**
+     * @param \Doctrine\ORM\EntityManager                       $em
+     * @param \MunKirjat\BookBundle\Repository\AuthorRepository $authorRepository
+     * @param \Symfony\Component\Form\FormFactory               $formFactory
+     */
+    public function __construct(EntityManager       $em,
+                                AuthorRepository    $authorRepository,
+                                FormFactory         $formFactory)
     {
         $this->em               = $em;
         $this->authorRepository = $authorRepository;
+        $this->formFactory      = $formFactory;
+    }
+
+    /**
+     * @param \MunKirjat\BookBundle\Entity\Author $author
+     * @return \Symfony\Component\Form\Form|\Symfony\Component\Form\FormInterface
+     */
+    public function getAuthorForm(Author $author = null)
+    {
+        return $this->formFactory->create(new AuthorType(), $author);
+    }
+
+    public function saveByForm(Form $form)
+    {
+
     }
 
     /**

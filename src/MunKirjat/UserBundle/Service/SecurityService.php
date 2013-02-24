@@ -27,7 +27,7 @@ class SecurityService
         );
 
         $protected = array(
-            'add-new-author'    => '',
+            'add-new-author'    => '/#author',
             'add-new-book'      => '',
             'add-new-genre'     => '',
             'logout'            => '/#logout',

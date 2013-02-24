@@ -29,3 +29,6 @@ bookshelf:
     favourite-authors:    "Favourite authors"
     recently-read:        "Recently read"
     unread:               "Unread"
+
+form:
+    save:                 "Save"

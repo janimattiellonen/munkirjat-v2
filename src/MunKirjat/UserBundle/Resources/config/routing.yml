@@ -3,7 +3,7 @@ mun_kirjat_security_allowed_actions:
     defaults: { _controller: MunKirjatUserBundle:Security:allowedActions }
 
 mun_kirjat_security_new_token:
-    pattern: /new-token
+    pattern: /new-token/{intention}
     defaults: { _controller: MunKirjatUserBundle:Security:newToken }
 
 mun_kirjat_user_login_success:

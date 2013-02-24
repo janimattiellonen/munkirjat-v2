@@ -13,7 +13,7 @@ services:
 
     munkirjat_book.service.author:
         class:     MunKirjat\BookBundle\Service\AuthorService
-        arguments: ["@doctrine.orm.entity_manager", "@munkirjat_book.repository.author"]
+        arguments: ["@doctrine.orm.entity_manager", "@munkirjat_book.repository.author", "@form.factory"]
 
     munkirjat_book.service.book:
         class:     MunKirjat\BookBundle\Service\BookService

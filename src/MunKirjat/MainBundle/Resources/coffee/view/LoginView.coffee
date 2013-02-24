@@ -14,7 +14,7 @@ $ ->
             self = @
 
             $.ajax(
-                url: Routing.getBaseUrl() + '/new-token',
+                url: Routing.getBaseUrl() + '/new-token/authentication',
                 dataType: 'json'
                 success: (data) =>
                     self.$el.html template(csrf_token: data.csrf_token)

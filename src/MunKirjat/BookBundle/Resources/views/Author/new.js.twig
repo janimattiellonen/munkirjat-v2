@@ -1,0 +1,21 @@
+<script type="text/template" id="tpl-new-author">
+
+    <article>
+        <div id="new-author-box">
+            <h1><%= Translator.get('author.addNew') %></h1>
+            <form class="ajax-form" action="<%= Routing.generate('munkirjat_author_create') %>" method="post" novalidate>
+                <input type="hidden" name="author[_token]" value="<%= csrf_token %>" />
+
+                <p>
+                    <label for="firstName"><%= Translator.get('author.firstName') %>:</label>
+                    <input type="text" id="firstName" name="author[firstName]" value="" required="required" />
+                </p>
+                <p>
+                    <label for="lastName"><%= Translator.get('author.lastName') %>:</label>
+                    <input type="text" id="lastName" name="author[lastName]" required="required" />
+                </p>
+                <input type="submit" id="_submit" name="_submit" value="<%= Translator.get('form.save') %>" />
+            </form>
+        </div>
+    </article>
+</script>

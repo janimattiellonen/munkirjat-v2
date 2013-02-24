@@ -20,11 +20,12 @@ class SecurityController extends Controller
         return $this->get('munkirjat_user.service.security');
     }
 
-    public function newTokenAction()
+    public function newTokenAction($intention)
     {
+        //return $this->getJsonResponse(array('csrf_token' => "sss" ) );
         $csrf = $this->get('form.csrf_provider');
 
-        return $this->getJsonResponse(array('csrf_token' => $csrf->generateCsrfToken("authenticate") ) );
+        return $this->getJsonResponse(array('csrf_token' => $csrf->generateCsrfToken($intention) ) );
     }
 
     public function failureAction()
@@ -37,6 +38,10 @@ class SecurityController extends Controller
 
     public function successAction()
     {
+        return $this->createJsonSuccessResponse(array(
+            'redirect' => '/#frontpage',
+        ));
+        //return $this->getJsonResponse(array('success' => true) );
         return $this->createJsonSuccessRedirectResponse('mun_kirjat_main_frontpage');
     }
 }

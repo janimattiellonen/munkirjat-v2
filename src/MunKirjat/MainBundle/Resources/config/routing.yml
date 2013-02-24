@@ -9,3 +9,6 @@ mun_kirjat_main_about:
 mun_kirjat_main_template:
     pattern: /tpl
     defaults: { _controller: MunKirjatMainBundle:Default:template }
+
+
+

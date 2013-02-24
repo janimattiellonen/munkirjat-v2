@@ -1,7 +1,7 @@
 <script type="text/template" id="tpl-login">
 
     <div id="login-box">
-        <form class="ajax-form" action="/app_dev.php/login_check" method="post" novalidate>
+        <form class="ajax-form" action="<%= Routing.generate('login_check') %>" method="post" novalidate>
             <input type="hidden" name="_csrf_token" value="<%= csrf_token %>" />
 
             <label for="username">Username:</label>

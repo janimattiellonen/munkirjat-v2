@@ -23,6 +23,9 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
 
+sensio_framework_extra:
+    view:    { annotations: false }
+
 # Assetic Configuration
 assetic:
     debug:          "%kernel.debug%"

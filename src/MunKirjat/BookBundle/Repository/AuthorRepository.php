@@ -8,6 +8,18 @@ use MunKirjat\Component\Repository\BaseRepository;
 class AuthorRepository extends BaseRepository
 {
     /**
+     * @return array
+     */
+    public function getAuthors()
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->select('a')
+            ->from('MunKirjat\BookBundle\Entity\Author', 'a');
+
+        return $qb->getQuery()->getResult(AbstractQuery::HYDRATE_ARRAY);
+    }
+
+    /**
      * @param int $minBooks the minimum amount of books by an author
      * @param int $limit
      * @return array

@@ -50,9 +50,6 @@ $ ->
                     if(response.success)
                         self.model.id = response.success.id
 
-        load: (id) ->
-
-
         show: (id) ->
             @$el.show()
 

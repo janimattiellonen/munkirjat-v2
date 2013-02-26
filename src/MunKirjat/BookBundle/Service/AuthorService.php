@@ -84,6 +84,14 @@ class AuthorService
     }
 
     /**
+     * @return array
+     */
+    public function getAuthors()
+    {
+        return $this->authorRepository->getAuthors();
+    }
+
+    /**
      * @return int
      */
     public function getAuthorCount()

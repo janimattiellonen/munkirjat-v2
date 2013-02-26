@@ -27,6 +27,11 @@ munkirjat_author_view:
     defaults: { _controller: MunKirjatBookBundle:Author:view, _format: 'json' }
     requirements: { _method: get }
 
+munkirjat_author_list:
+    pattern: "/author"
+    defaults: { _controller: MunKirjatBookBundle:Author:list, _format: 'json' }
+    requirements: { _method: get }
+
 munkirjat_statistics_statistics:
     pattern: /statistics
     defaults: { _controller: MunKirjatBookBundle:Statistics:statistics }

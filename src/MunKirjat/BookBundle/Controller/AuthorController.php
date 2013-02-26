@@ -52,6 +52,11 @@ class AuthorController extends Controller
         );
     }
 
+    public function listAction()
+    {
+        return $this->getJsonResponse($this->getAuthorService()->getAuthors() );
+    }
+
     /**
      * @return \MunKirjat\BookBundle\Service\AuthorService
      */

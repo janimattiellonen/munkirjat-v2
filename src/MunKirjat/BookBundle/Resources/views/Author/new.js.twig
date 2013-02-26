@@ -3,7 +3,6 @@
     <article>
         <div id="new-author-box">
             <h1><%= Translator.get('author.addNew') %></h1>
-            <form class="ajax-form" action="<%= Routing.generate('munkirjat_author_create') %>" method="post" novalidate>
                 <input type="hidden" name="author[_token]" value="<%= csrf_token %>" />
 
                 <p>
@@ -15,7 +14,6 @@
                     <input type="text" id="lastName" name="author[lastName]" required="required" />
                 </p>
                 <input type="submit" id="_submit" name="_submit" value="<%= Translator.get('form.save') %>" />
-            </form>
         </div>
     </article>
 </script>

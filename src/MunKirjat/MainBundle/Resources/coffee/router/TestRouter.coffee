@@ -12,7 +12,7 @@ App.TestRouter = Backbone.Router.extend(
         @frontPageView  = new App.FrontPageView({dispatcher: @dispatcher} );
         @aboutView      = new App.AboutView({dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/about'} );
         @loginView      = new App.LoginView({dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/login'} );
-        @authorView     = new App.AuthorView({dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/author/create'} );
+        @authorView     = new App.AuthorView({model: new App.AuthorModel(), dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/author/create'} );
 
     preDispatch: () ->
         @dispatcher.trigger "container:hide"

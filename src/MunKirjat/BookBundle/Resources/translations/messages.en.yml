@@ -1,4 +1,7 @@
 author:
-    firstName:    "Firstname"
-    lastName:     "Lastname"
-    addNew:       "Add new author"
+    firstName:            "Firstname"
+    firstName-required:   "Firstname is required"
+    lastName:             "Lastname"
+    lastName-required:    "Lastname is required"
+    addNew:               "Add new author"
+

@@ -24,13 +24,14 @@ class Author
 	/**
      * @var string
      *
+     * @Assert\NotBlank(message="author.firstName-required")
 	 * @ORM\Column(name="firstname", type="string", length=45)
 	 */
 	protected $firstName;
 	
 	/**
      * @var string
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="author.lastName-required")
 	 * @ORM\Column(name="lastname", type="string", length=45)
 	 */	
 	protected $lastName;

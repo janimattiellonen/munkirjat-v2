@@ -42,6 +42,15 @@ class AuthorService
     }
 
     /**
+     * @param int $id
+     * @return \MunKirjat\BookBundle\Entity\Author
+     */
+    public function getAuthor($id)
+    {
+        return $this->authorRepository->find($id);
+    }
+
+    /**
      * @param \MunKirjat\BookBundle\Entity\Author $author
      * @return \Symfony\Component\Form\Form|\Symfony\Component\Form\FormInterface
      */
@@ -50,9 +59,18 @@ class AuthorService
         return $this->formFactory->create(new AuthorType(), $author);
     }
 
+    /**
+     * @param \Symfony\Component\Form\Form $form
+     * @return \MunKirjat\BookBundle\Entity\Author
+     */
     public function saveByForm(Form $form)
     {
+        $author = $form->getData();
 
+        $this->em->persist($author);
+        $this->em->flush();
+
+        return $author;
     }
 
     /**

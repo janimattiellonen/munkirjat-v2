@@ -17,6 +17,11 @@ munkirjat_author_create:
     defaults: { _controller: MunKirjatBookBundle:Author:create, _format: 'json' }
     requirements: { _method: post }
 
+munkirjat_author_update:
+    pattern: "/author/{id}"
+    defaults: { _controller: MunKirjatBookBundle:Author:update, _format: 'json' }
+    requirements: { _method: put }
+
 munkirjat_statistics_statistics:
     pattern: /statistics
     defaults: { _controller: MunKirjatBookBundle:Statistics:statistics }

@@ -44,11 +44,12 @@ $ ->
             self = @
 
             @model.save {},
-
                 success: (model, response) ->
                     self.formErrorizer.clear($('#new-author-box') )
                     self.formErrorizer.errorize($('#new-author-box'), response);
-                    #alert JSON.stringify(response)
+
+                    if(response.success)
+                        self.model.id = response.success.id
 
         show: () ->
             @$el.show()

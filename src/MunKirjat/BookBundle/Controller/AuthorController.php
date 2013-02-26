@@ -22,9 +22,24 @@ class AuthorController extends Controller
 
         return $this->processForm($form, function() use($form, $service, $self) {
 
-                $service->saveByForm($form);
+                $author = $service->saveByForm($form);
 
-                return $self->createJsonSuccessResponse(array('success' => true) );
+                return $self->createJsonSuccessResponse(array('id' => $author->getId() ) );
+            }
+        );
+    }
+
+    public function updateAction($id)
+    {
+        $service    = $this->getAuthorService();
+        $form       = $service->getAuthorForm($service->getAuthor($id) );
+        $self       = $this;
+
+        return $this->processForm($form, function() use($form, $service, $self) {
+
+                $author = $service->saveByForm($form);
+
+                return $self->createJsonSuccessResponse(array('id' => $author->getId() ) );
             }
         );
     }

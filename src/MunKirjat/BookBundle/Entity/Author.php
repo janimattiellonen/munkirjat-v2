@@ -146,4 +146,16 @@ class Author
     {
         return $this->books;
     }
+
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        return array(
+            'id'        => $this->getId(),
+            'firstName' => $this->getFirstName(),
+            'lastName'  => $this->getLastName(),
+        );
+    }
 }

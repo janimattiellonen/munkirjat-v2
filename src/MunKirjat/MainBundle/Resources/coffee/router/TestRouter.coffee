@@ -2,9 +2,10 @@
 App.TestRouter = Backbone.Router.extend(
     routes:
         "frontpage":        "frontpage"
-        "about":            "about2"
+        "about":            "about"
         "login":            "login"
-        "author":   "author"
+        "author":           "author"
+        "author/:id":       "getAuthor"
 
     initialize: (options) ->
         @dispatcher     = options.dispatcher
@@ -22,7 +23,7 @@ App.TestRouter = Backbone.Router.extend(
         @frontPageView.show()
         @dispatcher.trigger "url:changed", 'primary-menu-frontpage'
 
-    about2: () ->
+    about: () ->
         @preDispatch()
         @dispatcher.trigger "url:changed", 'primary-menu-about'
 
@@ -38,6 +39,10 @@ App.TestRouter = Backbone.Router.extend(
         @dispatcher.trigger "url:changed", 'primary-menu-new-author'
         @authorView.show()
 
+    getAuthor: (id) ->
+        @preDispatch()
+        @dispatcher.trigger "url:changed", 'primary-menu-new-author'
+        @authorView.show(id)
 
 
 )

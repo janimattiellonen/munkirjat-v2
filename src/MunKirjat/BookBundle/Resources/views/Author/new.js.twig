@@ -7,11 +7,11 @@
 
                 <p>
                     <label for="firstName"><%= Translator.get('author.firstName') %>:</label>
-                    <input type="text" id="firstName" name="author[firstName]" value="" required="required" />
+                    <input type="text" id="firstName" name="author[firstName]" value="<%= firstName %>" required="required" />
                 </p>
                 <p>
                     <label for="lastName"><%= Translator.get('author.lastName') %>:</label>
-                    <input type="text" id="lastName" name="author[lastName]" required="required" />
+                    <input type="text" id="lastName" name="author[lastName]" value="<%= lastName %>" required="required" />
                 </p>
                 <input type="submit" id="_submit" name="_submit" value="<%= Translator.get('form.save') %>" />
         </div>

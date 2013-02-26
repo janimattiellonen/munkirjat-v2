@@ -14,6 +14,14 @@ class AuthorController extends Controller
         ));
     }
 
+    public function viewAction($id)
+    {
+        $service    = $this->getAuthorService();
+        $author     = $service->getAuthor($id);
+
+        return $this->getJsonResponse($author->toArray() );
+    }
+
     public function createAction()
     {
         $service    = $this->getAuthorService();

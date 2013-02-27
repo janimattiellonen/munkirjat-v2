@@ -11,11 +11,10 @@ App.TestRouter = Backbone.Router.extend(
     initialize: (options) ->
         @dispatcher     = options.dispatcher
 
-        @frontPageView  = new App.FrontPageView({dispatcher: @dispatcher} )
-        @aboutView      = new App.AboutView({dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/about'} )
-        @loginView      = new App.LoginView({dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/login'} )
-        @authorView     = new App.AuthorView({model: new App.AuthorModel(), dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/author/create'} )
-        @authorListView  = new App.AuthorListView({model: new App.AuthorCollection(), dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/authors'} )
+        @frontPageView      = new App.FrontPageView({dispatcher: @dispatcher} )
+        @aboutView          = new App.AboutView({dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/about'} )
+        @loginView          = new App.LoginView({dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/login'} )
+        @authorView         = new App.AuthorView({model: new App.AuthorModel(), dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/author/create'} )
 
     preDispatch: () ->
         @dispatcher.trigger "container:hide"
@@ -49,6 +48,11 @@ App.TestRouter = Backbone.Router.extend(
     listAuthors: () ->
         @preDispatch()
         @dispatcher.trigger "url:changed", 'primary-menu-list-authors'
-        @authorListView.show()
+        @authorCollection   = new App.AuthorCollection()
+        @authorListView     = new App.AuthorListView({model: @authorCollection, dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/authors'} )
+
+        $('#section-list-authors article').html(@authorListView.render().el)
+        $('#section-list-authors').show()
+
 
 )

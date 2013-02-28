@@ -14,7 +14,7 @@ $ ->
             self = @
             @$ul = $('<ul></ul>')
             @model.bind "add", (author) ->
-                self.$ul.append(new App.AuthorListItemView(model: author, dispatcher: @options.dispatcher).render().el)
+                self.$ul.append @createListItemView(author)
 
             @model.fetch
                 success: () ->
@@ -25,7 +25,7 @@ $ ->
             console.log "Loading..."
             self = @
             _.each @model.models, ((author) ->
-                self.$ul.append new App.AuthorListItemView(model: author, dispatcher: @options.dispatcher).render().el
+                self.$ul.append @createListItemView(author)
             ), this
 
             @.$el.find('article').html @$ul
@@ -39,5 +39,8 @@ $ ->
 
         hide: () ->
             @$el.hide()
+
+        createListItemView: (author) ->
+            new App.AuthorListItemView(model: author, dispatcher: @options.dispatcher).render().el
     )
 

@@ -15,7 +15,7 @@ class AuthorRepository extends BaseRepository
         $qb = $this->getEntityManager()->createQueryBuilder();
         $qb->select('a')
             ->from('MunKirjat\BookBundle\Entity\Author', 'a')
-            ->setMaxResults(20);
+            ->orderBy('a.lastName');
 
         return $qb->getQuery()->getResult(AbstractQuery::HYDRATE_ARRAY);
     }

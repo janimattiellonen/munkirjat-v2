@@ -74,16 +74,6 @@ doctrine:
                 year: DoctrineExtensions\Query\Mysql\Year
                 datediff: DoctrineExtensions\Query\Mysql\DateDiff
 
-#doctrine_mongodb:
-#    connections:
-#        default:
-#            server: mongodb://127.0.0.1:27017
-#            options: {}
-#    default_database: le-foo_db
-#    document_managers:
-#        default:
-#            auto_mapping: true
-
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
@@ -104,7 +94,7 @@ fos_user:
     #user_class: JmeSf2\GenericUserBundle\Document\User
 
 stof_doctrine_extensions:
-    default_locale: en_US
+    default_locale: fi_FI
     orm:
         default:
             timestampable: true

@@ -38,8 +38,9 @@ class SecurityController extends Controller
 
     public function successAction()
     {
+
         return $this->createJsonSuccessResponse(array(
-            'redirect' => '/#frontpage',
+            'redirect' => $this->get('router')->getContext()->getBaseUrl() . '/#frontpage',
         ));
         //return $this->getJsonResponse(array('success' => true) );
         return $this->createJsonSuccessRedirectResponse('mun_kirjat_main_frontpage');

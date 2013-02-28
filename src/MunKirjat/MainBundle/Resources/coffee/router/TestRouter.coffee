@@ -15,6 +15,8 @@ App.TestRouter = Backbone.Router.extend(
         @aboutView          = new App.AboutView({dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/about'} )
         @loginView          = new App.LoginView({dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/login'} )
         @authorView         = new App.AuthorView({model: new App.AuthorModel(), dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/author/create'} )
+        @authorCollection   = new App.AuthorCollection()
+        @authorListView     = new App.AuthorListView({model: @authorCollection, dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/authors'} )
 
     preDispatch: () ->
         @dispatcher.trigger "container:hide"
@@ -48,11 +50,10 @@ App.TestRouter = Backbone.Router.extend(
     listAuthors: () ->
         @preDispatch()
         @dispatcher.trigger "url:changed", 'primary-menu-list-authors'
-        @authorCollection   = new App.AuthorCollection()
-        @authorListView     = new App.AuthorListView({model: @authorCollection, dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/authors'} )
 
-        $('#section-list-authors article').html(@authorListView.render().el)
-        $('#section-list-authors').show()
+        @authorListView.show()
+        #$('#section-list-authors article').html(@authorListView.render().el)
+        #$('#section-list-authors').show()
 
 
 )

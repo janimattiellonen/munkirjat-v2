@@ -2,34 +2,41 @@ $ ->
     "use strict"
 
     App.AuthorListView = Backbone.View.extend(
-        tagName: "ul"
-
+        #tagName:   "ul"
+        el:         "#section-list-authors"
+        loaded:     false
         initialize: (options) ->
             _.bindAll this, 'hide'
             options.dispatcher.on("container:hide", @hide)
 
             @template = _.template $('#tpl-list-authors').html()
 
-            @model.bind("reset", @render, @)
             self = @
-
+            @$ul = $('<ul></ul>')
             @model.bind "add", (author) ->
-                $(self.el).append(new App.AuthorListItemView(model: author, dispatcher: @options.dispatcher).render().el)
+                self.$ul.append(new App.AuthorListItemView(model: author, dispatcher: @options.dispatcher).render().el)
 
-            @model.fetch()
+            @model.fetch
+                success: () ->
+                    console.log "fetching..."
+                    self.model.bind("reset", self.render, self)
+                    self.render()
 
         render: () ->
-            console.log "rendering"
-            _.each @model.models, ((author) ->
-                console.log new App.AuthorListItemView(model: author, dispatcher: @options.dispatcher).render().el
-                $(@el).append new App.AuthorListItemView(model: author, dispatcher: @options.dispatcher).render().el
-            ), this
-            this
+                console.log "Loading..."
+                self = @
+                _.each @model.models, ((author) ->
+                    self.$ul.append new App.AuthorListItemView(model: author, dispatcher: @options.dispatcher).render().el
+                ), this
 
-        show: (id) ->
+                @.$el.find('article').html @$ul
+
+            #this
+
+        show: () ->
+            @render()
+
             @$el.show()
-
-            #@render()
 
         hide: () ->
             @$el.hide()

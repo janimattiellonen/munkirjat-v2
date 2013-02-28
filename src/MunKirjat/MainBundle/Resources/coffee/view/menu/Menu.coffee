@@ -20,9 +20,11 @@ $ ->
 
             frontPage   = new App.MenuItem(dispatcher: @dispatcher, id: "primary-menu-frontpage", url: Routing.getBaseUrl() + menuItems['frontpage'], parent: @$el)
             about       = new App.MenuItem(dispatcher: @dispatcher, id: "primary-menu-about", url: Routing.getBaseUrl() + menuItems['about'], parent: @$el)
+            authors     = new App.MenuItem(dispatcher: @dispatcher, id: "primary-menu-list-authors", url: Routing.getBaseUrl() + menuItems['list-authors'], parent: @$el)
 
             @addMenuItem frontPage
             @addMenuItem about
+            @addMenuItem authors
 
             if loggedIn
                 newAuthor   = new App.MenuItem(dispatcher: @dispatcher, id: "primary-menu-new-author", url: Routing.getBaseUrl() + menuItems['add-new-author'], parent: @$el)

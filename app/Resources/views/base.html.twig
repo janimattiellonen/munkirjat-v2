@@ -59,8 +59,14 @@
         </section>
 
         <section id="section-list-authors" class="container">
-            {% include 'MunKirjatBookBundle:Author:list.js.twig' %}
+            <article>
+
+            </article>
         </section>
+
+        {% include 'MunKirjatBookBundle:Author:list.js.twig' %}
+
+        {% include 'MunKirjatBookBundle:Author:item.js.twig' %}
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
@@ -89,6 +95,7 @@
             '@MunKirjatMainBundle/Resources/coffee/view/AboutView.coffee'
             '@MunKirjatMainBundle/Resources/coffee/view/LoginView.coffee'
             '@MunKirjatMainBundle/Resources/coffee/view/AuthorView.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/view/AuthorListItemView.coffee'
             '@MunKirjatMainBundle/Resources/coffee/view/AuthorListView.coffee'
             '@MunKirjatMainBundle/Resources/coffee/collection/AuthorCollection.coffee'
             '@MunKirjatMainBundle/Resources/coffee/router/TestRouter.coffee'

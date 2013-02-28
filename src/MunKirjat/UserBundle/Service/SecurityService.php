@@ -17,7 +17,7 @@ class SecurityService
         $allowed = array(
             'frontpage'     => '/#frontpage',
             'about'         => '/#about',
-            'list-authors'  => '',
+            'list-authors'  => '/#authors',
             'list-genres'   => '',
             'statistics'    => '',
         );

@@ -19,23 +19,22 @@ $ ->
             @model.fetch
                 success: () ->
                     console.log "fetching..."
-                    self.model.bind("reset", self.render, self)
                     self.render()
 
         render: () ->
-                console.log "Loading..."
-                self = @
-                _.each @model.models, ((author) ->
-                    self.$ul.append new App.AuthorListItemView(model: author, dispatcher: @options.dispatcher).render().el
-                ), this
+            console.log "Loading..."
+            self = @
+            _.each @model.models, ((author) ->
+                self.$ul.append new App.AuthorListItemView(model: author, dispatcher: @options.dispatcher).render().el
+            ), this
 
-                @.$el.find('article').html @$ul
-
-            #this
+            @.$el.find('article').html @$ul
 
         show: () ->
-            @render()
-
+            if !@loaded
+                console.log "oooo"
+                @render()
+                @loaded = true
             @$el.show()
 
         hide: () ->

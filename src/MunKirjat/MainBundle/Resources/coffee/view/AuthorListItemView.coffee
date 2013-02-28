@@ -6,9 +6,6 @@ $ ->
         tagName: "li"
 
         initialize: (options) ->
-            _.bindAll this, 'hide'
-            options.dispatcher.on("container:hide", @hide)
-
             @template = _.template $('#tpl-list-authors-item').html()
 
         render: () ->
@@ -19,8 +16,5 @@ $ ->
             @$el.show()
 
             @render()
-
-        hide: () ->
-            @$el.hide()
     )
 

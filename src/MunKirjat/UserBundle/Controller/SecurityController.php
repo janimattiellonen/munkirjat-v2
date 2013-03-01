@@ -22,7 +22,6 @@ class SecurityController extends Controller
 
     public function newTokenAction($intention)
     {
-        //return $this->getJsonResponse(array('csrf_token' => "sss" ) );
         $csrf = $this->get('form.csrf_provider');
 
         return $this->getJsonResponse(array('csrf_token' => $csrf->generateCsrfToken($intention) ) );
@@ -30,7 +29,6 @@ class SecurityController extends Controller
 
     public function failureAction()
     {
-        $form = $this->container->get('munkirjat_user.login.form');
         $formHandler = $this->container->get('munkirjat_user.login.form.handler');
 
         return $this->createJsonFormFailureResponse($formHandler->onFailure());
@@ -38,11 +36,8 @@ class SecurityController extends Controller
 
     public function successAction()
     {
-
         return $this->createJsonSuccessResponse(array(
             'redirect' => $this->get('router')->getContext()->getBaseUrl() . '/#frontpage',
         ));
-        //return $this->getJsonResponse(array('success' => true) );
-        return $this->createJsonSuccessRedirectResponse('mun_kirjat_main_frontpage');
     }
 }

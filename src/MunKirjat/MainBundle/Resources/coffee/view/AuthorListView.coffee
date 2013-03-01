@@ -24,7 +24,9 @@ $ ->
                         self.$ul.append self.createListItemView(author)
                     ), this
 
-                    self.$el.find('article').html self.$ul
+                    self.$el.append($(self.template()))
+
+                    self.$el.find('article div').html self.$ul
 
         show: () ->
             if !@loaded

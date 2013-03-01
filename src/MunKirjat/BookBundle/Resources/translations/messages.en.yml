@@ -4,5 +4,6 @@ author:
     lastName:             "Lastname"
     lastName-required:    "Lastname is required"
     addNew:               "Add new author"
+    edit:                 "Update author"
 
 authors:                   "Authors"

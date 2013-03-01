@@ -55,6 +55,8 @@ $ ->
                     if(response.success)
                         self.model.id = response.success.id
                         self.setTitle 'author.edit'
+                        # update url
+                        self.options.dispatcher.trigger "url:change", "#author/" + self.model.id
 
         show: (id) ->
             @$el.show()

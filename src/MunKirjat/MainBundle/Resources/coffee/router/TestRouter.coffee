@@ -10,6 +10,10 @@ App.TestRouter = Backbone.Router.extend(
 
     initialize: (options) ->
         @dispatcher     = options.dispatcher
+        self            = @
+
+        @dispatcher.on "url:change", (msg) ->
+            self.navigate msg
 
         @frontPageView      = new App.FrontPageView({dispatcher: @dispatcher} )
         @aboutView          = new App.AboutView({dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/about'} )

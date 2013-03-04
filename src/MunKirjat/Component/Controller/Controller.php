@@ -104,9 +104,12 @@ class Controller extends FOSRestController
         $errors = array();
         $translator = $this->get('translator');
 
+        $formName = $form->getName();
+        $formName = !empty($formName) ? $formName : 'defaultForm';
+
         if (count($form->getErrors())) {
             foreach ($form->getErrors() as $error) {
-                $errors[$form->getName()]['errors'][] = $translator->trans(
+                $errors[$formName]['errors'][] = $translator->trans(
                     $error->getMessageTemplate(),
                     $error->getMessageParameters()
                 );
@@ -117,15 +120,15 @@ class Controller extends FOSRestController
             foreach ($form->all() as $child) {
                 if ($child->count()) {
                     if ($childErrors = $this->getFormErrorsForJson($child)) {
-                        $errors[$form->getName()]['childErrors'] = array_merge_recursive(
-                            isset($errors[$form->getName()]['childErrors'])
-                                ? $errors[$form->getName()]['childErrors']
+                        $errors[$formName]['childErrors'] = array_merge_recursive(
+                            isset($errors[$formName]['childErrors'])
+                                ? $errors[$formName]['childErrors']
                                 : array(),
                             $childErrors
                         );
                     }
                 } else if (count($child->getErrors())) {
-                    $errors[$form->getName()]['childErrors'][$child->getName()] = array_map(function($error) use ($translator) {
+                    $errors[$formName]['childErrors'][$child->getName()] = array_map(function($error) use ($translator) {
                         return $translator->trans($error->getMessageTemplate(), $error->getMessageParameters());
                     }, $child->getErrors());
                 }
@@ -169,5 +172,22 @@ class Controller extends FOSRestController
         };
 
         return $failureCallback($form);
+    }
+
+    /**
+     * Removes the 'id' value if found during an XmlHttpRequest (PUT).
+     *
+     * @return \Symfony\Component\HttpFoundation\Request
+     */
+    public function getRequest()
+    {
+        $request = parent::getRequest();
+
+        if($request->isXmlHttpRequest() && $request->isMethod('PUT') )
+        {
+            $request->request->remove('id');
+        }
+
+        return $request;
     }
 }

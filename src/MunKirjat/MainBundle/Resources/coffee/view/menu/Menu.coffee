@@ -21,16 +21,20 @@ $ ->
             frontPage   = new App.MenuItem(dispatcher: @dispatcher, id: "primary-menu-frontpage", url: Routing.getBaseUrl() + menuItems['frontpage'], parent: @$el)
             about       = new App.MenuItem(dispatcher: @dispatcher, id: "primary-menu-about", url: Routing.getBaseUrl() + menuItems['about'], parent: @$el)
             authors     = new App.MenuItem(dispatcher: @dispatcher, id: "primary-menu-list-authors", url: Routing.getBaseUrl() + menuItems['list-authors'], parent: @$el)
+            genres      = new App.MenuItem(dispatcher: @dispatcher, id: "primary-menu-list-genres", url: Routing.getBaseUrl() + menuItems['list-genres'], parent: @$el)
 
             @addMenuItem frontPage
             @addMenuItem about
             @addMenuItem authors
+            @addMenuItem genres
 
             if loggedIn
                 newAuthor   = new App.MenuItem(dispatcher: @dispatcher, id: "primary-menu-new-author", url: Routing.getBaseUrl() + menuItems['add-new-author'], parent: @$el)
+                newGenre    = new App.MenuItem(dispatcher: @dispatcher, id: "primary-menu-new-genre", url: Routing.getBaseUrl() + menuItems['add-new-genre'], parent: @$el)
                 logout      = new App.MenuItem(dispatcher: @dispatcher, id: "primary-menu-logout", url: Routing.getBaseUrl() + menuItems['logout'], parent: @$el)
 
                 @addMenuItem newAuthor
+                @addMenuItem newGenre
                 @addMenuItem logout
             else
                 login       = new App.MenuItem(dispatcher: @dispatcher, id: "primary-menu-login", url: Routing.getBaseUrl() + menuItems['login'], parent: @$el)

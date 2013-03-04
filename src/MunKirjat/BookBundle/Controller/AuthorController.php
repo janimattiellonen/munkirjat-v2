@@ -2,6 +2,7 @@
 namespace MunKirjat\BookBundle\Controller;
 
 use MunKirjat\Component\Controller\Controller;
+use MunKirjat\BookBundle\Entity\Author;
 
 class AuthorController extends Controller
 {
@@ -24,23 +25,24 @@ class AuthorController extends Controller
 
     public function createAction()
     {
-        $service    = $this->getAuthorService();
-        $form       = $service->getAuthorForm(null);
-        $self       = $this;
-
-        return $this->processForm($form, function() use($form, $service, $self) {
-
-                $author = $service->saveByForm($form);
-
-                return $self->createJsonSuccessResponse(array('id' => $author->getId() ) );
-            }
-        );
+        return $this->process();
     }
 
     public function updateAction($id)
     {
         $service    = $this->getAuthorService();
-        $form       = $service->getAuthorForm($service->getAuthor($id) );
+
+        return $this->process($service->getAuthor($id) );
+    }
+
+    /**
+     * @param Author $author
+     * @return mixed
+     */
+    protected function process(Author $author = null)
+    {
+        $service    = $this->getAuthorService();
+        $form       = $service->getAuthorForm($author);
         $self       = $this;
 
         return $this->processForm($form, function() use($form, $service, $self) {

@@ -6,4 +6,11 @@ author:
     addNew:               "Add new author"
     edit:                 "Update author"
 
-authors:                   "Authors"
+authors:                  "Authors"
+
+
+genre:
+    addNew:               "Add new genre"
+    edit:                 "Edit genre"
+    name:                 "Name"
+    name-required:        "Name is required"

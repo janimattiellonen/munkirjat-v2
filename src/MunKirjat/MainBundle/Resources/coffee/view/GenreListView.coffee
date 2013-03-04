@@ -1,28 +1,27 @@
 $ ->
     "use strict"
 
-    App.AuthorListView = Backbone.View.extend(
-        el:         "#section-list-authors"
+    App.GenreListView = Backbone.View.extend(
+        el:         "#section-list-genres"
         loaded:     false
         initialize: (options) ->
             _.bindAll this, 'hide'
             options.dispatcher.on("container:hide", @hide)
 
-            @template = _.template $('#tpl-list-authors').html()
+            @template = _.template $('#tpl-list-genres').html()
             console.log "wuff"
             self = @
             @$ul = $('<ul></ul>')
-            options.dispatcher.on "author:add", (author) ->
-                console.log "Adding"
-                self.$ul.append self.createListItemView(author)
+            options.dispatcher.on "genre:add", (genre) ->
+                self.$ul.append self.createListItemView(genre)
 
         render: () ->
             self = @
 
             @model.fetch
                 success: () ->
-                    _.each self.model.models, ((author) ->
-                        self.$ul.append self.createListItemView(author)
+                    _.each self.model.models, ((genre) ->
+                        self.$ul.append self.createListItemView(genre)
                     ), this
 
                     self.$el.append($(self.template()))
@@ -38,7 +37,6 @@ $ ->
         hide: () ->
             @$el.hide()
 
-        createListItemView: (author) ->
-            console.log "what are we adding? " + JSON.stringify author
-            new App.AuthorListItemView(model: author, dispatcher: @options.dispatcher).render().el
+        createListItemView: (genre) ->
+            new App.GenreListItemView(model: genre, dispatcher: @options.dispatcher).render().el
     )

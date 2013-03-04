@@ -5,6 +5,12 @@ services:
         factory_service: doctrine.orm.entity_manager
         factory_method: getRepository
 
+    munkirjat_book.repository.genre:
+        class: MunKirjat\BookBundle\Repository\GenreRepository
+        arguments: [MunKirjat\BookBundle\Entity\Genre]
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+
     munkirjat_book.repository.book:
         class: MunKirjat\BookBundle\Repository\BookRepository
         arguments: [MunKirjat\BookBundle\Entity\Book]
@@ -14,6 +20,10 @@ services:
     munkirjat_book.service.author:
         class:     MunKirjat\BookBundle\Service\AuthorService
         arguments: ["@doctrine.orm.entity_manager", "@munkirjat_book.repository.author", "@form.factory"]
+
+    munkirjat_book.service.genre:
+        class:     MunKirjat\BookBundle\Service\GenreService
+        arguments: ["@doctrine.orm.entity_manager", "@munkirjat_book.repository.genre", "@form.factory"]
 
     munkirjat_book.service.book:
         class:     MunKirjat\BookBundle\Service\BookService

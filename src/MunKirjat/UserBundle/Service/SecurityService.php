@@ -18,7 +18,7 @@ class SecurityService
             'frontpage'     => '/#frontpage',
             'about'         => '/#about',
             'list-authors'  => '/#authors',
-            'list-genres'   => '',
+            'list-genres'   => '/#genres',
             'statistics'    => '',
         );
 
@@ -29,7 +29,7 @@ class SecurityService
         $protected = array(
             'add-new-author'    => '/#author',
             'add-new-book'      => '',
-            'add-new-genre'     => '',
+            'add-new-genre'     => '/#genre',
             'logout'            => '/#logout',
         );
 

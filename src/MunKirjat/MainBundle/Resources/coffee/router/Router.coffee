@@ -78,6 +78,7 @@ App.Router = Backbone.Router.extend(
     genre: () ->
         @preDispatch()
         @dispatcher.trigger "url:changed", 'primary-menu-new-genre'
+        @genreView.reset()
         @genreView.show()
 
     getGenre: (id) ->

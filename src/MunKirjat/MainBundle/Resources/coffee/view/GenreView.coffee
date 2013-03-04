@@ -50,9 +50,9 @@ $ ->
                 success: (model, response) ->
                     self.formErrorizer.clear($('#new-genre-box') )
                     self.formErrorizer.errorize($('#new-genre-box'), response);
-
-                    if(response.success)
-
+                    
+        reset: () ->
+            @model.clear()
 
         show: (id) ->
             @$el.show()

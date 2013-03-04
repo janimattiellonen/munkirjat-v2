@@ -50,28 +50,6 @@ $ ->
 
             self = @
 
-            #if(@model.isNew() )
-            #    console.log "is new"
-            #    @options.collection.create @model,
-            #        wait: true
-            #        success: (model, response) ->
-            #            self.formErrorizer.clear($('#new-author-box') )
-            #            self.formErrorizer.errorize($('#new-author-box'), response);
-
-            #            if(response.success)
-            #                self.setTitle 'author.edit'
-            #                self.options.dispatcher.trigger "url:change", "#author/"
-
-            #                self.options.collection.each (author) ->
-            #                    console.log JSON.stringify(author)
-            #                    #console.log "AUTHOR: " + author.get "firstName" + ", id: " + author.get "id"
-            #else
-            #    console.log "IS NOT NEW"
-            #    @model.save {},
-            #        success: (model, response) ->
-            #            self.formErrorizer.clear($('#new-author-box') )
-            #            self.formErrorizer.errorize($('#new-author-box'), response);
-
             isNew = @model.isNew()
 
             @model.save {},

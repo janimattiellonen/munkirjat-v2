@@ -52,12 +52,20 @@ $ ->
                     self.formErrorizer.errorize($('#new-genre-box'), response);
 
                     if(response.success)
-                        alert "OK"
+
 
         show: (id) ->
             @$el.show()
 
-            @render()
+            if(id)
+                @model.id = id
+                self = @
+                @model.fetch
+                    success: (model, response) ->
+                        self.render()
+            else
+                @model.id = null
+                @render()
 
         hide: () ->
             @$el.hide()

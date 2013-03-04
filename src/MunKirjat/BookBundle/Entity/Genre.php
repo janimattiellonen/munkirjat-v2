@@ -102,4 +102,15 @@ class Genre
     {
         return $this->books;
     }
+
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        return array(
+            'id'    => $this->getId(),
+            'name'  => $this->getName(),
+        );
+    }
 }

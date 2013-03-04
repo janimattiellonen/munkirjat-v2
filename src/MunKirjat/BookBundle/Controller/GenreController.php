@@ -6,6 +6,14 @@ use MunKirjat\BookBundle\Entity\Genre;
 
 class GenreController extends Controller
 {
+    public function viewAction($id)
+    {
+        $service    = $this->getGenreService();
+        $genre     = $service->getGenre($id);
+
+        return $this->getJsonResponse($genre->toArray() );
+    }
+
     public function createAction()
     {
         $service    = $this->getGenreService();

@@ -42,6 +42,11 @@ munkirjat_genre_update:
     defaults: { _controller: MunKirjatBookBundle:Genre:update, _format: 'json' }
     requirements: { _method: put }
 
+munkirjat_genre_view:
+    pattern: "/genre/{id}"
+    defaults: { _controller: MunKirjatBookBundle:Genre:view, _format: 'json' }
+    requirements: { _method: get }
+
 munkirjat_genre_list:
     pattern: "/genre"
     defaults: { _controller: MunKirjatBookBundle:Genre:list, _format: 'json' }

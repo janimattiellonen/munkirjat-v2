@@ -1,5 +1,5 @@
 
-App.TestRouter = Backbone.Router.extend(
+App.Router = Backbone.Router.extend(
     routes:
         "frontpage":        "frontpage"
         "about":            "about"

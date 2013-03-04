@@ -113,7 +113,7 @@
             '@MunKirjatMainBundle/Resources/coffee/view/GenreListItemView.coffee'
             '@MunKirjatMainBundle/Resources/coffee/view/GenreListView.coffee'
             '@MunKirjatMainBundle/Resources/coffee/collection/GenreCollection.coffee'
-            '@MunKirjatMainBundle/Resources/coffee/router/TestRouter.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/router/Router.coffee'
             '@MunKirjatMainBundle/Resources/coffee/model/menu/MenuItemModel.coffee'
             '@MunKirjatMainBundle/Resources/coffee/view/menu/MenuItem.coffee'
             '@MunKirjatMainBundle/Resources/coffee/view/menu/Menu.coffee'
@@ -146,7 +146,7 @@
                     success: function(data) {
                         menu.buildMenu(data['logged-in'], data['data']);
                         menu.render();
-                        new App.TestRouter({dispatcher: dispatcher});
+                        new App.Router({dispatcher: dispatcher});
                         Backbone.history.start();
                     }
                 });

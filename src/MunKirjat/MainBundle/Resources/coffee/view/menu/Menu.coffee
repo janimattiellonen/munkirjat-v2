@@ -31,10 +31,12 @@ $ ->
             if loggedIn
                 newAuthor   = new App.MenuItem(dispatcher: @dispatcher, id: "primary-menu-new-author", url: Routing.getBaseUrl() + menuItems['add-new-author'], parent: @$el)
                 newGenre    = new App.MenuItem(dispatcher: @dispatcher, id: "primary-menu-new-genre", url: Routing.getBaseUrl() + menuItems['add-new-genre'], parent: @$el)
+                newBook     = new App.MenuItem(dispatcher: @dispatcher, id: "primary-menu-new-book", url: Routing.getBaseUrl() + menuItems['add-new-book'], parent: @$el)
                 logout      = new App.MenuItem(dispatcher: @dispatcher, id: "primary-menu-logout", url: Routing.getBaseUrl() + menuItems['logout'], parent: @$el)
 
                 @addMenuItem newAuthor
                 @addMenuItem newGenre
+                @addMenuItem newBook
                 @addMenuItem logout
             else
                 login       = new App.MenuItem(dispatcher: @dispatcher, id: "primary-menu-login", url: Routing.getBaseUrl() + menuItems['login'], parent: @$el)

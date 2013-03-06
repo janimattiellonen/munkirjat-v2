@@ -7,6 +7,11 @@ munkirjat_book_view:
     defaults: { _controller: MunKirjatBookBundle:Default:view }
     requirements: { _method: get }
 
+munkirjat_book_create:
+    pattern: "/author"
+    defaults: { _controller: MunKirjatBookBundle:Book:create, _format: 'json' }
+    requirements: { _method: post }
+
 munkirjat_author_new:
     pattern: /author/new
     defaults: { _controller: MunKirjatBookBundle:Author:new }

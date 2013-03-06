@@ -1,0 +1,36 @@
+<script type="text/template" id="tpl-new-book">
+
+    <article>
+        <div id="new-book-box">
+            <h1><%= Translator.get(title) %></h1>
+            <input type="hidden" name="author[_token]" value="<%= csrf_token %>" />
+
+            <p>
+                <label for="title"><%= Translator.get('book.title') %>:</label>
+                <input type="text" id="title" name="title" value="<%= title %>" required="required" />
+            </p>
+
+            <p>
+                <label for="pageCount"><%= Translator.get('book.pageCount') %>:</label>
+                <input type="text" id="title" name="pageCount" value="<%= pageCount %>" required="required" />
+            </p>
+
+            <p>
+                <label for="isbn"><%= Translator.get('book.isbn') %>:</label>
+                <input type="text" id="isbn" name="isbn" value="<%= isbn %>" required="required" />
+            </p>
+
+            <p>
+                <label for="created"><%= Translator.get('book.created') %>:</label>
+                <input type="text" id="created" name="created" value="<%= created %>" required="required" />
+            </p>
+
+            <p>
+                <label for="updated"><%= Translator.get('book.updated') %>:</label>
+                <input type="text" id="updated" name="updated" value="<%= updated %>" required="required" />
+            </p>
+
+            <input type="submit" id="_submit" name="_submit" value="<%= Translator.get('form.save') %>" />
+        </div>
+    </article>
+</script>

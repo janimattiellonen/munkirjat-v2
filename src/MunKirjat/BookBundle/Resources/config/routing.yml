@@ -4,13 +4,18 @@ munkirjat_book_test:
 
 munkirjat_book_view:
     locales: {fi: "/kirja/{id}", en: "/book/{id}" }
-    defaults: { _controller: MunKirjatBookBundle:Default:view }
+    defaults: { _controller: MunKirjatBookBundle:Book:view }
     requirements: { _method: get }
 
 munkirjat_book_create:
-    pattern: "/author"
+    pattern: "/book"
     defaults: { _controller: MunKirjatBookBundle:Book:create, _format: 'json' }
     requirements: { _method: post }
+
+munkirjat_book_list:
+    pattern: "/book"
+    defaults: { _controller: MunKirjatBookBundle:Book:list, _format: 'json' }
+    requirements: { _method: get }
 
 munkirjat_author_new:
     pattern: /author/new

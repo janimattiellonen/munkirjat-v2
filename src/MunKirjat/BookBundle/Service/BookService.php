@@ -29,6 +29,15 @@ class BookService
     }
 
     /**
+     * @param int $id
+     * @return \MunKirjat\BookBundle\Entity\Book
+     */
+    public function getBook($id)
+    {
+        return $this->bookRepository->find($id);
+    }
+
+    /**
      * @return \MunKirjat\BookBundle\Entity\Book|null
      */
     public function getLatestReadBook()

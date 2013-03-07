@@ -10,6 +10,7 @@ App.Router = Backbone.Router.extend(
         "genre":            "genre"
         "genre/:id":        "getGenre"
         "genres":           "listGenres"
+        "book/:id":         "getBook"
 
     initialize: (options) ->
         @dispatcher     = options.dispatcher
@@ -28,14 +29,16 @@ App.Router = Backbone.Router.extend(
             alert "author added"
 
         @authorCollection   = new App.AuthorCollection()
-        @genreCollection   = new App.GenreCollection()
+        @genreCollection    = new App.GenreCollection()
+        @bookCollection     = new App.BookCollection()
         @frontPageView      = new App.FrontPageView({dispatcher: @dispatcher} )
         @aboutView          = new App.AboutView({dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/about'} )
         @loginView          = new App.LoginView({dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/login'} )
         @authorView         = new App.AuthorView({model: new App.AuthorModel(), collection: @authorCollection, dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/author/create'} )
         @authorListView     = new App.AuthorListView({model: @authorCollection, dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/authors'} )
         @genreView          = new App.GenreView({model: new App.GenreModel(), dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/genre/create'} )
-        @genreListView     = new App.GenreListView({model: @genreCollection, dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/genres'} )
+        @genreListView      = new App.GenreListView({model: @genreCollection, dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/genres'} )
+        @bookView           = new App.BookView({model: new App.BookModel(), collection: @bookCollection, dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/book/create'} )
 
     preDispatch: () ->
         @dispatcher.trigger "container:hide"
@@ -90,4 +93,10 @@ App.Router = Backbone.Router.extend(
         @preDispatch()
         @dispatcher.trigger "url:changed", 'primary-menu-list-genres'
         @genreListView.show()
+
+    getBook: (id) ->
+        @preDispatch()
+        @dispatcher.trigger "url:changed", 'primary-menu-new-book'
+        @bookView.show(id)
+
 )

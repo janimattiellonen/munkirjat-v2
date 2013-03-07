@@ -1,4 +1,4 @@
-<script type="text/template" id="tpl-new-book">
+<script type="text/html" id="tpl-new-book">
 
     <article>
         <div id="new-book-box">
@@ -22,12 +22,12 @@
 
             <p>
                 <label for="created"><%= Translator.get('book.created') %>:</label>
-                <input type="text" id="created" name="created" value="<%= created %>" required="required" />
+                <input class="datepicker" type="text" id="created" name="created" value="<%= created %>" required="required" />
             </p>
 
             <p>
                 <label for="updated"><%= Translator.get('book.updated') %>:</label>
-                <input type="text" id="updated" name="updated" value="<%= updated %>" required="required" />
+                <input class="datepicker" type="text" id="updated" name="updated" value="<%= updated %>" required="required" />
             </p>
 
             <input type="submit" id="_submit" name="_submit" value="<%= Translator.get('form.save') %>" />

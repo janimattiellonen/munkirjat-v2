@@ -554,4 +554,19 @@ class Book
 	{
 	    return $this->rating;
 	}
+
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        return array(
+            'id'            => $this->getId(),
+            'title'         => $this->getTitle(),
+            'isbn'          => $this->getIsbn(),
+            'created'       => $this->getCreated()->format("d.m.Y"),
+            'updated'       => $this->getUpdated()->format("d.m.Y"),
+            'pageCount'     => $this->getPageCount(),
+        );
+    }
 }

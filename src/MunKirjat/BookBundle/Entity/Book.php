@@ -563,6 +563,7 @@ class Book
         return array(
             'id'                => $this->getId(),
             'title'             => $this->getTitle(),
+            'language'          => $this->getLanguage(),
             'isbn'              => $this->getIsbn(),
             'created'           => $this->getCreated()->format("d.m.Y"),
             'updated'           => $this->getUpdated()->format("d.m.Y"),

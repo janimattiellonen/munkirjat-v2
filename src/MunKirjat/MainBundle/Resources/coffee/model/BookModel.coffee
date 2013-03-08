@@ -6,6 +6,7 @@ $ ->
         defaults:
             "_token":           ""
             "title":            ""
+            "language":         ""
             "pageCount":        ""
             "isbn":             ""
             "created":          ""

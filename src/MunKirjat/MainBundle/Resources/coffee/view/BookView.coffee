@@ -29,8 +29,17 @@ $ ->
 
                     title = if id then 'book.edit' else 'book.addNew'
 
+                    languages = [
+                        {code: 'fi', name: 'Finnish'},
+                        {code: 'se', name: 'Swedish'},
+                        {code: 'en', name: 'English'}
+                    ]
+
+
                     self.$el.html self.template(
+                            languages:          languages
                             title:              self.model.get("title")
+                            language:           self.model.get("language")
                             csrf_token:         data.csrf_token
                             pageCount:          self.model.get("pageCount")
                             isbn:               self.model.get("isbn")
@@ -48,6 +57,7 @@ $ ->
 
             @model.set "book":
                 "title":                $('#title', @$el).val()
+                "language":             $('#language', @$el).val()
                 "pageCount":            $('#pageCount', @$el).val()
                 "isbn":                 $('#isbn', @$el).val()
                 "startedReading":       $('#startedReading', @$el).val()

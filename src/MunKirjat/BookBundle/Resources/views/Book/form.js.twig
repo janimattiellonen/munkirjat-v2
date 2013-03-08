@@ -11,6 +11,16 @@
             </p>
 
             <p>
+                <label for="language"><%= Translator.get('book.language') %>:</label>
+                <select name="language" id="language">
+                    <% _.each(languages, function(lang)   { %>
+                        <option <% if(language == lang.code) print('selected="selected"') %> value="<%= lang.code %>"><%= lang.name %></option>
+                    <% }) %>
+
+                </select>
+            </p>
+
+            <p>
                 <label for="pageCount"><%= Translator.get('book.pageCount') %>:</label>
                 <input type="text" id="title" name="pageCount" value="<%= pageCount %>" />
             </p>

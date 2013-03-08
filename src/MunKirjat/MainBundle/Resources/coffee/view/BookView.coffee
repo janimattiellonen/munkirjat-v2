@@ -35,7 +35,6 @@ $ ->
                         {code: 'en', name: 'English'}
                     ]
 
-
                     self.$el.html self.template(
                             languages:          languages
                             title:              self.model.get("title")
@@ -48,6 +47,11 @@ $ ->
                             isRead:             self.model.get("isRead")
                         )
                     self.loaded = true
+
+                    $('#languages').buttonset()
+
+
+
             )
 
         reset: () ->

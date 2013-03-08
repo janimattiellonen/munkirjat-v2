@@ -5,3 +5,6 @@ $(document.body).on "click", ".datepicker", ->
             dateFormat:         "dd.mm.yy"
 
         $(this).datepicker "show"
+
+
+

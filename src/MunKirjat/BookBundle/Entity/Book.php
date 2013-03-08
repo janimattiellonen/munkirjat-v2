@@ -561,12 +561,15 @@ class Book
     public function toArray()
     {
         return array(
-            'id'            => $this->getId(),
-            'title'         => $this->getTitle(),
-            'isbn'          => $this->getIsbn(),
-            'created'       => $this->getCreated()->format("d.m.Y"),
-            'updated'       => $this->getUpdated()->format("d.m.Y"),
-            'pageCount'     => $this->getPageCount(),
+            'id'                => $this->getId(),
+            'title'             => $this->getTitle(),
+            'isbn'              => $this->getIsbn(),
+            'created'           => $this->getCreated()->format("d.m.Y"),
+            'updated'           => $this->getUpdated()->format("d.m.Y"),
+            'startedReading'    => $this->getStartedReading()->format("d.m.Y"),
+            'finishedReading'   => $this->getFinishedReading()->format("d.m.Y"),
+            'pageCount'         => $this->getPageCount(),
+            'isRead'            => $this->isRead(),
         );
     }
 }

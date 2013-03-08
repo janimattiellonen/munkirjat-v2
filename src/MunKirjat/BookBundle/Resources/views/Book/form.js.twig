@@ -12,22 +12,27 @@
 
             <p>
                 <label for="pageCount"><%= Translator.get('book.pageCount') %>:</label>
-                <input type="text" id="title" name="pageCount" value="<%= pageCount %>" required="required" />
+                <input type="text" id="title" name="pageCount" value="<%= pageCount %>" />
+            </p>
+
+            <p>
+                <label for="isRead"><%= Translator.get('book.isRead') %>:</label>
+                <input type="checkbox" id="isRead" name="isRead" <% if(isRead) print('checked="checked"')%> value="<%= isRead %>" />
+            </p>
+
+            <p>
+                <label for="startedReading"><%= Translator.get('book.startedReading') %>:</label>
+                <input class="datepicker" type="text" id="startedReading" name="startedReading" value="<%= startedReading %>" />
+            </p>
+
+            <p>
+                <label for="finishedReading"><%= Translator.get('book.finishedReading') %>:</label>
+                <input class="datepicker" type="text" id="finishedReading" name="finishedReading" value="<%= finishedReading %>" />
             </p>
 
             <p>
                 <label for="isbn"><%= Translator.get('book.isbn') %>:</label>
-                <input type="text" id="isbn" name="isbn" value="<%= isbn %>" required="required" />
-            </p>
-
-            <p>
-                <label for="created"><%= Translator.get('book.created') %>:</label>
-                <input class="datepicker" type="text" id="created" name="created" value="<%= created %>" required="required" />
-            </p>
-
-            <p>
-                <label for="updated"><%= Translator.get('book.updated') %>:</label>
-                <input class="datepicker" type="text" id="updated" name="updated" value="<%= updated %>" required="required" />
+                <input type="text" id="isbn" name="isbn" value="<%= isbn %>"  />
             </p>
 
             <input type="submit" id="_submit" name="_submit" value="<%= Translator.get('form.save') %>" />

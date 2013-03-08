@@ -4,12 +4,15 @@ $ ->
     App.BookModel = Backbone.Model.extend(
         idAttribute: 'id'
         defaults:
-            "_token":       ""
-            "title":        ""
-            "pageCOunt":    ""
-            "isbn":         ""
-            "created":      ""
-            "updated":      ""
+            "_token":           ""
+            "title":            ""
+            "pageCount":        ""
+            "isbn":             ""
+            "created":          ""
+            "updated":          ""
+            "startedReading":   ""
+            "finishedReading":  ""
+            "isRead":           ""
 
         urlRoot: Routing.generate('munkirjat_book_create')
     )

@@ -30,12 +30,13 @@ $ ->
                     title = if id then 'book.edit' else 'book.addNew'
 
                     self.$el.html self.template(
-                            title:      self.model.get("title")
-                            csrf_token: data.csrf_token
-                            pageCount:  self.model.get("pageCount")
-                            isbn:       self.model.get("isbn")
-                            created:    self.model.get("created")
-                            updated:    self.model.get("updated")
+                            title:              self.model.get("title")
+                            csrf_token:         data.csrf_token
+                            pageCount:          self.model.get("pageCount")
+                            isbn:               self.model.get("isbn")
+                            startedReading:     self.model.get("startedReading")
+                            finishedReading:    self.model.get("finishedReading")
+                            isRead:             self.model.get("isRead")
                         )
                     self.loaded = true
             )
@@ -46,12 +47,13 @@ $ ->
         save: () ->
 
             @model.set "book":
-                "title":        $('#title', @$el).val()
-                "pageCount":    $('#pageCount', @$el).val()
-                "isbn":         $('#isbn', @$el).val()
-                "created":      $('#created', @$el).val()
-                "updated":      $('#updated', @$el).val()
-                "_token":       @csrf
+                "title":                $('#title', @$el).val()
+                "pageCount":            $('#pageCount', @$el).val()
+                "isbn":                 $('#isbn', @$el).val()
+                "startedReading":       $('#startedReading', @$el).val()
+                "finishedReading":      $('#finishedReading', @$el).val()
+                "isRead":               $('#isRead', @$el).val()
+                "_token":               @csrf
 
             self = @
 

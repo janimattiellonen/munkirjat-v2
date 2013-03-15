@@ -38,7 +38,10 @@ class AppKernel extends Kernel
 
             new FOS\RestBundle\FOSRestBundle(),
             new Xi\Bundle\AjaxBundle\XiAjaxBundle(),
+            new Xi\Bundle\SelectorBundle\XiSelectorBundle(),
+            new Xi\Bundle\TagBundle\XiTagBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle($this),
+            new FPN\TagBundle\FPNTagBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -21,6 +21,20 @@
                 </p>
 
                 <p>
+                    <div class="tag_item_selector" data-elementName="book[tags]">
+                        <div class="items">
+                            <ul id="book_tags"></ul>
+                        </div>
+
+
+                        <div class="item_input">
+                            <button name="add-item" class="add-item-btn">Add tag</button>
+                            <input class="item_field" type="text" />
+                        </div>
+                    </div>
+                </p>
+
+                <p>
                     <label for="pageCount"><%= Translator.get('book.pageCount') %>:</label>
                     <input type="text" id="title" name="pageCount" value="<%= pageCount %>" />
                 </p>

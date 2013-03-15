@@ -14,6 +14,27 @@ class BookController extends Controller
         return $this->getJsonResponse($book->toArray() );
     }
 
+    public function createAction()
+    {
+
+    }
+
+    public function updateAction($id)
+    {
+        $service    = $this->getBookService();
+        $book       = $service->getBook($id);
+        $form       = $service->getBookForm($book);
+        $self       = $this;
+
+        return $this->processForm($form, function() use($form, $service, $self) {
+
+                $book = $service->saveByForm($form);
+
+                return $self->createJsonSuccessResponse(array('id' => $book->getId() ) );
+            }
+        );
+    }
+
     /**
      * @return \MunKirjat\BookBundle\Service\BookService
      */

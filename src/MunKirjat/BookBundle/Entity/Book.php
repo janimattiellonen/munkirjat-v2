@@ -3,18 +3,18 @@ namespace MunKirjat\BookBundle\Entity;
 
 use \DateTime;
 
+use DoctrineExtensions\Taggable\Taggable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 use Symfony\Component\Validator\Constraints as Assert;
-
 
 /**
  * @ORM\Entity(repositoryClass="MunKirjat\BookBundle\Repository\BookRepository")
  * @ORM\Table(name="book")
  * @ORM\HasLifecycleCallbacks
  */
-class Book
+class Book implements Taggable
 {
 	/**
      * @var int
@@ -61,13 +61,7 @@ class Book
 	
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
-     *
-     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="books")
-     * @ORM\JoinTable(name="book_tag",
-     * 		joinColumns={@ORM\JoinColumn(name="book_id", referencedColumnName="id")},
-     * 		inverseJoinColumns={@ORM\JoinColumn(name="tag_id", referencedColumnName="id")}
-     * )
-     */	
+     */
 	protected $tags;
 	
 	/**
@@ -78,7 +72,7 @@ class Book
 	protected $pageCount;
 	
 	/**
-     * @var boolean
+     * @var integer
      *
 	 * @ORM\Column(name="is_read", type="integer", length=1)
 	 */
@@ -353,6 +347,23 @@ class Book
     }
 
     /**
+     * @param array|ArrayCollection $tags
+     *
+     * @return Book
+     */
+    public function setTags($tags)
+    {
+        $this->removeTags();
+
+        foreach($tags as $tag)
+        {
+            $this->addTag($tag);
+        }
+
+        return $this;
+    }
+
+    /**
      * @return Book
      */
     public function removeTags()
@@ -442,22 +453,22 @@ class Book
 	}
 
     /**
-     * @param boolean $isRead
+     * @param int $isRead
      * @return Book
      */
     public function setIsRead($isRead)
 	{
-		$this->isRead = $isRead;
+		$this->isRead = (boolean)$isRead;
 
         return $this;
 	}
 
     /**
-     * @return boolean
+     * @return int
      */
-    public function isRead()
+    public function getIsRead()
 	{
-		return $this->isRead;
+		return (boolean)$this->isRead;
 	}
 	
 	/**
@@ -570,7 +581,25 @@ class Book
             'startedReading'    => $this->getStartedReading()->format("d.m.Y"),
             'finishedReading'   => $this->getFinishedReading()->format("d.m.Y"),
             'pageCount'         => $this->getPageCount(),
-            'isRead'            => $this->isRead(),
+            'isRead'            => $this->getIsRead(),
         );
+    }
+
+    /**
+     * Returns the unique taggable resource type
+     *
+     * @return string
+     */
+    function getTaggableType()
+    {
+        return 'book';
+    }
+
+    /**
+     * @return int
+     */
+    function getTaggableId()
+    {
+        return $this->getId();
     }
 }

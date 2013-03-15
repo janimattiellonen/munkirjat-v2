@@ -14,7 +14,6 @@ _munkirjat_book_bundle:
     resource: "@MunKirjatBookBundle/Resources/config/routing.yml"
     type: be_simple_i18n
 
-
 _bazinga_exposetranslation:
     resource: "@BazingaExposeTranslationBundle/Resources/config/routing/routing.yml"
 
@@ -37,3 +36,6 @@ fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
 
+XiTagBundle:
+    resource: "@XiTagBundle/Resources/config/routing.yml"
+    prefix:   /

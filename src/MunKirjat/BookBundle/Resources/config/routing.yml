@@ -12,6 +12,11 @@ munkirjat_book_create:
     defaults: { _controller: MunKirjatBookBundle:Book:create, _format: 'json' }
     requirements: { _method: post }
 
+munkirjat_book_update:
+    pattern: "/book/{id}"
+    defaults: { _controller: MunKirjatBookBundle:Book:update, _format: 'json' }
+    requirements: { _method: put }
+
 munkirjat_book_list:
     pattern: "/book"
     defaults: { _controller: MunKirjatBookBundle:Book:list, _format: 'json' }

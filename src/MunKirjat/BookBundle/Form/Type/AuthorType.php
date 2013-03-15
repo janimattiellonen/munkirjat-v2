@@ -29,6 +29,9 @@ class AuthorType extends AbstractType
         ));
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return 'author';

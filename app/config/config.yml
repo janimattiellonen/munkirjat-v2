@@ -30,7 +30,7 @@ sensio_framework_extra:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ ]
+    bundles:        ["MunKirjatMainBundle", "MunKirjatBookBundle", "MunKirjatUserBundle", "XiSelectorBundle", "XiTagBundle"]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -104,3 +104,7 @@ knp_menu:
     twig:
         template: MunKirjatMainBundle:Menu:knp_menu.html.twig
 
+fpn_tag:
+    model:
+        tag_class:     Xi\Bundle\TagBundle\Entity\Tag
+        tagging_class: Xi\Bundle\TagBundle\Entity\Tagging

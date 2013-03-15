@@ -28,6 +28,9 @@ class GenreType extends AbstractType
         ));
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return '';

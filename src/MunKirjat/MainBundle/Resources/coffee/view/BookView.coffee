@@ -48,17 +48,44 @@ $ ->
                         )
                     self.loaded = true
 
-                    $('#languages').buttonset()
-
-
-
+                    self.initListeners()
             )
+
+        initListeners: () ->
+            $('#languages').buttonset()
+
+            selected = []
+            $('.tag_item_selector .item ul li').each (i) ->
+                val = $(this).attr 'data-id'
+                val = parseInt val
+                selected.push val
+
+            options = {
+                mainElement:            '.tag_item_selector',
+                autoCompleteElement:    '.item_field',
+                containerElement:       '.items ul',
+                source:                 Routing.generate("xi_tag_search"),
+                saveUrl:                Routing.generate("xi_tag_add"),
+                selected:               selected,
+                canAddNew:              true,
+                minLength:              3
+            }
+
+            $('.tag_item_selector').on 'click', '.add-item-btn', ->
+
+                tag = $.trim($('.item_field').val() )
+
+                tagComplete.saveItem tag
+                return false
+
+            tagComplete = new App.Selector(options)
+            tagComplete.bind()
 
         reset: () ->
             @model.clear()
 
         save: () ->
-
+            alert "saving"
             @model.set "book":
                 "title":                $('#title', @$el).val()
                 "language":             $('#language', @$el).val()
@@ -89,6 +116,8 @@ $ ->
                             self.options.collection.add self.model
                             self.options.dispatcher.trigger "book:add", self.model
 
+
+            return false
         show: (id) ->
             @$el.show()
 

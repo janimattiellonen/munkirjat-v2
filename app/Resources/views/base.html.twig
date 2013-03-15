@@ -27,6 +27,12 @@
         {% endstylesheets %}
 
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+        <script type="text/javascript">
+            var url_tagSource       = '{{ url('xi_tag_search') }}';
+            var url_tagAddSource    = '{{ url('xi_tag_add') }}';
+        </script>
+
     </head>
 
     <body>
@@ -82,8 +88,8 @@
             {% include 'MunKirjatBookBundle:Book:form.js.twig' %}
         </section>
 
-        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-        <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+        <script src="http://code.jquery.com/jquery-1.7.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.8.16/jquery-ui.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.5/numeral.min.js"></script>
         <script type="text/javascript" src="{{ asset('bundles/bazingaexposetranslation/js/translator.min.js') }}"></script>
         <script type="text/javascript" src="{{ url('bazinga_exposetranslation_js') }}"></script>
@@ -123,6 +129,8 @@
             '@MunKirjatMainBundle/Resources/coffee/model/menu/MenuItemModel.coffee'
             '@MunKirjatMainBundle/Resources/coffee/view/menu/MenuItem.coffee'
             '@MunKirjatMainBundle/Resources/coffee/view/menu/Menu.coffee'
+
+            '@XiSelectorBundle/Resources/coffee/Selector.coffee'
 
             'bundles/fosjsrouting/js/router.js'
             'js/fos_js_routes.js'

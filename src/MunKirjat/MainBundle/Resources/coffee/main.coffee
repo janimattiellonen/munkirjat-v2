@@ -1,3 +1,20 @@
+App.Translate =
+
+    translate: (str, placeholder, count) ->
+
+        placeholder = placeholder || {}
+
+        if not Translator.has str
+            str
+        else if count
+            Translator.get str, placeholder, count
+        else
+            Translator.get str, placeholder
+
+
+String::t = (placeholder, count) ->
+    App.Translate.translate @toString(), placeholder, count
+
 class App.FormErrorizer.Custom extends App.AbstractErrorizer
     constructor: (@errorizeClass = 'errorized', @messageClass = 'error', @errorGroupClass = 'error-group') ->
         @formErrorPosition = 'top'

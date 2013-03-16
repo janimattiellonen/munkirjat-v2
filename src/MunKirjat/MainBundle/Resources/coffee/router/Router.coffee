@@ -10,6 +10,7 @@ App.Router = Backbone.Router.extend(
         "genre":            "genre"
         "genre/:id":        "getGenre"
         "genres":           "listGenres"
+        "book":             "book"
         "book/:id":         "getBook"
 
     initialize: (options) ->
@@ -93,6 +94,12 @@ App.Router = Backbone.Router.extend(
         @preDispatch()
         @dispatcher.trigger "url:changed", 'primary-menu-list-genres'
         @genreListView.show()
+
+    book: () ->
+        @preDispatch()
+        @dispatcher.trigger "url:changed", 'primary-menu-new-book'
+        @bookView.show()
+
 
     getBook: (id) ->
         @preDispatch()

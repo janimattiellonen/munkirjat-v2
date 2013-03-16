@@ -29,18 +29,20 @@ class Book implements Taggable
 	/**
      * @var string
      *
+     * @Assert\NotBlank(message="book.title.required")
 	 * @ORM\Column(name="title", type="string", length=128)
 	 */
 	protected $title;
 	
 	/**
      * @var string
-     *
+     * @Assert\NotBlank(message="book.language.required")
 	 * @ORM\Column(name="language_id", type="string", length=3)
 	 */
 	protected $language;
 	
     /**
+     * @Assert\NotBlank(message="book.author.required")
      * @ORM\ManyToMany(targetEntity="Author", inversedBy="books")
      * @ORM\JoinTable(name="book_author",
      * 		joinColumns={@ORM\JoinColumn(name="book_id", referencedColumnName="id")},
@@ -68,6 +70,8 @@ class Book implements Taggable
 	/**
      * @var int
      *
+     * @Assert\NotBlank(message="book.pageCount.required")
+     * @Assert\Min(limit = "1", message="Page count must be {{ limit }} or more")
 	 * @ORM\Column(name="page_count", type="integer", length=5)
 	 */
 	protected $pageCount;
@@ -82,7 +86,7 @@ class Book implements Taggable
 	/**
      * @var string
      *
-	 * @ORM\Column(name="isbn", type="string", length=40)
+	 * @ORM\Column(name="isbn", type="string", length=40, nullable=true)
 	 */	
 	protected $isbn;
 	
@@ -105,21 +109,21 @@ class Book implements Taggable
 	/**
      * @var \DateTime
      *
-	 * @ORM\Column(name="started_reading", type="datetime")
+	 * @ORM\Column(name="started_reading", type="datetime", nullable=true)
 	 */
 	protected $startedReading;
 	
 	/**
      * @var \DateTime
      *
-	 * @ORM\Column(name="finished_reading", type="datetime")
+	 * @ORM\Column(name="finished_reading", type="datetime", nullable=true)
 	 */	
 	protected $finishedReading;
 	
 	/**
      * @var float
      *
-	 * @ORM\Column(name="rating", type="float")
+	 * @ORM\Column(name="rating", type="float", nullable=true)
 	 */
 	protected $rating;
 	
@@ -574,6 +578,9 @@ class Book implements Taggable
      */
     public function toArray()
     {
+        $startedReading     = $this->getStartedReading();
+        $finishedReading    = $this->getFinishedReading();
+
         return array(
             'id'                => $this->getId(),
             'title'             => $this->getTitle(),
@@ -581,10 +588,10 @@ class Book implements Taggable
             'isbn'              => $this->getIsbn(),
             'created'           => $this->getCreated()->format("d.m.Y"),
             'updated'           => $this->getUpdated()->format("d.m.Y"),
-            'startedReading'    => $this->getStartedReading()->format("d.m.Y"),
-            'finishedReading'   => $this->getFinishedReading()->format("d.m.Y"),
+            'startedReading'    => isset($startedReading) ? $startedReading->format("d.m.Y") : null,
+            'finishedReading'   => isset($finishedReading) ? $finishedReading->format("d.m.Y") : null,
             'pageCount'         => $this->getPageCount(),
-            'bookRead'              => $this->getBookRead(),
+            'bookRead'          => $this->getBookRead(),
         );
     }
 

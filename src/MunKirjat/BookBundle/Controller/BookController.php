@@ -16,17 +16,19 @@ class BookController extends Controller
 
     public function createAction()
     {
-
+        return $this->process();
     }
 
     public function updateAction($id)
     {
+        return $this->process($this->getBookService()->getBook($id) );
+    }
+
+    protected function process(Book $book = null)
+    {
         $service    = $this->getBookService();
-        $book       = $service->getBook($id);
         $form       = $service->getBookForm($book);
         $self       = $this;
-
-        print_r($this->getRequest()->request->all() );
 
         return $this->processForm($form, function() use($form, $service, $self) {
 

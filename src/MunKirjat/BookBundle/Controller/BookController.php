@@ -26,7 +26,12 @@ class BookController extends Controller
         $form       = $service->getBookForm($book);
         $self       = $this;
 
+        print_r($this->getRequest()->request->all() );
+
         return $this->processForm($form, function() use($form, $service, $self) {
+
+                $book = $form->getData();
+                $book->setBookRead($self->getRequest()->request->get('bookRead') );
 
                 $book = $service->saveByForm($form);
 

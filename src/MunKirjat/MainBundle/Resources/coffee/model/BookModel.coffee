@@ -3,7 +3,7 @@ $ ->
 
     App.BookModel = Backbone.Model.extend(
         idAttribute: 'id'
-        defaults:
+        defaults: "book":
             "_token":           ""
             "title":            ""
             "language":         ""
@@ -13,7 +13,7 @@ $ ->
             "updated":          ""
             "startedReading":   ""
             "finishedReading":  ""
-            "isRead":           ""
+            "bookRead":             ""
 
         urlRoot: Routing.generate('munkirjat_book_create')
     )

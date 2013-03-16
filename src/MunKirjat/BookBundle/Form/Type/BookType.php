@@ -17,12 +17,12 @@ class BookType extends AbstractType
                 ->add('language', 'text')
                 ->add('tags', 'tag')
                 ->add('pageCount', 'text')
-                ->add('isRead', 'checkbox')
-                ->add('createdAt', 'date', array(
+                ->add('bookRead', 'checkbox')
+                ->add('startedReading', 'date', array(
                     'input' => 'datetime',
                     'widget' => 'single_text',
                     'format' => 'dd.MM.yyyy' ) )
-                ->add('updatedAt', 'date', array(
+                ->add('finishedReading', 'date', array(
                     'input' => 'datetime',
                     'widget' => 'single_text',
                     'format' => 'dd.MM.yyyy' ) )

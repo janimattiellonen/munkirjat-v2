@@ -1,6 +1,8 @@
 <?php
 namespace MunKirjat\BookBundle\Entity;
 
+use Gedmo\Mapping\Annotation as Gedmo;
+
 use \DateTime;
 
 use DoctrineExtensions\Taggable\Taggable;
@@ -12,7 +14,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="MunKirjat\BookBundle\Repository\BookRepository")
  * @ORM\Table(name="book")
- * @ORM\HasLifecycleCallbacks
  */
 class Book implements Taggable
 {
@@ -72,11 +73,11 @@ class Book implements Taggable
 	protected $pageCount;
 	
 	/**
-     * @var integer
+     * @var boolean
      *
-	 * @ORM\Column(name="is_read", type="integer", length=1)
+	 * @ORM\Column(name="is_read", type="boolean")
 	 */
-	protected $isRead;
+	protected $bookRead;
 	
 	/**
      * @var string
@@ -88,6 +89,7 @@ class Book implements Taggable
 	/**
      * @var \DateTime
      *
+     * @Gedmo\Timestampable(on="create")
 	 * @ORM\Column(name="created_at", type="datetime")
 	 */
 	protected $created;
@@ -95,6 +97,7 @@ class Book implements Taggable
 	/**
      * @var \DateTime
      *
+     * @Gedmo\Timestampable(on="update")
 	 * @ORM\Column(name="updated_at", type="datetime")
 	 */
 	protected $updated;
@@ -127,7 +130,7 @@ class Book implements Taggable
 	    $this->tags     = new ArrayCollection();
 	    $this->created  = $this->updated = new DateTime();
 	    $this->rating   = 0.0;
-        $this->isRead   = 0;
+        $this->bookRead   = false;
 	}
 
     /**
@@ -383,9 +386,9 @@ class Book implements Taggable
      */
     public function removeTag(Tag $tag)
     {
-        if ($this->tags->contains($genre)) {
+        if ($this->tags->contains($tag)) {
             $this->tags->removeElement($tag);
-            $genre->removeBook($this);
+            $tag->removeBook($this);
         }
         
         return $this;
@@ -453,32 +456,35 @@ class Book implements Taggable
 	}
 
     /**
-     * @param int $isRead
+     * @param boolean $isRead
      * @return Book
      */
-    public function setIsRead($isRead)
+    public function setBookRead($read)
 	{
-		$this->isRead = (boolean)$isRead;
+		$this->bookRead = $read;
 
         return $this;
 	}
 
     /**
-     * @return int
+     * @return boolean
      */
-    public function getIsRead()
+    public function getBookRead()
 	{
-		return (boolean)$this->isRead;
+		return $this->bookRead;
 	}
-	
-	/**
-	 * @ORM\PreUpdate
-	 */
-	public function updated()
-	{
-	    $this->updated = new \DateTime();
-	}
-	
+
+    /**
+     * @param $created
+     * @return $this
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
 	/**
 	 * @return \DateTime
 	 */
@@ -486,7 +492,18 @@ class Book implements Taggable
 	{
 	    return $this->created;
 	}
-	
+
+    /**
+     * @param $updated
+     * @return $this
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+
+        return $this;
+    }
+
 	/**
 	 * @return \DateTime
 	 */
@@ -501,14 +518,7 @@ class Book implements Taggable
      */
     public function setStartedReading($startedReading)
 	{
-	    if(isset($startedReading) )
-	    {
-		    $this->startedReading = new \DateTime($startedReading);
-	    }
-	    else
-	    {
-	        $this->startedReading = null;
-	    }
+	    $this->startedReading = $startedReading;
 
         return $this;
 	}
@@ -527,14 +537,7 @@ class Book implements Taggable
      */
     public function setFinishedReading($finishedReading)
 	{
-	    if(isset($finishedReading) )
-	    {
-		    $this->finishedReading = new \DateTime($finishedReading);
-	    }
-	    else
-	    {
-	        $this->finishedReading = null;
-	    }
+	    $this->finishedReading = $finishedReading;
 
         return $this;
 	}
@@ -581,7 +584,7 @@ class Book implements Taggable
             'startedReading'    => $this->getStartedReading()->format("d.m.Y"),
             'finishedReading'   => $this->getFinishedReading()->format("d.m.Y"),
             'pageCount'         => $this->getPageCount(),
-            'isRead'            => $this->getIsRead(),
+            'bookRead'              => $this->getBookRead(),
         );
     }
 

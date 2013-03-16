@@ -5,19 +5,21 @@
             <h1><%= Translator.get(title) %></h1>
 
             <form>
-                <input type="hidden" name="author[_token]" value="<%= csrf_token %>" />
+                <input type="hidden" name="book[_token]" value="<%= csrf_token %>" />
 
                 <p>
                     <label for="title"><%= Translator.get('book.title') %>:</label>
-                    <input type="text" id="title" name="title" value="<%= title %>" required="required" />
+                    <input type="text" id="title" name="book[title]" value="<%= title %>" required="required" />
                 </p>
 
                 <p>
                     <div id="languages">
-                        <input <% if(language == "fi") print('checked="checked"')%> type="radio" name="language" id="language1" value="fi" /><label for="language1">Finnish</label>
-                        <input <% if(language == "se") print('checked="checked"')%> type="radio" name="language" id="language2" value="se" /><label for="language2">Swedish</label>
-                        <input <% if(language == "en") print('checked="checked"')%> type="radio" name="language" id="language3" value="en" /><label for="language3">English</label>
+                        <input <% if(language == "fi") print('checked="checked"')%> type="radio" name="book[language]" id="language1" value="fi" /><label for="language1">Finnish</label>
+                        <input <% if(language == "se") print('checked="checked"')%> type="radio" name="book[language]" id="language2" value="se" /><label for="language2">Swedish</label>
+                        <input <% if(language == "en") print('checked="checked"')%> type="radio" name="book[language]" id="language3" value="en" /><label for="language3">English</label>
                     </div>
+
+                    <input type="hidden" id="language" name="book[language]" value="<%= language %>" />
                 </p>
 
                 <p>
@@ -36,27 +38,27 @@
 
                 <p>
                     <label for="pageCount"><%= Translator.get('book.pageCount') %>:</label>
-                    <input type="text" id="title" name="pageCount" value="<%= pageCount %>" />
+                    <input type="text" id="pageCount" name="book[pageCount]" value="<%= pageCount %>" />
                 </p>
 
                 <p>
-                    <label for="isRead"><%= Translator.get('book.isRead') %>:</label>
-                    <input type="checkbox" id="isRead" name="isRead" <% if(isRead) print('checked="checked"')%> value="<%= isRead %>" />
+                    <label for="bookRead"><%= Translator.get('book.bookRead') %>:</label>
+                    <input type="checkbox" id="bookRead" name="book[bookRead]" <% if(bookRead) print('checked="checked"')%> value="1" />
                 </p>
 
                 <p>
                     <label for="startedReading"><%= Translator.get('book.startedReading') %>:</label>
-                    <input class="datepicker" type="text" id="startedReading" name="startedReading" value="<%= startedReading %>" />
+                    <input class="datepicker" type="text" id="startedReading" name="book[startedReading]" value="<%= startedReading %>" />
                 </p>
 
                 <p>
                     <label for="finishedReading"><%= Translator.get('book.finishedReading') %>:</label>
-                    <input class="datepicker" type="text" id="finishedReading" name="finishedReading" value="<%= finishedReading %>" />
+                    <input class="datepicker" type="text" id="finishedReading" name="book[finishedReading]" value="<%= finishedReading %>" />
                 </p>
 
                 <p>
                     <label for="isbn"><%= Translator.get('book.isbn') %>:</label>
-                    <input type="text" id="isbn" name="isbn" value="<%= isbn %>"  />
+                    <input type="text" id="isbn" name="book[isbn]" value="<%= isbn %>"  />
                 </p>
 
                 <input type="submit" id="_submit" name="_submit" value="<%= Translator.get('form.save') %>" />

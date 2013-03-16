@@ -44,7 +44,7 @@ $ ->
                             isbn:               self.model.get("isbn")
                             startedReading:     self.model.get("startedReading")
                             finishedReading:    self.model.get("finishedReading")
-                            isRead:             self.model.get("isRead")
+                            bookRead:               self.model.get("bookRead")
                         )
                     self.loaded = true
 
@@ -78,6 +78,11 @@ $ ->
                 tagComplete.saveItem tag
                 return false
 
+            self = @
+
+            $(@el).on "click",  'input[type=radio]', (e) ->
+                $('#language', self.el).val $(this).val()
+
             tagComplete = new App.Selector(options)
             tagComplete.bind()
 
@@ -85,7 +90,10 @@ $ ->
             @model.clear()
 
         save: () ->
-            alert "saving"
+            @model.unset "created"
+            @model.unset "updated"
+            @model.set "bookRead", if $('#bookRead').is(':checked') then 1 else 0
+
             @model.set "book":
                 "title":                $('#title', @$el).val()
                 "language":             $('#language', @$el).val()
@@ -93,7 +101,7 @@ $ ->
                 "isbn":                 $('#isbn', @$el).val()
                 "startedReading":       $('#startedReading', @$el).val()
                 "finishedReading":      $('#finishedReading', @$el).val()
-                "isRead":               $('#isRead', @$el).val()
+                "bookRead":             if $('#bookRead').is(':checked') then 1 else 0
                 "_token":               @csrf
 
             self = @
@@ -110,7 +118,7 @@ $ ->
                         self.model.id = response.success.id
                         self.setTitle 'book.edit'
                         # update url
-                        self.options.dispatcher.trigger "url:change", "#author/" + self.model.id
+                        self.options.dispatcher.trigger "url:change", "#book/" + self.model.id
                         console.log self.model.isNew()
                         if(isNew)
                             self.options.collection.add self.model

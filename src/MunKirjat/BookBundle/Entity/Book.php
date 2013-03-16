@@ -340,32 +340,13 @@ class Book implements Taggable
     }
 
     /**
-     * @param Tag $tag
-     * @return Book
-     */
-    public function addTag(Tag $tag)
-    {
-        if (!$this->tags->contains($tag)) {
-            $this->tags->add($tag);
-            $tag->addBook($this);
-        }
-        
-        return $this;
-    }
-
-    /**
      * @param array|ArrayCollection $tags
      *
      * @return Book
      */
     public function setTags($tags)
     {
-        $this->removeTags();
-
-        foreach($tags as $tag)
-        {
-            $this->addTag($tag);
-        }
+        $this->tags = $tags;
 
         return $this;
     }
@@ -375,10 +356,10 @@ class Book implements Taggable
      */
     public function removeTags()
     {
-        foreach($this->tags as $tag)
+        foreach($this->getTags() as $tag)
         {
             $tag->removeBook($this);
-            $this->tags->removeElement($tag);
+            $this->getTags()->removeElement($tag);
         }
 
         return $this;
@@ -388,10 +369,10 @@ class Book implements Taggable
      * @param Tag $tag
      * @return Book
      */
-    public function removeTag(Tag $tag)
+    public function removeTag2(Tag $tag)
     {
-        if ($this->tags->contains($tag)) {
-            $this->tags->removeElement($tag);
+        if ($this->getTags()->contains($tag)) {
+            $this->getTags()->removeElement($tag);
             $tag->removeBook($this);
         }
         
@@ -403,7 +384,27 @@ class Book implements Taggable
      */
     public function getTags()
     {
+        $this->tags = $this->tags ?: new ArrayCollection();
+
         return $this->tags;
+    }
+
+    /**
+     * @return array
+     */
+    public function getTagsAsArray()
+    {
+        $tags = [];
+
+        foreach($this->getTags() as $tag)
+        {
+            $tags[] = [
+                'id'    => $tag->getId(),
+                'name'  => $tag->getName(),
+            ];
+        }
+
+        return $tags;
     }
 
     /**
@@ -592,6 +593,7 @@ class Book implements Taggable
             'finishedReading'   => isset($finishedReading) ? $finishedReading->format("d.m.Y") : null,
             'pageCount'         => $this->getPageCount(),
             'bookRead'          => $this->getBookRead(),
+            'tags'              => $this->getTagsAsArray(),
         );
     }
 

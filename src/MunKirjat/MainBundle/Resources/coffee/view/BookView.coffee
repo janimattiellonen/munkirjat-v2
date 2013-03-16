@@ -103,6 +103,7 @@ $ ->
                 "finishedReading":      $('#finishedReading', @$el).val()
                 "bookRead":             if $('#bookRead').is(':checked') then 1 else 0
                 "_token":               @csrf
+                "tags":                 ["Cat","Dog"]
 
             self = @
 

@@ -9,8 +9,11 @@ use MunKirjat\BookBundle\Repository\BookRepository;
 
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormFactory;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class BookService
+use Xi\Bundle\TagBundle\Service\AbstractTaggableService;
+
+class BookService extends AbstractTaggableService
 {
     /**
      * @var EntityManager
@@ -28,17 +31,21 @@ class BookService
     protected $formFactory;
 
     /**
-     * @param EntityManager     $em
-     * @param BookRepository    $bookRepository
-     * @param FormFactory       $formFactory
+     * @param EntityManager         $em
+     * @param BookRepository        $bookRepository
+     * @param FormFactory           $formFactory
+     * @param ContainerInterface    $container
      */
-    public function __construct(EntityManager   $em,
-                                BookRepository  $bookRepository,
-                                FormFactory     $formFactory)
+    public function __construct(EntityManager       $em,
+                                BookRepository      $bookRepository,
+                                FormFactory         $formFactory,
+                                ContainerInterface  $container)
     {
         $this->em               = $em;
         $this->bookRepository   = $bookRepository;
         $this->formFactory      = $formFactory;
+
+        parent::__construct($container);
     }
 
     /**
@@ -47,7 +54,11 @@ class BookService
      */
     public function getBook($id)
     {
-        return $this->bookRepository->find($id);
+        $book = $this->bookRepository->find($id);
+
+        $this->getTagService()->getTagManager()->loadTagging($book);
+
+        return $book;
     }
 
     /**
@@ -70,7 +81,31 @@ class BookService
         $this->em->persist($book);
         $this->em->flush();
 
+        $this->getTagService()->getTagManager()->saveTagging($book);
+        $this->em->flush();
+
         return $book;
+    }
+
+    /**
+     * get taggable resource name
+     *
+     * @return string
+     */
+    public function getTaggableType()
+    {
+        return 'book';
+    }
+
+    /**
+     * @param array $ids
+     * @param array $options
+     * @param array $tagNames
+     * @return resources
+     */
+    public function getTaggedResourcesByIds(array $ids, array $options, array $tagNames)
+    {
+        return $this->bookRepository->findById($ids);
     }
 
     /**

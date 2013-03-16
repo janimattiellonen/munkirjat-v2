@@ -27,7 +27,7 @@ services:
 
     munkirjat_book.service.book:
         class:     MunKirjat\BookBundle\Service\BookService
-        arguments: ["@doctrine.orm.entity_manager", "@munkirjat_book.repository.book", "@form.factory"]
+        arguments: ["@doctrine.orm.entity_manager", "@munkirjat_book.repository.book", "@form.factory", "@service_container"]
 
     munkirjat_book.service.statistics:
         class:     MunKirjat\BookBundle\Service\StatisticsService

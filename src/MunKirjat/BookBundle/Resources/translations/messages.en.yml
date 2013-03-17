@@ -17,8 +17,11 @@ genre:
 book:
     title:                "Title"
     language:             "Language"
+    genres:               "Genres"
     pageCount:            "Page count"
     bookRead:             "Book is read"
     startedReading:       "Started reading"
     finishedReading:      "Finished reading"
     isbn:                 "Isbn"
+    edit:                 "Edit book"
+    add:                  "Add book"

@@ -9,7 +9,6 @@ $ ->
             options.dispatcher.on("container:hide", @hide)
 
             @template = _.template $('#tpl-list-authors').html()
-            console.log "wuff"
             self = @
             @$ul = $('<ul></ul>')
             options.dispatcher.on "author:add", (author) ->

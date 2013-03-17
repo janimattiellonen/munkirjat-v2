@@ -44,7 +44,8 @@ $ ->
                             isbn:               self.model.get("isbn")
                             startedReading:     self.model.get("startedReading")
                             finishedReading:    self.model.get("finishedReading")
-                            bookRead:               self.model.get("bookRead")
+                            bookRead:           self.model.get("bookRead")
+                            tags:               self.model.get("tags")
                         )
                     self.loaded = true
 
@@ -94,6 +95,12 @@ $ ->
             @model.unset "updated"
             @model.set "bookRead", if $('#bookRead').is(':checked') then 1 else 0
 
+            tags = []
+
+            $('#book_tags .tag-id').each( (index) ->
+                tags.push $(this).attr "value"
+            )
+
             @model.set "book":
                 "title":                $('#title', @$el).val()
                 "language":             $('#language', @$el).val()
@@ -103,7 +110,7 @@ $ ->
                 "finishedReading":      $('#finishedReading', @$el).val()
                 "bookRead":             if $('#bookRead').is(':checked') then 1 else 0
                 "_token":               @csrf
-                "tags":                 ["Cat","Dog"]
+                "tags":                 tags
 
             self = @
 

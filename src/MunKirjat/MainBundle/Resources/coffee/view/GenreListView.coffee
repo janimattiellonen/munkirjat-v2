@@ -9,7 +9,6 @@ $ ->
             options.dispatcher.on("container:hide", @hide)
 
             @template = _.template $('#tpl-list-genres').html()
-            console.log "wuff"
             self = @
             @$ul = $('<ul></ul>')
             options.dispatcher.on "genre:add", (genre) ->

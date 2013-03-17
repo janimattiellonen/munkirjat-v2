@@ -26,7 +26,14 @@
                     <div class="tag_item_selector" data-elementName="book[tags]">
                         <div class="items">
                             <ul id="book_tags">
-
+                                <%
+                                var i = 0;
+                                _.each(tags, function(tag) { %>
+                                    <li><%= tag.name %><a href="#" class="ui-icon ui-icon-close remove"></a></li>
+                                    <input type="hidden" id="book[tags]_<%= i %>" value="<%= tag.name %>" class="tag-id" data-id="<%= i %>" name="book[tags][]" />
+                                <%
+                                    i = i + 1;
+                                }); %>
                             </ul>
                         </div>
 

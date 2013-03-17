@@ -14,6 +14,7 @@
 
                 <p>
                     <div id="languages">
+                        <label ><%= Translator.get('book.language') %>:</label>
                         <input <% if(language == "fi") print('checked="checked"')%> type="radio" name="book[language]" id="language1" value="fi" /><label for="language1">Finnish</label>
                         <input <% if(language == "se") print('checked="checked"')%> type="radio" name="book[language]" id="language2" value="se" /><label for="language2">Swedish</label>
                         <input <% if(language == "en") print('checked="checked"')%> type="radio" name="book[language]" id="language3" value="en" /><label for="language3">English</label>

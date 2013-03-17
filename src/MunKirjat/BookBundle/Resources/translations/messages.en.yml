@@ -8,9 +8,17 @@ author:
 
 authors:                  "Authors"
 
-
 genre:
     addNew:               "Add new genre"
     edit:                 "Edit genre"
     name:                 "Name"
     name-required:        "Name is required"
+
+book:
+    title:                "Title"
+    language:             "Language"
+    pageCount:            "Page count"
+    bookRead:             "Book is read"
+    startedReading:       "Started reading"
+    finishedReading:      "Finished reading"
+    isbn:                 "Isbn"

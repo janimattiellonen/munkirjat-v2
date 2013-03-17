@@ -24,6 +24,19 @@
                 </div>
 
                 <div class="section">
+                    <label><%= Translator.get('book.authors') %>:</label>
+
+                    <ul id="author-list">
+                        <%
+                        _.each(authors, function(author) { %>
+                            <li class="ui-state-default"><%= author.name %></li>
+                        <% });%>
+
+                    </ul>
+
+                </div>
+
+                <div class="section">
                     <label class="genre"><%= Translator.get('book.genres') %>:</label>
                     <div class="tag_item_selector" data-elementName="book[tags]">
                         <div class="items">

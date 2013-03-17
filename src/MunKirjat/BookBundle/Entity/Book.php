@@ -243,7 +243,25 @@ class Book implements Taggable
     {
         return $this->authors;
     }
-    
+
+    /**
+     * @return array
+     */
+    public function getAuthorsAsArray()
+    {
+        $authors = [];
+
+        foreach($this->getAuthors() as $author)
+        {
+            $authors[] = [
+                'id'    => $author->getId(),
+                'name'  => $author->getFullName(),
+            ];
+        }
+
+        return $authors;
+    }
+
     /**
      * @return array
      */
@@ -594,6 +612,7 @@ class Book implements Taggable
             'pageCount'         => $this->getPageCount(),
             'bookRead'          => $this->getBookRead(),
             'tags'              => $this->getTagsAsArray(),
+            'authors'           => $this->getAuthorsAsArray()
         );
     }
 

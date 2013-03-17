@@ -46,6 +46,7 @@ $ ->
                             finishedReading:    self.model.get("finishedReading")
                             bookRead:           self.model.get("bookRead")
                             tags:               self.model.get("tags")
+                            authors:            self.model.get("authors")
                         )
                     self.loaded = true
 
@@ -86,6 +87,9 @@ $ ->
 
             tagComplete = new App.Selector(options)
             tagComplete.bind()
+
+
+            $('#author-list').sortable()
 
         reset: () ->
             @model.clear()

@@ -16,6 +16,7 @@ genre:
 
 book:
     title:                "Title"
+    authors:              "Authors"
     language:             "Language"
     genres:               "Genres"
     pageCount:            "Page count"

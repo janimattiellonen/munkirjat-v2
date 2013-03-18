@@ -26,14 +26,21 @@
                 <div class="section">
                     <label><%= Translator.get('book.authors') %>:</label>
 
-                    <ul id="author-list">
-                        <%
-                        _.each(authors, function(author) { %>
-                            <li class="ui-state-default"><%= author.name %></li>
-                        <% });%>
+                    <div class="author_item_selector autocomplete-box" data-elementName="book[authors">
 
-                    </ul>
+                        <div class="item_input">
+                            <input class="item_field" type="text" />
+                        </div>
 
+                        <div class="items">
+                            <ul id="author-list">
+                                <%
+                                _.each(authors, function(author) { %>
+                                <li data-id="<%= author.id %>"><%= author.name %><a class="remove ui-icon ui-icon-close" href="#"></a></li>
+                                <% });%>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="section">
@@ -51,7 +58,6 @@
                                 }); %>
                             </ul>
                         </div>
-
 
                         <div class="item_input">
                             <button name="add-item" class="add-item-btn">Add tag</button>

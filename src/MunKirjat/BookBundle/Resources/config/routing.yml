@@ -40,6 +40,11 @@ munkirjat_author_update:
 munkirjat_author_view:
     pattern: "/author/{id}"
     defaults: { _controller: MunKirjatBookBundle:Author:view, _format: 'json' }
+    requirements: { _method: get, id: \d+}
+
+munkirjat_author_search:
+    pattern: "/author/search"
+    defaults: { _controller: MunKirjatBookBundle:Author:search, _format: 'json' }
     requirements: { _method: get }
 
 munkirjat_author_list:

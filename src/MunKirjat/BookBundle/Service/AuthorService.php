@@ -51,6 +51,49 @@ class AuthorService
     }
 
     /**
+     * @param array $ids
+     * @return array
+     */
+    public function getAuthorsById(array $ids = array() )
+    {
+        return $this->authorRepository->findBy(array('id' => $ids) );
+    }
+
+    /**
+     * @param string $fullName
+     *
+     * @return array
+     */
+    public function searchAuthor($fullName)
+    {
+        $parts = explode(' ', $fullName);
+
+        if(count($parts) == 1)
+        {
+            return $this->authorRepository->searchByName($parts[0]);
+        }
+        else if(count($parts) == 2)
+        {
+            return $this->authorRepository->searchByName($parts[0], $parts[1]);
+        }
+
+        return array();
+    }
+
+    /**
+     * @param array $authors
+     *
+     * @return array
+     */
+    public function formatResults(array $authors = array() )
+    {
+        $formatted = array();
+
+
+        return $formatted;
+    }
+
+    /**
      * @param \MunKirjat\BookBundle\Entity\Author $author
      * @return \Symfony\Component\Form\Form|\Symfony\Component\Form\FormInterface
      */

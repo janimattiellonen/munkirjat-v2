@@ -8,6 +8,37 @@ use MunKirjat\Component\Repository\BaseRepository;
 class AuthorRepository extends BaseRepository
 {
     /**
+     * @param string $firstName
+     * @param string $lastName
+     * @return array
+     */
+    public function searchByName($firstName = null, $lastName = null)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $qb->select('a.id, CONCAT_WS('. $qb->expr()->literal(' ') . ', a.firstName, a.lastName) as value')
+            ->from('MunKirjat\BookBundle\Entity\Author', 'a');
+
+        if(isset($firstName) && isset($lastName) )
+        {
+            $qb->where('a.firstName LIKE :firstname')
+                ->setParameter('firstname', $firstName . '%')
+                ->andWhere('a.lastName LIKE :lastname')
+                ->setParameter('lastname', $lastName . '%');
+        }
+        else if(isset($firstName) || isset($lastName) )
+        {
+            $name = isset($firstName) ? $firstName : $lastName;
+
+            $qb->where('a.firstName LIKE :name')
+                ->orWhere('a.lastName LIKE :name')
+                ->setParameter('name', $name . '%');
+        }
+
+        return $qb->getQuery()->getResult(AbstractQuery::HYDRATE_ARRAY);
+    }
+
+    /**
      * @return array
      */
     public function getAuthors()

@@ -236,6 +236,23 @@ div._33 {
     color: @errorColor;
 }
 
+.autocomplete-box {
+    .items {
+        ul {
+            li {
+                background: url("images/ui-bg_glass_75_e6e6e6_1x400.png") repeat-x scroll 50% 50% #E6E6E6;
+                border: 1px solid #D3D3D3;
+                color: #555555;
+                font-weight: normal;
+
+                a.remove {
+                    float: right;
+                }
+            }
+        }
+    }
+}
+
 .tag_item_selector {
     float: left;
     width: 96%;
@@ -285,4 +302,8 @@ div._33 {
 
 input[type="text"] {
     display: block;
+}
+
+.ui-autocomplete {
+    width: 300px;
 }

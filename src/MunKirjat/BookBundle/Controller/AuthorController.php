@@ -35,6 +35,16 @@ class AuthorController extends Controller
         return $this->process($service->getAuthor($id) );
     }
 
+    public function listAction()
+    {
+        return $this->getJsonResponse($this->getAuthorService()->getAuthors() );
+    }
+
+    public function searchAction()
+    {
+        return $this->createJsonSuccessResponse($this->getAuthorService()->searchAuthor($this->getRequest()->get('term') ) );
+    }
+
     /**
      * @param Author $author
      * @return mixed
@@ -52,11 +62,6 @@ class AuthorController extends Controller
                 return $self->createJsonSuccessResponse(array('id' => $author->getId() ) );
             }
         );
-    }
-
-    public function listAction()
-    {
-        return $this->getJsonResponse($this->getAuthorService()->getAuthors() );
     }
 
     /**

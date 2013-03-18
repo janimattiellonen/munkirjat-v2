@@ -57,12 +57,27 @@ $ ->
             $('#languages').buttonset()
 
             selected = []
+
+            authorOptions = {
+                mainElement:            '.author_item_selector',
+                autoCompleteElement:    '.item_field',
+                containerElement:       '.items ul',
+                source:                 Routing.generate("munkirjat_author_search"),
+                selected:               selected,
+                canAddNew:              false,
+                minLength:              3
+            }
+
+            authorComplete = new App.Selector(authorOptions)
+            authorComplete.bind()
+
+            selected = []
             $('.tag_item_selector .item ul li').each (i) ->
                 val = $(this).attr 'data-id'
                 val = parseInt val
                 selected.push val
 
-            options = {
+            tagOptions = {
                 mainElement:            '.tag_item_selector',
                 autoCompleteElement:    '.item_field',
                 containerElement:       '.items ul',
@@ -73,21 +88,20 @@ $ ->
                 minLength:              3
             }
 
-            $('.tag_item_selector').on 'click', '.add-item-btn', ->
-
-                tag = $.trim($('.item_field').val() )
-
-                tagComplete.saveItem tag
-                return false
-
             self = @
 
             $(@el).on "click",  'input[type=radio]', (e) ->
                 $('#language', self.el).val $(this).val()
 
-            tagComplete = new App.Selector(options)
+            tagComplete = new App.Selector(tagOptions)
             tagComplete.bind()
 
+            $('.tag_item_selector').on 'click', '.add-item-btn', ->
+
+            tag = $.trim($('.item_field').val() )
+
+            tagComplete.saveItem tag
+            return false
 
             $('#author-list').sortable()
 

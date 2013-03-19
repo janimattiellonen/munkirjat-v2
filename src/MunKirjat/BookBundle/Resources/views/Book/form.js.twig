@@ -50,6 +50,10 @@
                 <div class="section">
                     <label class="genre"><%= Translator.get('book.genres') %>:</label>
                     <div class="tag_item_selector" data-elementName="book[tags]">
+                        <div class="item_input">
+                            <button name="add-item" class="add-item-btn">Add tag</button>
+                            <input class="item_field" type="text" />
+                        </div>
                         <div class="items">
                             <ul id="book_tags">
                                 <%
@@ -61,11 +65,6 @@
                                     i = i + 1;
                                 }); %>
                             </ul>
-                        </div>
-
-                        <div class="item_input">
-                            <button name="add-item" class="add-item-btn">Add tag</button>
-                            <input class="item_field" type="text" />
                         </div>
                     </div>
                 </div>

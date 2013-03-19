@@ -38,3 +38,13 @@ services:
         arguments: ["@twig", "@munkirjat_book.service.book"]
         tags:
             - {name: twig.extension}
+
+    munkirjat.transformer.author:
+        class: MunKirjat\BookBundle\Form\DataTransformer\AuthorTransformer
+        arguments: ["@munkirjat_book.service.author"]
+
+    munkirjat.type.author:
+        class: MunKirjat\BookBundle\Form\Type\AuthorItemType
+        arguments: ["@munkirjat.transformer.author"]
+        tags:
+            - { name: form.type, alias: author }

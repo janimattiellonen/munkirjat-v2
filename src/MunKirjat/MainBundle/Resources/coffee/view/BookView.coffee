@@ -98,10 +98,10 @@ $ ->
 
             $('.tag_item_selector').on 'click', '.add-item-btn', ->
 
-            tag = $.trim($('.item_field').val() )
-
-            tagComplete.saveItem tag
-            return false
+                tag = $.trim($('.tag_item_selector .item_field').val() )
+                console.log("VAL: " + tag)
+                tagComplete.saveItem tag
+                return false
 
             $('#author-list').sortable()
 
@@ -112,6 +112,12 @@ $ ->
             @model.unset "created"
             @model.unset "updated"
             @model.set "bookRead", if $('#bookRead').is(':checked') then 1 else 0
+
+
+            authors = []
+            $('#author-list .tag-id').each( (index) ->
+                authors.push $(this).attr "data-id"
+            )
 
             tags = []
 
@@ -129,6 +135,7 @@ $ ->
                 "bookRead":             if $('#bookRead').is(':checked') then 1 else 0
                 "_token":               @csrf
                 "tags":                 tags
+                "authors":              authors
 
             self = @
 

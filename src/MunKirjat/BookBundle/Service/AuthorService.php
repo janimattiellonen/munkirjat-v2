@@ -56,7 +56,7 @@ class AuthorService
      */
     public function getAuthorsById(array $ids = array() )
     {
-        return $this->authorRepository->findBy(array('id' => $ids) );
+        return $this->authorRepository->getAuthorsById($ids);
     }
 
     /**

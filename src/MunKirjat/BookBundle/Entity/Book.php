@@ -198,13 +198,25 @@ class Book implements Taggable
      * @param Author $author
      * @return Book
      */
-    public function addAuthor(Author $author)
+    public function addAuthor22(Author $author)
     {
         if (!$this->authors->contains($author)) {
             $this->authors->add($author);
             $author->addBook($this);
         }
         
+        return $this;
+    }
+
+    /**
+     * @param $authors
+     * @return $this
+     */
+    public function setAuthors($authors)
+    {
+       // print_r($authors);
+        $this->authors = $authors;
+
         return $this;
     }
 
@@ -226,7 +238,7 @@ class Book implements Taggable
      * @param Author $author
      * @return Book
      */
-    public function removeAuthor(Author $author)
+    public function removeAuthor22(Author $author)
     {
         if ($this->authors->contains($author)) {
             $this->authors->removeElement($author);
@@ -364,6 +376,7 @@ class Book implements Taggable
      */
     public function setTags($tags)
     {
+       // print_r($tags);die;
         $this->tags = $tags;
 
         return $this;

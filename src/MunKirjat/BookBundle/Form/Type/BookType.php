@@ -15,6 +15,7 @@ class BookType extends AbstractType
     {
         $builder->add('title', 'text')
                 ->add('language', 'text')
+                ->add('authors', 'author')
                 ->add('tags', 'tag')
                 ->add('pageCount', 'text')
                 ->add('bookRead', 'checkbox')

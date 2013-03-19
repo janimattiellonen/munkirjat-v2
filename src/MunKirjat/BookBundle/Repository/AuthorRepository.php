@@ -39,6 +39,31 @@ class AuthorRepository extends BaseRepository
     }
 
     /**
+     * @param mixed $id either an array of ids or a single id
+     *
+     * @return array
+     */
+    public function getAuthorsById($id)
+    {
+        if(!is_array($id) )
+        {
+            $ids = array($id);
+        }
+        else
+        {
+            $ids = $id;
+        }
+
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->select('a')
+            ->from('MunKirjat\BookBundle\Entity\Author', 'a')
+            ->where('a.id IN (:id)')
+            ->setParameter('id', $ids);
+
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
      * @return array
      */
     public function getAuthors()

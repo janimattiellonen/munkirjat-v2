@@ -42,7 +42,7 @@ class AuthorController extends Controller
 
     public function searchAction()
     {
-        return $this->createJsonSuccessResponse($this->getAuthorService()->searchAuthor($this->getRequest()->get('term') ) );
+        return $this->createJsonSuccessResponse($this->getAuthorService()->searchAuthors($this->getRequest()->get('term') ) );
     }
 
     /**

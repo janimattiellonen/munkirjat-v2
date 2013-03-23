@@ -88,6 +88,16 @@ class BookService extends AbstractTaggableService
     }
 
     /**
+     * @param string $term
+     *
+     * @return array
+     */
+    public function searchBooks($term)
+    {
+        $this->bookRepository->findByTitle($term);
+    }
+
+    /**
      * get taggable resource name
      *
      * @return string

@@ -64,7 +64,7 @@ class AuthorService
      *
      * @return array
      */
-    public function searchAuthor($fullName)
+    public function searchAuthors($fullName)
     {
         $parts = explode(' ', $fullName);
 

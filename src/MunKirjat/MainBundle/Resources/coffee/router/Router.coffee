@@ -12,22 +12,11 @@ App.Router = Backbone.Router.extend(
         "genres":           "listGenres"
         "book":             "book"
         "book/:id":         "getBook"
+        "search":           "search"
 
     initialize: (options) ->
         @dispatcher     = options.dispatcher
         self            = @
-
-        @dispatcher.on "url:change", (msg) ->
-            self.navigate msg
-
-        @dispatcher.on "change", (data) ->
-            alert "author changed"
-
-        @dispatcher.on "save", (data) ->
-            alert "author saved"
-
-        @dispatcher.on "add", (data) ->
-            alert "author added"
 
         @authorCollection   = new App.AuthorCollection()
         @genreCollection    = new App.GenreCollection()
@@ -40,6 +29,7 @@ App.Router = Backbone.Router.extend(
         @genreView          = new App.GenreView({model: new App.GenreModel(), dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/genre/create'} )
         @genreListView      = new App.GenreListView({model: @genreCollection, dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/genres'} )
         @bookView           = new App.BookView({model: new App.BookModel(), collection: @bookCollection, dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/book/create'} )
+        @searchView         = new App.SearchView()
 
     preDispatch: () ->
         @dispatcher.trigger "container:hide"
@@ -105,5 +95,10 @@ App.Router = Backbone.Router.extend(
         @preDispatch()
         @dispatcher.trigger "url:changed", 'primary-menu-new-book'
         @bookView.show(id)
+
+    search: () ->
+        @preDispatch()
+        @dispatcher.trigger "url:changed", 'primary-menu-search'
+        @searchView.show()
 
 )

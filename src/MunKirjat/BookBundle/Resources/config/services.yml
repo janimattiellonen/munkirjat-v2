@@ -33,6 +33,10 @@ services:
         class:     MunKirjat\BookBundle\Service\StatisticsService
         arguments: ["@doctrine.orm.entity_manager", "@munkirjat_book.service.book", "@munkirjat_book.service.author"]
 
+    munkirjat_book.service.search:
+        class:     MunKirjat\BookBundle\Service\SearchService
+        arguments: ["@munkirjat_book.service.author", "@munkirjat_book.service.book"]
+
     tags.twig.extension:
         class: MunKirjat\BookBundle\Twig\Extensions\Book
         arguments: ["@twig", "@munkirjat_book.service.book"]

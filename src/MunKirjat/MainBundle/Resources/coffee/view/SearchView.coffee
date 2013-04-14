@@ -35,6 +35,7 @@ $ ->
                 data: 'term=' + $('#searchvalue', @el).val()
                 success: (data) ->
                     $('#search-results-box', self.$el).html self.searchResultsTemplate(authors: data.authors, books: data.books)
+                    $('#search-results-box', self.$el).show()
             )
 
             return false

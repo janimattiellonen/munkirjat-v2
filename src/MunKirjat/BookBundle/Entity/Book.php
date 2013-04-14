@@ -623,7 +623,7 @@ class Book implements Taggable
             'startedReading'    => isset($startedReading) ? $startedReading->format("d.m.Y") : null,
             'finishedReading'   => isset($finishedReading) ? $finishedReading->format("d.m.Y") : null,
             'pageCount'         => $this->getPageCount(),
-            'isRead'            => $this->isRead(),
+            'isRead'            => $this->getIsRead(),
             'tags'              => $this->getTagsAsArray(),
             'authors'           => $this->getAuthorsAsArray()
         );

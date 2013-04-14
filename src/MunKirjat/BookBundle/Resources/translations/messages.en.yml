@@ -20,7 +20,7 @@ book:
     language:             "Language"
     genres:               "Genres"
     pageCount:            "Page count"
-    bookRead:             "Book is read"
+    isRead:               "Book is read"
     startedReading:       "Started reading"
     finishedReading:      "Finished reading"
     isbn:                 "Isbn"

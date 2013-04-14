@@ -40,7 +40,8 @@
                 var compiled = _.template($('#tpl-generic').html() );
 
                 print(compiled({
-                    name:     book.title
+                    id:     book.id,
+                    name:   book.title
                 }));
             });
             %>
@@ -52,11 +53,12 @@
 
         <ul>
             <% _.each(unread_books, function(book) {
-            var compiled = _.template($('#tpl-generic').html() );
+                var compiled = _.template($('#tpl-generic').html() );
 
-            print(compiled({
-            name:     book.title
-            }));
+                print(compiled({
+                    id:     book.id,
+                    name:   book.title
+                }));
             });
             %>
         </ul>

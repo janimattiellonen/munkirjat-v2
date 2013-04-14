@@ -23,7 +23,7 @@ munkirjat_book_list:
     requirements: { _method: get }
 
 munkirjat_author_new:
-    pattern: /author/new
+    pattern: "/author/new"
     defaults: { _controller: MunKirjatBookBundle:Author:new }
     requirements: { _method: get }
 
@@ -53,7 +53,7 @@ munkirjat_author_list:
     requirements: { _method: get }
 
 munkirjat_genre_create:
-    pattern: /genre
+    pattern: "/genre"
     defaults: { _controller: MunKirjatBookBundle:Genre:create, _format: 'json' }
     requirements: { _method: post }
 
@@ -77,4 +77,8 @@ munkirjat_statistics_statistics:
     defaults: { _controller: MunKirjatBookBundle:Statistics:statistics }
     requirements: { _method: get}
 
+munkirjat_search:
+    pattern: "/search"
+    defaults: { _controller: MunKirjatBookBundle:Search:search, _format: 'json' }
+    requirements: { _method: get }
 

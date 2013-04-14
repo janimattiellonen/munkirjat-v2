@@ -9,7 +9,7 @@ class SearchController extends Controller
     {
         $term = $this->getRequest()->get('term');
 
-
+        return $this->getJsonResponse($this->getSearchService()->searchByTerm($term) );
     }
 
     /**

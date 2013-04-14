@@ -49,6 +49,10 @@
             <nav class="mobile" id="menu"><ul></ul></nav>
         </header>
 
+        <section id="section-search">
+            {% include 'MunKirjatBookBundle:Search:search.js.twig' %}
+        </section>
+
         <section id="section-frontpage" class="container">
                 {% block content %}{% endblock %}
         </section>
@@ -130,6 +134,7 @@
             '@MunKirjatMainBundle/Resources/coffee/model/menu/MenuItemModel.coffee'
             '@MunKirjatMainBundle/Resources/coffee/view/menu/MenuItem.coffee'
             '@MunKirjatMainBundle/Resources/coffee/view/menu/Menu.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/view/SearchView.coffee'
 
             '@XiSelectorBundle/Resources/coffee/Selector.coffee'
 

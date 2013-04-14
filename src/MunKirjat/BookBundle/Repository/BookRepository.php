@@ -72,6 +72,22 @@ class BookRepository extends BaseRepository
     }
 
     /**
+     * @param string $title
+     * @return array
+     */
+    public function findBooksByTitle($title)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $qb->select('b')
+            ->from('MunKirjat\BookBundle\Entity\Book', 'b')
+            ->where('b.title LIKE :title')
+            ->setParameter('title', '%' . $title . '%');
+
+        return $qb->getQuery()->getResult(AbstractQuery::HYDRATE_ARRAY);
+    }
+
+    /**
      * @param array $params
      * @return mixed
      */

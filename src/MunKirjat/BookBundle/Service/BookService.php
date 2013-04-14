@@ -94,7 +94,7 @@ class BookService extends AbstractTaggableService
      */
     public function searchBooks($term)
     {
-        $this->bookRepository->findByTitle($term);
+        return $this->bookRepository->findBooksByTitle($term);
     }
 
     /**

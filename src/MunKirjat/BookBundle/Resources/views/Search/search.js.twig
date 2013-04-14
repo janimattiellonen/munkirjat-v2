@@ -11,14 +11,45 @@
             <input type="submit" id="_submit" name="_submit" value="<%= Translator.get('form.search') %>" />
         </form>
 
+    </article>
+</script>
+
+<script type="text/html" id="tpl-search-results">
+
+    <article>
+
         <div id="search-results">
 
-            <div id="results-books" class="column"></div>
+            <div id="results-books" class="column">
+                <h2><%= Translator.get('Books')%></h2>
+                <ul>
+                    <% if(books != null) _.each(books, function(book) { %>
+                    <li><%= book.title %></li>
+                    <% }); %>
+                </ul>
+            </div>
 
-            <div id="results-authors" class="column"></div>
-
+            <div id="results-authors" class="column">
+                <h2><%= Translator.get('Authors')%></h2>
+                <ul>
+                <% if(authors != null) _.each(authors, function(author) { %>
+                    <li><%= author.value %></li>
+                <% }); %>
+                </ul>
+            </div>
 
         </div>
 
     </article>
 </script>
+
+<div id="search-box">
+
+
+</div>
+
+<div id="search-results-box">
+
+
+</div>
+

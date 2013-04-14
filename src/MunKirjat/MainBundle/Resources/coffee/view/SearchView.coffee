@@ -9,21 +9,23 @@ $ ->
             'click #_submit': 'search'
 
         initialize: (options) ->
+            _.bindAll this, 'hide'
+            options.dispatcher.on("container:hide", @hide)
+
             @searchTemplate = _.template $('#tpl-search').html()
             @searchResultsTemplate = _.template $('#tpl-search-results').html()
 
-            #alert  _.template $('#tpl-search').html()
-
         show: () ->
             @render()
+            @$el.show()
+
+        hide: () ->
+            @$el.hide()
 
         render: () ->
             $('#search-box', @$el).html @searchTemplate()
 
             $('#search-results-box', @$el).html @searchResultsTemplate(authors: [], books: [])
-
-            $('#searchvalue', @el).autocomplete(
-            )
 
         search: () ->
 

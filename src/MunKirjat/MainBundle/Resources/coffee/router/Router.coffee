@@ -29,7 +29,7 @@ App.Router = Backbone.Router.extend(
         @genreView          = new App.GenreView({model: new App.GenreModel(), dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/genre/create'} )
         @genreListView      = new App.GenreListView({model: @genreCollection, dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/genres'} )
         @bookView           = new App.BookView({model: new App.BookModel(), collection: @bookCollection, dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/book/create'} )
-        @searchView         = new App.SearchView()
+        @searchView         = new App.SearchView({dispatcher: @dispatcher})
 
     preDispatch: () ->
         @dispatcher.trigger "container:hide"

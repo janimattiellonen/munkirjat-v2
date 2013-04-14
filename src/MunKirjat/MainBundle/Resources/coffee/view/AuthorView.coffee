@@ -82,9 +82,7 @@ $ ->
                 @model.id = null
                 @render()
 
-
         hide: () ->
-
             @$el.hide()
 
         setTitle: (title) ->

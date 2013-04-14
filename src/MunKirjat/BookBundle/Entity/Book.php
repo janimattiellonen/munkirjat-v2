@@ -81,7 +81,7 @@ class Book implements Taggable
      *
 	 * @ORM\Column(name="is_read", type="boolean")
 	 */
-	protected $bookRead;
+	protected $isRead;
 	
 	/**
      * @var string
@@ -134,7 +134,7 @@ class Book implements Taggable
 	    $this->tags     = new ArrayCollection();
 	    $this->created  = $this->updated = new DateTime();
 	    $this->rating   = 0.0;
-        $this->bookRead   = false;
+        $this->isRead   = false;
 	}
 
     /**
@@ -492,12 +492,12 @@ class Book implements Taggable
 	}
 
     /**
-     * @param boolean $isRead
+     * @param boolean $read
      * @return Book
      */
-    public function setBookRead($read)
+    public function setIsRead($read)
 	{
-		$this->bookRead = $read;
+		$this->isRead = $read;
 
         return $this;
 	}
@@ -505,9 +505,9 @@ class Book implements Taggable
     /**
      * @return boolean
      */
-    public function getBookRead()
+    public function getIsRead()
 	{
-		return $this->bookRead;
+		return $this->isRead;
 	}
 
     /**
@@ -623,7 +623,7 @@ class Book implements Taggable
             'startedReading'    => isset($startedReading) ? $startedReading->format("d.m.Y") : null,
             'finishedReading'   => isset($finishedReading) ? $finishedReading->format("d.m.Y") : null,
             'pageCount'         => $this->getPageCount(),
-            'bookRead'          => $this->getBookRead(),
+            'isRead'            => $this->isRead(),
             'tags'              => $this->getTagsAsArray(),
             'authors'           => $this->getAuthorsAsArray()
         );

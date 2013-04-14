@@ -20,6 +20,7 @@ class SecurityService
             'list-authors'  => '/#authors',
             'list-genres'   => '/#genres',
             'statistics'    => '',
+            'search'        => '/#search',
         );
 
         $loggedOut = array(

@@ -32,3 +32,4 @@ bookshelf:
 
 form:
     save:                 "Save"
+    search:               "Search"

@@ -44,7 +44,7 @@ $ ->
                             isbn:               self.model.get("isbn")
                             startedReading:     self.model.get("startedReading")
                             finishedReading:    self.model.get("finishedReading")
-                            bookRead:           self.model.get("bookRead")
+                            isRead:             self.model.get("isRead")
                             tags:               self.model.get("tags")
                             authors:            self.model.get("authors")
                         )
@@ -111,7 +111,7 @@ $ ->
         save: () ->
             @model.unset "created"
             @model.unset "updated"
-            @model.set "bookRead", if $('#bookRead').is(':checked') then 1 else 0
+            @model.set "isRead", if $('#isRead').is(':checked') then 1 else 0
 
 
             authors = []
@@ -132,7 +132,7 @@ $ ->
                 "isbn":                 $('#isbn', @$el).val()
                 "startedReading":       $('#startedReading', @$el).val()
                 "finishedReading":      $('#finishedReading', @$el).val()
-                "bookRead":             if $('#bookRead').is(':checked') then 1 else 0
+                "isRead":               if $('#isRead').is(':checked') then 1 else 0
                 "_token":               @csrf
                 "tags":                 tags
                 "authors":              authors

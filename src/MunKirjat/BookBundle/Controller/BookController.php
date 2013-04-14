@@ -33,7 +33,7 @@ class BookController extends Controller
         return $this->processForm($form, function() use($form, $service, $self) {
 
                 $book = $form->getData();
-                $book->setBookRead($self->getRequest()->request->get('bookRead') );
+                $book->setIsRead($self->getRequest()->request->get('isRead') );
 
                 $book = $service->saveByForm($form);
 

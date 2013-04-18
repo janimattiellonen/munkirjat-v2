@@ -37,6 +37,7 @@
     </head>
 
     <body>
+
         <script type="text/template" id="tpl-favourite-author">
             <li><%= firstName %> <%=lastName %> (<%= amount %>)</li>
         </script>
@@ -101,10 +102,51 @@
 
         <script type="text/javascript">
             var App = App || {};
-
         </script>
 
-        {% javascripts output="/js/generic.js" filter="?yui_js"
+        {% javascripts output="/js/noty.js" filter="?yui_js"
+            '@MunKirjatMainBundle/Resources/js/noty/jquery.noty.js'
+            '@MunKirjatMainBundle/Resources/js/noty/layouts/center.js'
+            '@MunKirjatMainBundle/Resources/js/noty/layouts/inline.js'
+            '@MunKirjatMainBundle/Resources/js/noty/themes/default.js'
+        %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+
+        {% javascripts output="/js/views.js" filter="?yui_js"
+            '@MunKirjatMainBundle/Resources/coffee/view/FrontPageView.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/view/AboutView.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/view/LoginView.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/view/AuthorView.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/view/AuthorListItemView.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/view/AuthorListView.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/view/GenreView.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/view/GenreListItemView.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/view/GenreListView.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/view/BookView.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/view/SearchView.coffee'
+        %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+
+        {% javascripts output="/js/models.js" filter="?yui_js"
+            '@MunKirjatMainBundle/Resources/coffee/model/GenreModel.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/model/BookModel.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/model/menu/MenuItemModel.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/model/AuthorModel.coffee'
+        %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+
+        {% javascripts output="/js/collections.js" filter="?yui_js"
+            '@MunKirjatMainBundle/Resources/coffee/collection/AuthorCollection.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/collection/GenreCollection.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/collection/BookCollection.coffee'
+        %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+
+        {% javascripts output="/js/externals.js" filter="?yui_js"
             '@MunKirjatMainBundle/Resources/js/modernizr.js'
             '@MunKirjatMainBundle/Resources/js/json2.js'
             '@MunKirjatMainBundle/Resources/js/underscore.js'
@@ -113,39 +155,24 @@
             '@XiAjaxBundle/Resources/coffee/ajax-abstract-logic.coffee'
             '@XiAjaxBundle/Resources/coffee/ajax-form.coffee'
             '@XiAjaxBundle/Resources/coffee/ajax-loader.coffee'
-            '@MunKirjatMainBundle/Resources/coffee/model/AuthorModel.coffee'
-            '@MunKirjatMainBundle/Resources/coffee/view/TestView.coffee'
-            '@MunKirjatMainBundle/Resources/coffee/view/FrontPageView.coffee'
-            '@MunKirjatMainBundle/Resources/coffee/view/AboutView.coffee'
-            '@MunKirjatMainBundle/Resources/coffee/view/LoginView.coffee'
-            '@MunKirjatMainBundle/Resources/coffee/view/AuthorView.coffee'
-            '@MunKirjatMainBundle/Resources/coffee/view/AuthorListItemView.coffee'
-            '@MunKirjatMainBundle/Resources/coffee/view/AuthorListView.coffee'
-            '@MunKirjatMainBundle/Resources/coffee/collection/AuthorCollection.coffee'
-            '@MunKirjatMainBundle/Resources/coffee/view/GenreView.coffee'
-            '@MunKirjatMainBundle/Resources/coffee/model/GenreModel.coffee'
-            '@MunKirjatMainBundle/Resources/coffee/view/GenreListItemView.coffee'
-            '@MunKirjatMainBundle/Resources/coffee/view/GenreListView.coffee'
-            '@MunKirjatMainBundle/Resources/coffee/collection/GenreCollection.coffee'
-            '@MunKirjatMainBundle/Resources/coffee/model/BookModel.coffee'
-            '@MunKirjatMainBundle/Resources/coffee/view/BookView.coffee'
-            '@MunKirjatMainBundle/Resources/coffee/collection/BookCollection.coffee'
+            '@XiSelectorBundle/Resources/coffee/Selector.coffee'
+        %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+
+        {% javascripts output="/js/generic.js" filter="?yui_js"
             '@MunKirjatMainBundle/Resources/coffee/router/Router.coffee'
-            '@MunKirjatMainBundle/Resources/coffee/model/menu/MenuItemModel.coffee'
             '@MunKirjatMainBundle/Resources/coffee/view/menu/MenuItem.coffee'
             '@MunKirjatMainBundle/Resources/coffee/view/menu/Menu.coffee'
-            '@MunKirjatMainBundle/Resources/coffee/view/SearchView.coffee'
-
-            '@XiSelectorBundle/Resources/coffee/Selector.coffee'
 
             'bundles/fosjsrouting/js/router.js'
             'js/fos_js_routes.js'
 
             '@MunKirjatMainBundle/Resources/coffee/main.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/Notifier.coffee'
             '@MunKirjatBookBundle/Resources/coffee/book.coffee'
         %}
-
-        <script type="text/javascript" src="{{ asset_url }}"></script>
+            <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
 
         <script type="text/javascript">
@@ -177,6 +204,9 @@
 
         {% block javascripts %}{% endblock %}
 
+        <div class="ajax-loader2">
+
+        </div>
 
     </body>
 </html>

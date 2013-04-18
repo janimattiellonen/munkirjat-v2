@@ -41,15 +41,19 @@ class AuthorTransformer implements DataTransformerInterface
      */
     public function reverseTransform($collection)
     {
-        //if($collection instanceof ArrayCollection)
+        if(null === $collection)
         {
-           // die('sss');
-            $authors = $this->authorService->getAuthorsById(array_filter($collection->toArray() ) );
-
-            return new ArrayCollection($authors);
+            return null;
         }
 
-        return $collection;
+        if(is_object($collection) )
+        {
+            $collection = $collection->toArray();
+        }
+        $authors = $this->authorService->getAuthorsById(array_filter($collection) );
+
+        return new ArrayCollection($authors);
+
     }
 
 }

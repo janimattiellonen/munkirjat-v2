@@ -69,6 +69,8 @@ $ ->
                             self.options.collection.add self.model
                             self.options.dispatcher.trigger "author:add", self.model
 
+                    App.Notifier.success "Author saved".t()
+
         show: (id) ->
             @$el.show()
 

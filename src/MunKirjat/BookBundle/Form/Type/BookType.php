@@ -18,7 +18,7 @@ class BookType extends AbstractType
                 ->add('authors', 'author')
                 ->add('tags', 'tag')
                 ->add('pageCount', 'text')
-                ->add('bookRead', 'checkbox')
+                ->add('isRead', 'checkbox')
                 ->add('startedReading', 'date', array(
                     'input' => 'datetime',
                     'widget' => 'single_text',

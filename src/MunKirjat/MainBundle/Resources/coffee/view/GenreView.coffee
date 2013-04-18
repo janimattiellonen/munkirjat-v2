@@ -51,6 +51,8 @@ $ ->
                     self.formErrorizer.clear($('#new-genre-box') )
                     self.formErrorizer.errorize($('#new-genre-box'), response);
 
+                    App.Notifier.success "Genre saved".t()
+
         reset: () ->
             @model.clear()
 

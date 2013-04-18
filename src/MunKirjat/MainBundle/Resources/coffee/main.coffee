@@ -126,3 +126,11 @@ $(document).ready ->
     # Ajax forms
     if $.fn.ajaxForm
         App.AjaxForm.Instance = new App.AjaxForm.Default '.ajax-form' , null, [new App.FormErrorizer.Custom(), localizedErrorizer]
+
+    $(document).ajaxStart(() ->
+        $('body').append $('<div></div>').addClass("ajax-loader")
+    )
+
+    $(document).ajaxStop(() ->
+        $('.ajax-loader').remove()
+    )

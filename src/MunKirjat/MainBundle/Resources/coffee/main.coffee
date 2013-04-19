@@ -122,6 +122,7 @@ class App.FormErrorizer.Custom extends App.AbstractErrorizer
 
 $(document).ready ->
     localizedErrorizer = new App.FatalErrorizer.Default()
+    router = new Backbone.Router()
 
     # Ajax forms
     if $.fn.ajaxForm
@@ -133,4 +134,15 @@ $(document).ready ->
 
     $(document).ajaxStop(() ->
         $('.ajax-loader').remove()
+    )
+
+    $(document).ajaxError((event, xhr, settings) ->
+        console.log "event: " + JSON.stringify(event)
+        console.log "xhr: " + JSON.stringify(xhr)
+        console.log "settings: " + JSON.stringify(settings)
+
+        if xhr.status == 403
+
+            router.navigate "#/login",
+                trigger: true
     )

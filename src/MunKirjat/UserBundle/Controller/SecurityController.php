@@ -5,6 +5,10 @@ use MunKirjat\Component\Controller\Controller;
 
 class SecurityController extends Controller
 {
+    public function loginAction()
+    {
+        die('sss');
+    }
     public function allowedActionsAction()
     {
         $allowedActions = $this->getSecurityService()->getAllowedResources($this->getCurrentUser() );

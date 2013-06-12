@@ -156,7 +156,7 @@ $ ->
                             self.options.collection.add self.model
                             self.options.dispatcher.trigger "book:add", self.model
 
-                    App.Notifier.success "Book saved".t()
+                        App.Notifier.success "Book saved".t()
 
             return false
         show: (id) ->

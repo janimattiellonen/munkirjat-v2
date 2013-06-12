@@ -43,13 +43,18 @@ class AuthorTransformer implements DataTransformerInterface
     {
         if(null === $collection)
         {
-            return null;
+            return array();
         }
 
         if(is_object($collection) )
         {
             $collection = $collection->toArray();
         }
+
+        if(count($collection) == 0) {
+            return $collection;
+        }
+
         $authors = $this->authorService->getAuthorsById(array_filter($collection) );
 
         return new ArrayCollection($authors);

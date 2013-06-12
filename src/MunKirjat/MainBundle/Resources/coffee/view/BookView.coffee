@@ -1,6 +1,5 @@
 $ ->
     "use strict"
-
     App.BookView = Backbone.View.extend(
 
         el:         '#section-new-book'

@@ -30,10 +30,10 @@ class SearchService
      */
     public function searchByTerm($term)
     {
-        $results = [
+        $results = array(
             'authors'   => $this->authorService->searchAuthors($term),
             'books'     => $this->bookService->searchBooks($term),
-        ];
+        );
 
         return $results;
     }

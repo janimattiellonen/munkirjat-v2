@@ -20,7 +20,7 @@ class BookRepository extends BaseRepository
 
         $qb = $this->getEntityManager()->createQueryBuilder();
 
-        $q = $qb->select('b')
+        $qb->select('b')
             ->from('MunKirjat\BookBundle\Entity\Book', 'b')
             ->where('b.isRead = 1')
             ->where('b.finishedReading IS NOT NULL')

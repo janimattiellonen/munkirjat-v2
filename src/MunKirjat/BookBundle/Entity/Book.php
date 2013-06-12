@@ -265,10 +265,10 @@ class Book implements Taggable
 
         foreach($this->getAuthors() as $author)
         {
-            $authors[] = [
+            $authors[] = array(
                 'id'    => $author->getId(),
                 'name'  => $author->getFullName(),
-            ];
+            );
         }
 
         return $authors;
@@ -429,10 +429,10 @@ class Book implements Taggable
 
         foreach($this->getTags() as $tag)
         {
-            $tags[] = [
+            $tags[] = array(
                 'id'    => $tag->getId(),
                 'name'  => $tag->getName(),
-            ];
+            );
         }
 
         return $tags;

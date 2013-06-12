@@ -214,7 +214,6 @@ class Book implements Taggable
      */
     public function setAuthors($authors)
     {
-       // print_r($authors);
         $this->authors = $authors;
 
         return $this;
@@ -261,7 +260,7 @@ class Book implements Taggable
      */
     public function getAuthorsAsArray()
     {
-        $authors = [];
+        $authors = array();
 
         foreach($this->getAuthors() as $author)
         {
@@ -425,7 +424,7 @@ class Book implements Taggable
      */
     public function getTagsAsArray()
     {
-        $tags = [];
+        $tags = array();
 
         foreach($this->getTags() as $tag)
         {

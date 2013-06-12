@@ -2,13 +2,13 @@
     <div class="col _50">
         <h2>{{ 'stats.latest-read-book'|trans }}</h2>
 
-        <a href="<%=Routing.generate('munkirjat_book_view.en', {id: latest_read_book.id})%>"><%= latest_read_book.title %></a>
+        <a href="<%=Routing.getBaseUrl() + '/#book/' + latest_read_book.id %>"><%= latest_read_book.title %></a>
     </div>
 
     <div class="col _50">
         <h2>{{ 'stats.latest-added-book'|trans }}</h2>
 
-        <a href="<%=Routing.generate('munkirjat_book_view.en', {id: latest_added_book.id})%>"><%= latest_added_book.title %></a>
+        <a href="<%=Routing.getBaseUrl() + '/#book/' + latest_added_book.id %>"><%= latest_added_book.title %></a>
     </div>
 </article>
 

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="MunKirjat\BookBundle\Repository\AuthorRepository")
  * @ORM\Table(name="author")
  */
 class Author
@@ -24,13 +24,14 @@ class Author
 	/**
      * @var string
      *
+     * @Assert\NotBlank(message="author.firstName-required")
 	 * @ORM\Column(name="firstname", type="string", length=45)
 	 */
 	protected $firstName;
 	
 	/**
      * @var string
-     *
+     * @Assert\NotBlank(message="author.lastName-required")
 	 * @ORM\Column(name="lastname", type="string", length=45)
 	 */	
 	protected $lastName;
@@ -144,5 +145,17 @@ class Author
     public function getBooks()
     {
         return $this->books;
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        return array(
+            'id'        => $this->getId(),
+            'firstName' => $this->getFirstName(),
+            'lastName'  => $this->getLastName(),
+        );
     }
 }

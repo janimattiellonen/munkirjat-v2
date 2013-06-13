@@ -1,3 +1,84 @@
-mun_kirjat_book_test:
-    pattern: /test
+munkirjat_book_test:
+    pattern: "/test"
     defaults: { _controller: MunKirjatBookBundle:Default:index }
+
+munkirjat_book_view:
+    locales: {fi: "/kirja/{id}", en: "/book/{id}" }
+    defaults: { _controller: MunKirjatBookBundle:Book:view }
+    requirements: { _method: get }
+
+munkirjat_book_create:
+    pattern: "/book"
+    defaults: { _controller: MunKirjatBookBundle:Book:create, _format: 'json' }
+    requirements: { _method: post }
+
+munkirjat_book_update:
+    pattern: "/book/{id}"
+    defaults: { _controller: MunKirjatBookBundle:Book:update, _format: 'json' }
+    requirements: { _method: put }
+
+munkirjat_book_list:
+    pattern: "/book"
+    defaults: { _controller: MunKirjatBookBundle:Book:list, _format: 'json' }
+    requirements: { _method: get }
+
+munkirjat_author_new:
+    pattern: "/author/new"
+    defaults: { _controller: MunKirjatBookBundle:Author:new }
+    requirements: { _method: get }
+
+munkirjat_author_create:
+    pattern: "/author"
+    defaults: { _controller: MunKirjatBookBundle:Author:create, _format: 'json' }
+    requirements: { _method: post }
+
+munkirjat_author_update:
+    pattern: "/author/{id}"
+    defaults: { _controller: MunKirjatBookBundle:Author:update, _format: 'json' }
+    requirements: { _method: put }
+
+munkirjat_author_view:
+    pattern: "/author/{id}"
+    defaults: { _controller: MunKirjatBookBundle:Author:view, _format: 'json' }
+    requirements: { _method: get, id: \d+}
+
+munkirjat_author_search:
+    pattern: "/author/search"
+    defaults: { _controller: MunKirjatBookBundle:Author:search, _format: 'json' }
+    requirements: { _method: get }
+
+munkirjat_author_list:
+    pattern: "/author"
+    defaults: { _controller: MunKirjatBookBundle:Author:list, _format: 'json' }
+    requirements: { _method: get }
+
+munkirjat_genre_create:
+    pattern: "/genre"
+    defaults: { _controller: MunKirjatBookBundle:Genre:create, _format: 'json' }
+    requirements: { _method: post }
+
+munkirjat_genre_update:
+    pattern: "/genre/{id}"
+    defaults: { _controller: MunKirjatBookBundle:Genre:update, _format: 'json' }
+    requirements: { _method: put }
+
+munkirjat_genre_view:
+    pattern: "/genre/{id}"
+    defaults: { _controller: MunKirjatBookBundle:Genre:view, _format: 'json' }
+    requirements: { _method: get }
+
+munkirjat_genre_list:
+    pattern: "/genre"
+    defaults: { _controller: MunKirjatBookBundle:Genre:list, _format: 'json' }
+    requirements: { _method: get }
+
+munkirjat_statistics_statistics:
+    pattern: "/statistics"
+    defaults: { _controller: MunKirjatBookBundle:Statistics:statistics }
+    requirements: { _method: get}
+
+munkirjat_search:
+    pattern: "/search"
+    defaults: { _controller: MunKirjatBookBundle:Search:search, _format: 'json' }
+    requirements: { _method: get }
+

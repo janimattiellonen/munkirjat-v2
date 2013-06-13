@@ -1,3 +1,5 @@
 {% if book is not null %}
-    LATEST READ BOOK: {{ book.title }}
+    <h2>{{ 'Latest read book'|trans }}</h2>
+
+    <a href="{{ url('munkirjat_book_view', {id: book.id}) }}">{{ book.title }}</a>
 {%  endif %}

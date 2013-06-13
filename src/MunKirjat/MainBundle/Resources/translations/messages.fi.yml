@@ -1,6 +1,9 @@
 menu:
-    frontpage:      "Etusivu"
-    about:          "Tiedot"
+    frontpage:        "Etusivu"
+    about:            "Tiedot"
+    add-new-book:     "Lisää uusi kirja"
+    add-new-author:   "Lisää uusi kirjailija"
+    add-new-genre:    "Lisää uusi laji"
     list-authors:
     list-genres:
     statistics:

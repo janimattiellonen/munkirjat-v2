@@ -21,24 +21,31 @@ security:
         main:
             pattern: ^/
             form_login:
-                login_path:  /login
-                check_path:  /login_check
+                login_path:                     /login
+                check_path:                     /login_check
                 always_use_default_target_path: true
                 default_target_path:            /login_success
                 use_referer:                    false
-                failure_path:                   /login
+                failure_path:                   /login_failure
 
             logout:
-                target: /%locale%
+                target: /
             anonymous: true
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-
-
-
-
     access_control:
-        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
-        #- { path: ^/_internal/secure, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
+        - { path: ^/login$,                      roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/allowed-actions$,                      roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/author$,                      roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/author$,                      roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/new-token/new-author$,                      roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/genre$,                      roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/book$,                      roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/search,                      roles: IS_AUTHENTICATED_ANONYMOUSLY}
+
+        - { path: ^/logout,                     roles: IS_AUTHENTICATED_FULLY}
+        - { path: ^/author,                     roles: IS_AUTHENTICATED_FULLY}
+        - { path: ^/genre,                      roles: IS_AUTHENTICATED_FULLY}
+        - { path: ^/book,                      roles: IS_AUTHENTICATED_FULLY}

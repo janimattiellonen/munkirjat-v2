@@ -45,19 +45,22 @@ class PrimaryMenuBuilder extends ContainerAware
         $menu = $this->factory->createItem('root');
         $menu->setCurrentUri($request->getRequestUri() );
 
-        $menu->addChild($this->translator->trans('menu.frontpage'), array('route' => 'mun_kirjat_book_test') );
-        $menu->addChild($this->translator->trans('menu.about'), array('route' => 'mun_kirjat_book_test') );
-        $menu->addChild($this->translator->trans('menu.list-authors'), array('route' => 'mun_kirjat_book_test') );
-        $menu->addChild($this->translator->trans('menu.list-genres'), array('route' => 'mun_kirjat_book_test') );
-        $menu->addChild($this->translator->trans('menu.statistics'), array('route' => 'mun_kirjat_book_test') );
+        $menu->addChild($this->translator->trans('menu.frontpage'), array('uri' => '#/frontpage', 'attributes' => array('id' => 'primary-menu-frontpage') ) );
+        $menu->addChild($this->translator->trans('menu.about'), array('uri' => '#/about', 'attributes' => array('id' => 'primary-menu-about') ) );
+        $menu->addChild($this->translator->trans('menu.list-authors'), array('route' => 'munkirjat_book_test', 'attributes' => array('id' => 'primary-menu-list-authors') ) );
+        $menu->addChild($this->translator->trans('menu.list-genres'), array('route' => 'munkirjat_book_test', 'attributes' => array('id' => 'primary-menu-list-genres') ) );
+        $menu->addChild($this->translator->trans('menu.statistics'), array('route' => 'munkirjat_book_test', 'attributes' => array('id' => 'primary-menu-statistics') ) );
 
         if($this->securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED') )
         {
-            $menu->addChild($this->translator->trans('menu.logout'), array('route' => 'fos_user_security_logout') );
+            $menu->addChild($this->translator->trans('menu.add-new-book'), array('route' => 'munkirjat_book_test', 'attributes' => array('id' => 'primary-menu-new-book') ) );
+            $menu->addChild($this->translator->trans('menu.add-new-author'), array('route' => 'munkirjat_book_test', 'attributes' => array('id' => 'primary-menu-new-author') ) );
+            $menu->addChild($this->translator->trans('menu.add-new-genre'), array('route' => 'munkirjat_book_test', 'attributes' => array('id' => 'primary-menu-new-genre') ) );
+            $menu->addChild($this->translator->trans('menu.logout'), array('route' => 'munkirjat_book_test', 'attributes' => array('id' => 'primary-menu-logout') ) );
         }
         else
         {
-            $menu->addChild($this->translator->trans('menu.login'), array('route' => 'fos_user_security_login') );
+            $menu->addChild($this->translator->trans('menu.login'), array('route' => 'fos_user_security_login', 'attributes' => array('id' => 'primary-menu-login') ) );
         }
 
         return $menu;

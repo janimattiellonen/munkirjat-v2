@@ -1,0 +1,16 @@
+<script type="text/template" id="tpl-new-genre">
+
+    <article>
+        <div id="new-genre-box">
+            <h1><%= Translator.get(title) %></h1>
+            <input type="hidden" name="_token" value="<%= csrf_token %>" />
+
+            <p>
+                <label for="name"><%= Translator.get('genre.name') %>:</label>
+                <input type="text" id="name" name="name" value="<%= name %>" required="required" />
+            </p>
+
+            <input type="submit" id="_submit" name="_submit" value="<%= Translator.get('form.save') %>" />
+        </div>
+    </article>
+</script>

@@ -1,7 +1,10 @@
 {% extends '::base.html.twig' %}
 
 {% block content %}
-    <article>
-        {{ munkirjat_latestReadBook() }}
-    </article>
+
+    <script type="text/template" id="stats-template">
+        {% include 'MunKirjatMainBundle:Default:stats.html.twig' %}
+    </script>
 {% endblock %}
+
+

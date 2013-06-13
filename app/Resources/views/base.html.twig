@@ -12,34 +12,201 @@
 
         {% block stylesheets %}{% endblock %}
 
-        <link href="{{ asset('css/jquery-ui/ui-lightness/jquery-ui-1.9.2.custom.css') }}" rel="stylesheet" media="screen" />
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
 
         {% stylesheets filter='yui_css' output='/css/generic.css'
             '@MunKirjatMainBundle/Resources/css/normalize/normalize.css'
             '@MunKirjatMainBundle/Resources/css/main.css'
             '@MunKirjatMainBundle/Resources/less/base.less'
             '@MunKirjatMainBundle/Resources/less/main.less'
+            '@XiAjaxBundle/Resources/assets/css/errorizers.css'
+            '@MunKirjatUserBundle/Resources/less/login.less'
+            '@MunKirjatBookBundle/Resources/less/book.less'
         %}
 
         <link href="{{ asset_url }}" rel="stylesheet" media="screen" />
         {% endstylesheets %}
 
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+        <script type="text/javascript">
+            var url_tagSource       = '{{ url('xi_tag_search') }}';
+            var url_tagAddSource    = '{{ url('xi_tag_add') }}';
+        </script>
+
     </head>
+
     <body>
-        <nav>{{ knp_menu_render('primary_menu') }}</nav>
-        {% block content %}{% endblock %}
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+        <script type="text/template" id="tpl-favourite-author">
+            <li><%= firstName %> <%=lastName %> (<%= amount %>)</li>
+        </script>
 
-        {% javascripts output="/js/generic.js" filter="?yui_js"
-            '@MunKirjatMainBundle/Resources/js/modernizr.js'
+        <script type="text/template" id="tpl-generic">
+            <li><a href="<%= Routing.getBaseUrl() + '/#book/' + id %>"><%= name %></a></li>
+        </script>
+
+        <header>
+            <nav class="mobile" id="menu"><ul></ul></nav>
+        </header>
+
+        <section id="section-search">
+            {% include 'MunKirjatBookBundle:Search:search.js.twig' %}
+        </section>
+
+        <section id="section-frontpage" class="container">
+                {% block content %}{% endblock %}
+        </section>
+
+        <section id="section-about" class="container">
+
+        </section>
+
+        <section id="section-login" class="container">
+            {% include 'MunKirjatUserBundle:Login:login.js.twig' %}
+        </section>
+
+        <section id="section-new-author" class="container">
+            {% include 'MunKirjatBookBundle:Author:form.js.twig' %}
+        </section>
+
+        <section id="section-list-authors" class="container">
+
+        </section>
+
+        {% include 'MunKirjatBookBundle:Author:list.js.twig' %}
+
+        {% include 'MunKirjatBookBundle:Author:item.js.twig' %}
+
+        <section id="section-new-genre" class="container">
+            {% include 'MunKirjatBookBundle:Genre:form.js.twig' %}
+        </section>
+
+        <section id="section-list-genres" class="container">
+
+        </section>
+
+        {% include 'MunKirjatBookBundle:Genre:list.js.twig' %}
+
+        {% include 'MunKirjatBookBundle:Genre:item.js.twig' %}
+
+        <section id="section-new-book" class="container">
+            {% include 'MunKirjatBookBundle:Book:form.js.twig' %}
+        </section>
+
+        <script src="http://code.jquery.com/jquery-1.7.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.8.16/jquery-ui.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.5/numeral.min.js"></script>
+        <script type="text/javascript" src="{{ asset('bundles/bazingaexposetranslation/js/translator.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url('bazinga_exposetranslation_js') }}"></script>
+
+        <script type="text/javascript">
+            var App = App || {};
+        </script>
+
+        {% javascripts output="/js/noty.js" filter="?yui_js"
+            '@MunKirjatMainBundle/Resources/js/noty/jquery.noty.js'
+            '@MunKirjatMainBundle/Resources/js/noty/layouts/center.js'
+            '@MunKirjatMainBundle/Resources/js/noty/layouts/inline.js'
+            '@MunKirjatMainBundle/Resources/js/noty/themes/default.js'
         %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
 
+        {% javascripts output="/js/views.js" filter="?yui_js"
+            '@MunKirjatMainBundle/Resources/coffee/view/FrontPageView.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/view/AboutView.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/view/LoginView.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/view/AuthorView.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/view/AuthorListItemView.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/view/AuthorListView.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/view/GenreView.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/view/GenreListItemView.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/view/GenreListView.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/view/BookView.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/view/SearchView.coffee'
+        %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+
+        {% javascripts output="/js/models.js" filter="?yui_js"
+            '@MunKirjatMainBundle/Resources/coffee/model/GenreModel.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/model/BookModel.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/model/menu/MenuItemModel.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/model/AuthorModel.coffee'
+        %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+
+        {% javascripts output="/js/collections.js" filter="?yui_js"
+            '@MunKirjatMainBundle/Resources/coffee/collection/AuthorCollection.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/collection/GenreCollection.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/collection/BookCollection.coffee'
+        %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+
+        {% javascripts output="/js/externals.js" filter="?yui_js"
+            '@MunKirjatMainBundle/Resources/js/modernizr.js'
+            '@MunKirjatMainBundle/Resources/js/json2.js'
+            '@MunKirjatMainBundle/Resources/js/underscore.js'
+            '@MunKirjatMainBundle/Resources/js/backbone-min.js'
+            '@XiAjaxBundle/Resources/assets/js/jquery.form.js'
+            '@XiAjaxBundle/Resources/coffee/ajax-abstract-logic.coffee'
+            '@XiAjaxBundle/Resources/coffee/ajax-form.coffee'
+            '@XiAjaxBundle/Resources/coffee/ajax-loader.coffee'
+            '@XiSelectorBundle/Resources/coffee/Selector.coffee'
+        %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
 
+        {% javascripts output="/js/generic.js" filter="?yui_js"
+            '@MunKirjatMainBundle/Resources/coffee/router/Router.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/view/menu/MenuItem.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/view/menu/Menu.coffee'
+
+            'bundles/fosjsrouting/js/router.js'
+            'js/fos_js_routes.js'
+
+            '@MunKirjatMainBundle/Resources/coffee/main.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/Notifier.coffee'
+            '@MunKirjatBookBundle/Resources/coffee/book.coffee'
+        %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+
+        <script type="text/javascript">
+            window.baseUrl = '{{ app.request.getBaseURL() }}';
+            Routing.setBaseUrl(window.baseUrl);
+        </script>
+
+        <script type="text/javascript">
+
+            $(document).ready(function() {
+
+                var dispatcher = _.extend({}, Backbone.Events);
+
+                var menu = new App.Menu({el: $('nav#menu'), dispatcher: dispatcher});
+
+                $.ajax({
+                    url: Routing.getBaseUrl() + '/allowed-actions',
+                    dataType: 'json',
+                    success: function(data) {
+                        menu.buildMenu(data['logged-in'], data['data']);
+                        menu.render();
+                        new App.Router({dispatcher: dispatcher});
+                        Backbone.history.start();
+                    }
+                });
+            });
+
+        </script>
+
         {% block javascripts %}{% endblock %}
+
+        <div class="ajax-loader2">
+
+        </div>
+
     </body>
 </html>

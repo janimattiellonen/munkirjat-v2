@@ -1,0 +1,105 @@
+<article>
+    <div class="col _50">
+        <h2>{{ 'stats.latest-read-book'|trans }}</h2>
+
+        <a href="<%=Routing.getBaseUrl() + '/#book/' + latest_read_book.id %>"><%= latest_read_book.title %></a>
+    </div>
+
+    <div class="col _50">
+        <h2>{{ 'stats.latest-added-book'|trans }}</h2>
+
+        <a href="<%=Routing.getBaseUrl() + '/#book/' + latest_added_book.id %>"><%= latest_added_book.title %></a>
+    </div>
+</article>
+
+<article id="bookshelf">
+    <div class="col _33">
+        <h2>{{ 'bookshelf.favourite-authors'|trans }}</h2>
+
+        <ul>
+            <% _.each(favourite_authors, function(author) {
+                var compiled = _.template($('#tpl-favourite-author').html() );
+
+                print(compiled({
+                    id:         author[0].id,
+                    firstName:  author[0].firstName,
+                    lastName:   author[0].lastName,
+                    amount:     author.amount
+                }));
+            });
+            %>
+        </ul>
+
+    </div>
+
+    <div class="col _33">
+        <h2>{{ 'bookshelf.recently-read'|trans }}</h2>
+
+        <ul>
+            <% _.each(recently_read, function(book) {
+                var compiled = _.template($('#tpl-generic').html() );
+
+                print(compiled({
+                    id:     book.id,
+                    name:   book.title
+                }));
+            });
+            %>
+        </ul>
+    </div>
+
+    <div class="col _33">
+        <h2>{{ 'bookshelf.unread'|trans }}</h2>
+
+        <ul>
+            <% _.each(unread_books, function(book) {
+                var compiled = _.template($('#tpl-generic').html() );
+
+                print(compiled({
+                    id:     book.id,
+                    name:   book.title
+                }));
+            });
+            %>
+        </ul>
+    </div>
+
+</article>
+
+<article id="book-statistics">
+    <h2>{{ 'stats.statistics'|trans }}</h2>
+
+    <div class="col _50">
+        <h3>{{ 'stats.books-in-bookshelf'|trans }}</h3>
+        <p><%= book_count %></p>
+
+        <h3>{{ 'stats.authors-in-bookshelf'|trans }}</h3>
+        <p><%= author_count %></p>
+
+        <h3>{{ 'stats.unread-books'|trans }}</h3>
+        <p><%= unread_book_count %></p>
+
+        <h3>{{ 'stats.pages-read'|trans }}</h3>
+        <p><%= read_page_count %></p>
+
+        <h3>{{ 'stats.unrated-books'|trans }}</h3>
+        <p><%= unrated_book_count %></p>
+    </div>
+
+    <div class="col _50">
+        <h3>{{ 'stats.slowest-read-time'|trans }}</h3>
+        <p><%= numeral(parseFloat(slowest_pace) ).format('00.00') %> days</p>
+
+        <h3>{{ 'stats.fastest-read-time'|trans }}</h3>
+        <p><%= numeral(parseFloat(fastest_pace) ).format('00.00') %> days </p>
+
+        <h3>{{ 'stats.average-read-time'|trans }}</h3>
+        <p><%= numeral(parseFloat(average_pace) ).format('00.00') %> days</p>
+
+        <h3>{{ 'stats.estimated-time'|trans }}</h3>
+        <p><%= numeral(parseFloat(estimated_time_to_read_all) ).format('00.00') %> years</p>
+
+        <h3>{{ 'stats.average-rating'|trans }}</h3>
+        <p><%= numeral(parseFloat(average_rating) ).format('00.00') %></p>
+    </div>
+</article>

@@ -1,0 +1,15 @@
+mun_kirjat_security_allowed_actions:
+    pattern: /allowed-actions
+    defaults: { _controller: MunKirjatUserBundle:Security:allowedActions }
+
+mun_kirjat_security_new_token:
+    pattern: /new-token/{intention}
+    defaults: { _controller: MunKirjatUserBundle:Security:newToken }
+
+mun_kirjat_user_login_success:
+    defaults: { _controller: MunKirjatUserBundle:Security:success }
+    pattern: /login_success
+
+mun_kirjat_user_login_failure:
+    defaults: { _controller: MunKirjatUserBundle:Security:failure }
+    pattern: /login_failure

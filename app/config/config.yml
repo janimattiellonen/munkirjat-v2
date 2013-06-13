@@ -23,11 +23,14 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
 
+sensio_framework_extra:
+    view:    { annotations: false }
+
 # Assetic Configuration
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ ]
+    bundles:        ["MunKirjatMainBundle", "MunKirjatBookBundle", "MunKirjatUserBundle", "XiSelectorBundle", "XiTagBundle"]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -45,6 +48,10 @@ assetic:
             bin:  %kernel.root_dir%/../node_modules/coffee-script/bin/coffee
             node: %node_bin%
             apply_to: "\.coffee$"
+
+fos_js_routing:
+    routes_to_expose: [".*"]
+
 # Doctrine Configuration
 doctrine:
     dbal:
@@ -59,16 +66,13 @@ doctrine:
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
-
-#doctrine_mongodb:
-#    connections:
-#        default:
-#            server: mongodb://127.0.0.1:27017
-#            options: {}
-#    default_database: le-foo_db
-#    document_managers:
-#        default:
-#            auto_mapping: true
+        dql:
+            string_functions:
+                concat_ws: DoctrineExtensions\Query\Mysql\ConcatWs
+            datetime_functions:
+                month: DoctrineExtensions\Query\Mysql\Month
+                year: DoctrineExtensions\Query\Mysql\Year
+                datediff: DoctrineExtensions\Query\Mysql\DateDiff
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -88,3 +92,19 @@ fos_user:
 
     ## mongodb
     #user_class: JmeSf2\GenericUserBundle\Document\User
+
+stof_doctrine_extensions:
+    default_locale: fi_FI
+    orm:
+        default:
+            timestampable: true
+            sluggable:     true
+
+knp_menu:
+    twig:
+        template: MunKirjatMainBundle:Menu:knp_menu.html.twig
+
+fpn_tag:
+    model:
+        tag_class:     Xi\Bundle\TagBundle\Entity\Tag
+        tagging_class: Xi\Bundle\TagBundle\Entity\Tagging

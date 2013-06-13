@@ -1,20 +1,21 @@
 <?php
 namespace MunKirjat\BookBundle\Entity;
 
+use Gedmo\Mapping\Annotation as Gedmo;
+
 use \DateTime;
 
+use DoctrineExtensions\Taggable\Taggable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-
 /**
  * @ORM\Entity(repositoryClass="MunKirjat\BookBundle\Repository\BookRepository")
  * @ORM\Table(name="book")
- * @ORM\HasLifecycleCallbacks
  */
-class Book
+class Book implements Taggable
 {
 	/**
      * @var int
@@ -28,18 +29,20 @@ class Book
 	/**
      * @var string
      *
+     * @Assert\NotBlank(message="book.title.required")
 	 * @ORM\Column(name="title", type="string", length=128)
 	 */
 	protected $title;
 	
 	/**
      * @var string
-     *
+     * @Assert\NotBlank(message="book.language.required")
 	 * @ORM\Column(name="language_id", type="string", length=3)
 	 */
 	protected $language;
 	
     /**
+     * @Assert\NotBlank(message="book.author.required")
      * @ORM\ManyToMany(targetEntity="Author", inversedBy="books")
      * @ORM\JoinTable(name="book_author",
      * 		joinColumns={@ORM\JoinColumn(name="book_id", referencedColumnName="id")},
@@ -61,18 +64,14 @@ class Book
 	
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
-     *
-     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="books")
-     * @ORM\JoinTable(name="book_tag",
-     * 		joinColumns={@ORM\JoinColumn(name="book_id", referencedColumnName="id")},
-     * 		inverseJoinColumns={@ORM\JoinColumn(name="tag_id", referencedColumnName="id")}
-     * )
-     */	
+     */
 	protected $tags;
 	
 	/**
      * @var int
      *
+     * @Assert\NotBlank(message="book.pageCount.required")
+     * @Assert\Min(limit = "1", message="Page count must be {{ limit }} or more")
 	 * @ORM\Column(name="page_count", type="integer", length=5)
 	 */
 	protected $pageCount;
@@ -80,20 +79,21 @@ class Book
 	/**
      * @var boolean
      *
-	 * @ORM\Column(name="is_read", type="integer", length=1)
+	 * @ORM\Column(name="is_read", type="boolean")
 	 */
 	protected $isRead;
 	
 	/**
      * @var string
      *
-	 * @ORM\Column(name="isbn", type="string", length=40)
+	 * @ORM\Column(name="isbn", type="string", length=40, nullable=true)
 	 */	
 	protected $isbn;
 	
 	/**
      * @var \DateTime
      *
+     * @Gedmo\Timestampable(on="create")
 	 * @ORM\Column(name="created_at", type="datetime")
 	 */
 	protected $created;
@@ -101,6 +101,7 @@ class Book
 	/**
      * @var \DateTime
      *
+     * @Gedmo\Timestampable(on="update")
 	 * @ORM\Column(name="updated_at", type="datetime")
 	 */
 	protected $updated;
@@ -108,21 +109,21 @@ class Book
 	/**
      * @var \DateTime
      *
-	 * @ORM\Column(name="started_reading", type="datetime")
+	 * @ORM\Column(name="started_reading", type="datetime", nullable=true)
 	 */
 	protected $startedReading;
 	
 	/**
      * @var \DateTime
      *
-	 * @ORM\Column(name="finished_reading", type="datetime")
+	 * @ORM\Column(name="finished_reading", type="datetime", nullable=true)
 	 */	
 	protected $finishedReading;
 	
 	/**
      * @var float
      *
-	 * @ORM\Column(name="rating", type="float")
+	 * @ORM\Column(name="rating", type="float", nullable=true)
 	 */
 	protected $rating;
 	
@@ -133,7 +134,7 @@ class Book
 	    $this->tags     = new ArrayCollection();
 	    $this->created  = $this->updated = new DateTime();
 	    $this->rating   = 0.0;
-        $this->isRead   = 0;
+        $this->isRead   = false;
 	}
 
     /**
@@ -197,13 +198,24 @@ class Book
      * @param Author $author
      * @return Book
      */
-    public function addAuthor(Author $author)
+    public function addAuthor22(Author $author)
     {
         if (!$this->authors->contains($author)) {
             $this->authors->add($author);
             $author->addBook($this);
         }
         
+        return $this;
+    }
+
+    /**
+     * @param $authors
+     * @return $this
+     */
+    public function setAuthors($authors)
+    {
+        $this->authors = $authors;
+
         return $this;
     }
 
@@ -225,7 +237,7 @@ class Book
      * @param Author $author
      * @return Book
      */
-    public function removeAuthor(Author $author)
+    public function removeAuthor22(Author $author)
     {
         if ($this->authors->contains($author)) {
             $this->authors->removeElement($author);
@@ -242,7 +254,25 @@ class Book
     {
         return $this->authors;
     }
-    
+
+    /**
+     * @return array
+     */
+    public function getAuthorsAsArray()
+    {
+        $authors = array();
+
+        foreach($this->getAuthors() as $author)
+        {
+            $authors[] = array(
+                'id'    => $author->getId(),
+                'name'  => $author->getFullName(),
+            );
+        }
+
+        return $authors;
+    }
+
     /**
      * @return array
      */
@@ -339,16 +369,15 @@ class Book
     }
 
     /**
-     * @param Tag $tag
+     * @param array|ArrayCollection $tags
+     *
      * @return Book
      */
-    public function addTag(Tag $tag)
+    public function setTags($tags)
     {
-        if (!$this->tags->contains($tag)) {
-            $this->tags->add($tag);
-            $tag->addBook($this);
-        }
-        
+       // print_r($tags);die;
+        $this->tags = $tags;
+
         return $this;
     }
 
@@ -357,10 +386,10 @@ class Book
      */
     public function removeTags()
     {
-        foreach($this->tags as $tag)
+        foreach($this->getTags() as $tag)
         {
             $tag->removeBook($this);
-            $this->tags->removeElement($tag);
+            $this->getTags()->removeElement($tag);
         }
 
         return $this;
@@ -370,11 +399,11 @@ class Book
      * @param Tag $tag
      * @return Book
      */
-    public function removeTag(Tag $tag)
+    public function removeTag2(Tag $tag)
     {
-        if ($this->tags->contains($genre)) {
-            $this->tags->removeElement($tag);
-            $genre->removeBook($this);
+        if ($this->getTags()->contains($tag)) {
+            $this->getTags()->removeElement($tag);
+            $tag->removeBook($this);
         }
         
         return $this;
@@ -385,7 +414,27 @@ class Book
      */
     public function getTags()
     {
+        $this->tags = $this->tags ?: new ArrayCollection();
+
         return $this->tags;
+    }
+
+    /**
+     * @return array
+     */
+    public function getTagsAsArray()
+    {
+        $tags = array();
+
+        foreach($this->getTags() as $tag)
+        {
+            $tags[] = array(
+                'id'    => $tag->getId(),
+                'name'  => $tag->getName(),
+            );
+        }
+
+        return $tags;
     }
 
     /**
@@ -442,12 +491,12 @@ class Book
 	}
 
     /**
-     * @param boolean $isRead
+     * @param boolean $read
      * @return Book
      */
-    public function setIsRead($isRead)
+    public function setIsRead($read)
 	{
-		$this->isRead = $isRead;
+		$this->isRead = $read;
 
         return $this;
 	}
@@ -455,19 +504,22 @@ class Book
     /**
      * @return boolean
      */
-    public function isRead()
+    public function getIsRead()
 	{
 		return $this->isRead;
 	}
-	
-	/**
-	 * @ORM\PreUpdate
-	 */
-	public function updated()
-	{
-	    $this->updated = new \DateTime();
-	}
-	
+
+    /**
+     * @param $created
+     * @return $this
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
 	/**
 	 * @return \DateTime
 	 */
@@ -475,7 +527,18 @@ class Book
 	{
 	    return $this->created;
 	}
-	
+
+    /**
+     * @param $updated
+     * @return $this
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+
+        return $this;
+    }
+
 	/**
 	 * @return \DateTime
 	 */
@@ -490,14 +553,7 @@ class Book
      */
     public function setStartedReading($startedReading)
 	{
-	    if(isset($startedReading) )
-	    {
-		    $this->startedReading = new \DateTime($startedReading);
-	    }
-	    else
-	    {
-	        $this->startedReading = null;
-	    }
+	    $this->startedReading = $startedReading;
 
         return $this;
 	}
@@ -516,14 +572,7 @@ class Book
      */
     public function setFinishedReading($finishedReading)
 	{
-	    if(isset($finishedReading) )
-	    {
-		    $this->finishedReading = new \DateTime($finishedReading);
-	    }
-	    else
-	    {
-	        $this->finishedReading = null;
-	    }
+	    $this->finishedReading = $finishedReading;
 
         return $this;
 	}
@@ -554,4 +603,46 @@ class Book
 	{
 	    return $this->rating;
 	}
+
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        $startedReading     = $this->getStartedReading();
+        $finishedReading    = $this->getFinishedReading();
+
+        return array(
+            'id'                => $this->getId(),
+            'title'             => $this->getTitle(),
+            'language'          => $this->getLanguage(),
+            'isbn'              => $this->getIsbn(),
+            'created'           => $this->getCreated()->format("d.m.Y"),
+            'updated'           => $this->getUpdated()->format("d.m.Y"),
+            'startedReading'    => isset($startedReading) ? $startedReading->format("d.m.Y") : null,
+            'finishedReading'   => isset($finishedReading) ? $finishedReading->format("d.m.Y") : null,
+            'pageCount'         => $this->getPageCount(),
+            'isRead'            => $this->getIsRead(),
+            'tags'              => $this->getTagsAsArray(),
+            'authors'           => $this->getAuthorsAsArray()
+        );
+    }
+
+    /**
+     * Returns the unique taggable resource type
+     *
+     * @return string
+     */
+    function getTaggableType()
+    {
+        return 'book';
+    }
+
+    /**
+     * @return int
+     */
+    function getTaggableId()
+    {
+        return $this->getId();
+    }
 }

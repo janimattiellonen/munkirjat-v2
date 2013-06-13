@@ -1,16 +1,54 @@
 services:
+    munkirjat_book.repository.author:
+        class: MunKirjat\BookBundle\Repository\AuthorRepository
+        arguments: [MunKirjat\BookBundle\Entity\Author]
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+
+    munkirjat_book.repository.genre:
+        class: MunKirjat\BookBundle\Repository\GenreRepository
+        arguments: [MunKirjat\BookBundle\Entity\Genre]
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+
     munkirjat_book.repository.book:
         class: MunKirjat\BookBundle\Repository\BookRepository
         arguments: [MunKirjat\BookBundle\Entity\Book]
         factory_service: doctrine.orm.entity_manager
         factory_method: getRepository
 
+    munkirjat_book.service.author:
+        class:     MunKirjat\BookBundle\Service\AuthorService
+        arguments: ["@doctrine.orm.entity_manager", "@munkirjat_book.repository.author", "@form.factory"]
+
+    munkirjat_book.service.genre:
+        class:     MunKirjat\BookBundle\Service\GenreService
+        arguments: ["@doctrine.orm.entity_manager", "@munkirjat_book.repository.genre", "@form.factory"]
+
     munkirjat_book.service.book:
         class:     MunKirjat\BookBundle\Service\BookService
-        arguments: ["@doctrine.orm.entity_manager", "@munkirjat_book.repository.book"]
+        arguments: ["@doctrine.orm.entity_manager", "@munkirjat_book.repository.book", "@form.factory", "@service_container"]
+
+    munkirjat_book.service.statistics:
+        class:     MunKirjat\BookBundle\Service\StatisticsService
+        arguments: ["@doctrine.orm.entity_manager", "@munkirjat_book.service.book", "@munkirjat_book.service.author"]
+
+    munkirjat_book.service.search:
+        class:     MunKirjat\BookBundle\Service\SearchService
+        arguments: ["@munkirjat_book.service.author", "@munkirjat_book.service.book"]
 
     tags.twig.extension:
         class: MunKirjat\BookBundle\Twig\Extensions\Book
         arguments: ["@twig", "@munkirjat_book.service.book"]
         tags:
             - {name: twig.extension}
+
+    munkirjat.transformer.author:
+        class: MunKirjat\BookBundle\Form\DataTransformer\AuthorTransformer
+        arguments: ["@munkirjat_book.service.author"]
+
+    munkirjat.type.author:
+        class: MunKirjat\BookBundle\Form\Type\AuthorItemType
+        arguments: ["@munkirjat.transformer.author"]
+        tags:
+            - { name: form.type, alias: author }

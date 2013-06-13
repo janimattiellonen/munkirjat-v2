@@ -1,0 +1,101 @@
+<script type="text/html" id="tpl-new-book">
+
+    <article>
+        <div id="new-book-box">
+            <h1><%= Translator.get(title) %></h1>
+
+            <form>
+                <input type="hidden" name="book[_token]" value="<%= csrf_token %>" />
+
+                <div class="section">
+                    <label for="title"><%= Translator.get('book.title') %>:</label>
+                    <input type="text" id="title" name="book[title]" value="<%= title %>" required="required" />
+                </div>
+
+                <div class="section">
+                    <label><%= Translator.get('book.language') %>:</label>
+                    <div id="languages">
+                        <input <% if(language == "fi") print('checked="checked"')%> type="radio" name="book[language]" id="language1" value="fi" /><label for="language1">Finnish</label>
+                        <input <% if(language == "se") print('checked="checked"')%> type="radio" name="book[language]" id="language2" value="se" /><label for="language2">Swedish</label>
+                        <input <% if(language == "en") print('checked="checked"')%> type="radio" name="book[language]" id="language3" value="en" /><label for="language3">English</label>
+                    </div>
+
+                    <input type="hidden" id="language" name="book[language]" value="<%= language %>" />
+                </div>
+
+                <div class="section">
+                    <label><%= Translator.get('book.authors') %>:</label>
+
+                    <div class="author_item_selector autocomplete-box" data-elementName="book[authors]">
+
+                        <div class="item_input">
+                            <input class="item_field" type="text" />
+                        </div>
+
+                        <div class="items">
+                            <ul id="author-list">
+                                <%
+                                var i = 0;
+                                _.each(authors, function(author) { %>
+                                <li id="book[authors]_<%=i%>" data-id="<%= author.id %>"><%= author.name %><a class="remove ui-icon ui-icon-close" href="#"></a></li>
+                                <input type="hidden" id="book[authors]_<%= i %>" value="<%= author.name %>" class="tag-id" data-id="<%= author.id %>" name="book[authors][]" />
+                                <%
+                                    i = i + 1;
+                                });%>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <label class="genre"><%= Translator.get('book.genres') %>:</label>
+                    <div class="tag_item_selector" data-elementName="book[tags]">
+                        <div class="item_input">
+                            <button name="add-item" class="add-item-btn">Add tag</button>
+                            <input class="item_field" type="text" />
+                        </div>
+                        <div class="items">
+                            <ul id="book_tags">
+                                <%
+                                var i = 0;
+                                _.each(tags, function(tag) { %>
+                                    <li data-id="<%= i %>"><%= tag.name %><a href="#" class="ui-icon ui-icon-close remove"></a></li>
+                                    <input type="hidden" id="book[tags]_<%= i %>" value="<%= tag.name %>" class="tag-id" data-id="<%= i %>" name="book[tags][]" />
+                                <%
+                                    i = i + 1;
+                                }); %>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <label for="pageCount"><%= Translator.get('book.pageCount') %>:</label>
+                    <input type="text" id="pageCount" name="book[pageCount]" value="<%= pageCount %>" />
+                </div>
+
+                <div class="section">
+                    <label for="isRead"><%= Translator.get('book.isRead') %>:</label>
+                    <input type="checkbox" id="isRead" name="book[isRead]" <% if(isRead) print('checked="checked"')%> value="1" />
+                </div>
+
+                <div class="section">
+                    <label for="startedReading"><%= Translator.get('book.startedReading') %>:</label>
+                    <input class="datepicker" type="text" id="startedReading" name="book[startedReading]" value="<%= startedReading %>" />
+                </div>
+
+                <div class="section">
+                    <label for="finishedReading"><%= Translator.get('book.finishedReading') %>:</label>
+                    <input class="datepicker" type="text" id="finishedReading" name="book[finishedReading]" value="<%= finishedReading %>" />
+                </div>
+
+                <div class="section">
+                    <label for="isbn"><%= Translator.get('book.isbn') %>:</label>
+                    <input type="text" id="isbn" name="book[isbn]" value="<%= isbn %>"  />
+                </div>
+
+                <input type="submit" id="_submit" name="_submit" value="<%= Translator.get('form.save') %>" />
+            </form>
+        </div>
+    </article>
+</script>

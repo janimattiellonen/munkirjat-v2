@@ -30,6 +30,17 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new JmeSf2\GenericUserBundle\JmeSf2GenericUserBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+
+            new Bazinga\ExposeTranslationBundle\BazingaExposeTranslationBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+
+            new FOS\RestBundle\FOSRestBundle(),
+            new Xi\Bundle\AjaxBundle\XiAjaxBundle(),
+            new Xi\Bundle\SelectorBundle\XiSelectorBundle(),
+            new Xi\Bundle\TagBundle\XiTagBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle($this),
+            new FPN\TagBundle\FPNTagBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

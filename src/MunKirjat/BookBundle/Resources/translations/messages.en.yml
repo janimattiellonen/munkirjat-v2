@@ -1,0 +1,34 @@
+author:
+    firstName:            "Firstname"
+    firstName-required:   "Firstname is required"
+    lastName:             "Lastname"
+    lastName-required:    "Lastname is required"
+    addNew:               "Add new author"
+    edit:                 "Update author"
+
+authors:                  "Authors"
+
+genre:
+    addNew:               "Add new genre"
+    edit:                 "Edit genre"
+    name:                 "Name"
+    name-required:        "Name is required"
+
+book:
+    title:                "Title"
+    authors:              "Authors"
+    language:             "Language"
+    genres:               "Genres"
+    pageCount:            "Page count"
+    isRead:               "Book is read"
+    startedReading:       "Started reading"
+    finishedReading:      "Finished reading"
+    isbn:                 "Isbn"
+    edit:                 "Edit book"
+    add:                  "Add book"
+
+
+book.author.required:     "One or more authors required"
+book.title.required:      "Title is required"
+book.language.required:   "Language is required"
+book.pageCount.required:  "Page count is required"

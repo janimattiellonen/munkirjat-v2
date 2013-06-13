@@ -1,8 +1,35 @@
 menu:
-    frontpage:      "Frontpage"
-    about:          "About"
-    list-authors:   "List authors"
-    list-genres:    "List genres"
-    statistics:     "Statistics"
-    login:          "Login"
-    logout:         "Logout"
+    frontpage:        "Frontpage"
+    about:            "About"
+    add-new-book:     "Add new book"
+    add-new-author:   "Add new author"
+    add-new-genre:    "Add new genre"
+    list-authors:     "List authors"
+    list-genres:      "List genres"
+    statistics:       "Statistics"
+    login:            "Login"
+    logout:           "Logout"
+
+stats:
+    statistics:           "Statistics"
+    books-in-bookshelf:   "Books in bookshelf"
+    authors-in-bookshelf: "Authors in bookshelf"
+    unread-books:         "Unread books in bookshelf"
+    pages-read:           "Pages read so far"
+    unrated-books:        "Unrated books"
+    slowest-read-time:    "Slowest read time"
+    fastest-read-time:    "Fastest read time"
+    average-read-time:    "Average read time"
+    estimated-time:       "Estimated time to read all unread books"
+    average-rating:       "Average rating"
+    latest-read-book:     "Latest read book"
+    latest-added-book:    "Latest added book"
+
+bookshelf:
+    favourite-authors:    "Favourite authors"
+    recently-read:        "Recently read"
+    unread:               "Unread"
+
+form:
+    save:                 "Save"
+    search:               "Search"

@@ -11,3 +11,8 @@ services:
         scope: request
         tags:
             - {name: knp_menu.menu, alias: primary_menu }
+
+    ajax.listener:
+          class: MunKirjat\MainBundle\Event\AjaxAuthenticationListener
+          tags:
+            - { name: kernel.event_listener, event: kernel.exception, method: onCoreException, priority: 1000 }

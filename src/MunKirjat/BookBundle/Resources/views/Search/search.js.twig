@@ -1,0 +1,55 @@
+<script type="text/html" id="tpl-search">
+
+    <article>
+        <h1><%= Translator.get('search') %></h1>
+        <form>
+
+            <div>
+                <input type="text" id="searchvalue" name="search[searchvalue]" />
+            </div>
+
+            <input type="submit" id="_submit" name="_submit" value="<%= Translator.get('form.search') %>" />
+        </form>
+
+    </article>
+</script>
+
+<script type="text/html" id="tpl-search-results">
+
+    <article>
+
+        <div id="search-results">
+
+            <div id="results-books" class="column">
+                <h2><%= Translator.get('Books')%></h2>
+                <ul>
+                    <% if(books != null) _.each(books, function(book) { %>
+                    <li><a href="<%= Routing.getBaseUrl() + '/#book/' + book.id %>"><%= book.title %></a></li>
+                    <% }); %>
+                </ul>
+            </div>
+
+            <div id="results-authors" class="column">
+                <h2><%= Translator.get('Authors')%></h2>
+                <ul>
+                <% if(authors != null) _.each(authors, function(author) { %>
+                    <li><a href="<%= Routing.getBaseUrl() + '/#author/' + author.id %>"><%= author.value %></a></li>
+                <% }); %>
+                </ul>
+            </div>
+
+        </div>
+
+    </article>
+</script>
+
+<div id="search-box">
+
+
+</div>
+
+<div id="search-results-box">
+
+
+</div>
+

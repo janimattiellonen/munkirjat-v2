@@ -1,9 +1,9 @@
-{% extends "::login.html.twig" %}
+{% extends "::base.html.twig" %}
 
 {% block content %}
 
     <div id="login-box">
-        <form action="{{ path("fos_user_security_check") }}" method="post" novalidate>
+        <form class="ajax-form" action="{{ path("fos_user_security_check") }}" method="post" novalidate>
             <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
             <label for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>

@@ -26,7 +26,7 @@ class AppKernel extends Kernel
             new MunKirjat\BookBundle\MunKirjatBookBundle(),
             new MunKirjat\UserBundle\MunKirjatUserBundle(),
 
-            new BeSimple\I18nRoutingBundle\BeSimpleI18nRoutingBundle(),
+            //new BeSimple\I18nRoutingBundle\BeSimpleI18nRoutingBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new JmeSf2\GenericUserBundle\JmeSf2GenericUserBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),

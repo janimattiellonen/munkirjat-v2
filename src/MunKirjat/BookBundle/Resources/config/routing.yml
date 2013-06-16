@@ -3,7 +3,7 @@ munkirjat_book_test:
     defaults: { _controller: MunKirjatBookBundle:Default:index }
 
 munkirjat_book_view:
-    locales: {fi: "/kirja/{id}", en: "/book/{id}" }
+    pattern: "/book/{id}"
     defaults: { _controller: MunKirjatBookBundle:Book:view }
     requirements: { _method: get }
 

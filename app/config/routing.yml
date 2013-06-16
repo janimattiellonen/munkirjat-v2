@@ -1,18 +1,18 @@
 _munkirjat_main_bundle:
     resource: "@MunKirjatMainBundle/Resources/config/routing.yml"
-    type: be_simple_i18n
+    prefix:   /
 
 _munkirjat_user_bundle:
     resource: "@MunKirjatUserBundle/Resources/config/routing.yml"
-    type: be_simple_i18n
+    prefix:   /
 
 _jmesf2_generic_bundle:
     resource: "@JmeSf2GenericBundle/Resources/config/routing.yml"
-    type: be_simple_i18n
+    prefix:   /
 
 _munkirjat_book_bundle:
     resource: "@MunKirjatBookBundle/Resources/config/routing.yml"
-    type: be_simple_i18n
+    prefix:   /
 
 _bazinga_exposetranslation:
     resource: "@BazingaExposeTranslationBundle/Resources/config/routing/routing.yml"

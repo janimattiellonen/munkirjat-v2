@@ -3,7 +3,7 @@ jme_sf2_generic_default:
     defaults: { _controller: JmeSf2GenericBundle:Default:index }
 
 jme_sf2_generic_frontpage:
-    locales: {en: "/en", fi: "/fi"}
+    pattern: /
     defaults: { _controller: JmeSf2GenericBundle:Default:index }
 
 login_check:

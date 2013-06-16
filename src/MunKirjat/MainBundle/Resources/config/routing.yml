@@ -1,14 +1,13 @@
 mun_kirjat_main_frontpage:
-    pattern: /
     defaults: { _controller: MunKirjatMainBundle:Default:index }
+    pattern: "/"
 
 mun_kirjat_main_about:
-    pattern: /about
+    pattern: "/about"
     defaults: { _controller: MunKirjatMainBundle:Default:about }
 
 mun_kirjat_main_template:
-    pattern: /tpl
+    pattern: "/tpl"
     defaults: { _controller: MunKirjatMainBundle:Default:template }
-
 
 

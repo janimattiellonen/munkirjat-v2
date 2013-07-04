@@ -151,7 +151,7 @@ $ ->
                         self.setTitle 'book.edit'
                         # update url
                         self.options.dispatcher.trigger "url:change", "#book/" + self.model.id
-                        console.log self.model.isNew()
+
                         if(isNew)
                             self.options.collection.add self.model
                             self.options.dispatcher.trigger "book:add", self.model

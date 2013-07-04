@@ -1,0 +1,11 @@
+Table: book             DONE
+
+Table: author           DONE
+
+Table: book_author      DONE
+
+Table: genre (xi_tag)   DONE
+
+Table: book_genre (xi_tagging)
+
+Table: fos_user:

@@ -137,12 +137,14 @@ $(document).ready ->
     )
 
     $(document).ajaxError((event, xhr, settings) ->
-        console.log "event: " + JSON.stringify(event)
-        console.log "xhr: " + JSON.stringify(xhr)
-        console.log "settings: " + JSON.stringify(settings)
+        #console.log "event: " + JSON.stringify(event)
+        #console.log "xhr: " + JSON.stringify(xhr)
+        #console.log "settings: " + JSON.stringify(settings)
 
         if xhr.status == 403
 
             router.navigate "#/login",
                 trigger: true
+        else if xhr.status == 500
+            App.Notifier.error Translator.get("A system error occured and your request may not have been completed properly.")
     )

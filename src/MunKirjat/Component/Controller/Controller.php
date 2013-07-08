@@ -3,12 +3,21 @@ namespace MunKirjat\Component\Controller;
 
 use FOS\RestBundle\Controller\FOSRestController;
 
+use MunKirjat\BookBundle\Service\AuthorService;
+
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\Form;
 
 class Controller extends FOSRestController
 {
+    /**
+     * @return AuthorService
+     */
+    public function getAuthorService()
+    {
+        return $this->get('munkirjat_book.service.author');
+    }
     /**
      * @param array $data
      * @return \Symfony\Component\HttpFoundation\JsonResponse

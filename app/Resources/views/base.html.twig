@@ -39,7 +39,7 @@
     <body>
 
         <script type="text/template" id="tpl-favourite-author">
-            <li><%= firstName %> <%=lastName %> (<%= amount %>)</li>
+            <li><a href="<%= Routing.getBaseUrl() + '/#books/' + id %>"><%= firstName %> <%=lastName %> (<%= amount %>)</a></li>
         </script>
 
         <script type="text/template" id="tpl-generic">
@@ -86,9 +86,17 @@
 
         </section>
 
+        <section id="section-list-books" class="container">
+
+        </section>
+
         {% include 'MunKirjatBookBundle:Genre:list.js.twig' %}
 
         {% include 'MunKirjatBookBundle:Genre:item.js.twig' %}
+
+        {% include 'MunKirjatBookBundle:Book:list.js.twig' %}
+
+        {% include 'MunKirjatBookBundle:Book:item.js.twig' %}
 
         <section id="section-new-book" class="container">
             {% include 'MunKirjatBookBundle:Book:form.js.twig' %}
@@ -119,6 +127,8 @@
             '@MunKirjatMainBundle/Resources/coffee/view/GenreListItemView.coffee'
             '@MunKirjatMainBundle/Resources/coffee/view/GenreListView.coffee'
             '@MunKirjatMainBundle/Resources/coffee/view/BookView.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/view/BookListItemView.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/view/BookListView.coffee'
             '@MunKirjatMainBundle/Resources/coffee/view/SearchView.coffee'
             '@MunKirjatMainBundle/Resources/coffee/model/GenreModel.coffee'
             '@MunKirjatMainBundle/Resources/coffee/model/BookModel.coffee'

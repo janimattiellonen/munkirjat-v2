@@ -19,6 +19,7 @@ class SecurityService
             'about'         => '/#about',
             'list-authors'  => '/#authors',
             'list-genres'   => '/#genres',
+            'list-books'    => '/#books',
             'statistics'    => '',
             'search'        => '/#search',
         );

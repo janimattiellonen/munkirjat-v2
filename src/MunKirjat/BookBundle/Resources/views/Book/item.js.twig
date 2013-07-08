@@ -1,0 +1,4 @@
+<script type="text/template" id="tpl-list-books-item">
+
+    <a <%= isRead ? '' : 'class="is-read" ' %>href="<%= Routing.getBaseUrl() + '/#book/' + id%>"><%= title %></a>
+</script>

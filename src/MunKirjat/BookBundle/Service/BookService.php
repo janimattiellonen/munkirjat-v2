@@ -3,6 +3,7 @@ namespace MunKirjat\BookBundle\Service;
 
 use Doctrine\ORM\EntityManager;
 
+use MunKirjat\BookBundle\Entity\Author;
 use MunKirjat\BookBundle\Form\Type\BookType;
 use MunKirjat\BookBundle\Entity\Book;
 use MunKirjat\BookBundle\Repository\BookRepository;
@@ -21,12 +22,12 @@ class BookService extends AbstractTaggableService
     protected $em;
 
     /**
-     * @var \MunKirjat\BookBundle\Repository\BookRepository
+     * @var BookRepository
      */
     protected $bookRepository;
 
     /**
-     * @var \Symfony\Component\Form\FormFactory
+     * @var FormFactory
      */
     protected $formFactory;
 
@@ -50,7 +51,7 @@ class BookService extends AbstractTaggableService
 
     /**
      * @param int $id
-     * @return \MunKirjat\BookBundle\Entity\Book
+     * @return Book
      */
     public function getBook($id)
     {
@@ -59,6 +60,14 @@ class BookService extends AbstractTaggableService
         $this->getTagService()->getTagManager()->loadTagging($book);
 
         return $book;
+    }
+
+    /**
+     * @return array
+     */
+    public function getBooks()
+    {
+        return $this->bookRepository->findBooksBy();
     }
 
     /**
@@ -215,5 +224,15 @@ class BookService extends AbstractTaggableService
     public function getUnreadBooks($limit = 20)
     {
         return $this->bookRepository->getUnreadBooks($limit);
+    }
+
+    /**
+     * @param Author $author
+     *
+     * @return array
+     */
+    public function getBooksByAuthor(Author $author)
+    {
+        return $this->bookRepository->findBooksByAuthor(array($author->getId()));
     }
 }

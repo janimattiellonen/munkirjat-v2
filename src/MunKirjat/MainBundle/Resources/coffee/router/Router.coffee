@@ -5,6 +5,7 @@ App.Router = Backbone.Router.extend(
         "frontpage":        "frontpage"
         "about":            "about"
         "login":            "login"
+        "logout":            "logout"
         "author":           "author"
         "author/:id":       "getAuthor"
         "authors":          "listAuthors"
@@ -52,6 +53,9 @@ App.Router = Backbone.Router.extend(
         @preDispatch()
         @dispatcher.trigger "url:changed", 'primary-menu-login'
         @loginView.show()
+
+    logout: () ->
+        window.location.href = Routing.getBaseUrl() + "/logout"
 
     author: () ->
         @preDispatch()
@@ -102,6 +106,7 @@ App.Router = Backbone.Router.extend(
         @preDispatch()
         @dispatcher.trigger "url:changed", 'primary-menu-list-books'
         @bookListView.reset().show(authorId)
+
     search: () ->
         @preDispatch()
         @dispatcher.trigger "url:changed", 'primary-menu-search'

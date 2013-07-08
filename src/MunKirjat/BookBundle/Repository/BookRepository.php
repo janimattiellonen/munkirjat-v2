@@ -58,17 +58,18 @@ class BookRepository extends BaseRepository
         $qb = $this->getEntityManager()->createQueryBuilder();
 
         $qb->select('b')
-            ->addSelect('SIZE(a.books) as amount')
             ->from('MunKirjat\BookBundle\Entity\Book', 'b')
             ->join('b.authors', 'a');
 
         $i = 0;
+
         foreach((array)$authorIds as $authorId)
         {
             $qb->orWhere('a.id = :author' . $i)
                 ->setParameter('author' . $i++, $authorId);
         }
-        return $qb->getQuery()->getResult();
+
+        return $qb->getQuery()->getResult(AbstractQuery::HYDRATE_ARRAY);
     }
 
     /**
@@ -96,7 +97,6 @@ class BookRepository extends BaseRepository
         $qb = $this->getEntityManager()->createQueryBuilder();
 
         $qb->select('b')
-            ->addSelect('SIZE(a.books) as amount')
             ->from('MunKirjat\BookBundle\Entity\Book', 'b')
             ->leftJoin('b.authors', 'a');
 
@@ -132,24 +132,24 @@ class BookRepository extends BaseRepository
             {
                 if(count($parts) == 1)
                 {
-                    $qb->orWhere('a.firstname LIKE :firstname')
-                        ->setParameter('firstname', '%' . $parts[0] . '%')
-                        ->orWhere('a.lastname LIKE :lastname')
-                        ->setParameter('lastname', '%' . $parts[0] . '%');
+                    $qb->orWhere('a.firstName LIKE :firstName')
+                        ->setParameter('firstBame', '%' . $parts[0] . '%')
+                        ->orWhere('a.lastBame LIKE :lastName')
+                        ->setParameter('lastName', '%' . $parts[0] . '%');
                 }
                 else
                 {
-                    $qb->orWhere('a.firstname LIKE :firstname')
-                        ->setParameter('firstname', '%' . $parts[0] . '%')
-                        ->orWhere('a.lastname LIKE :lastname')
-                        ->setParameter('lastname', '%' . $parts[1] . '%');
+                    $qb->orWhere('a.firstName LIKE :firstName')
+                        ->setParameter('firstName', '%' . $parts[0] . '%')
+                        ->orWhere('a.lastName LIKE :lastName')
+                        ->setParameter('lastName', '%' . $parts[1] . '%');
                 }
             }
         }
 
-        $qb->orderBy('a.lastname, a.firstname, b.title');
+        $qb->orderBy('b.title');
 
-        return $qb->getQuery()->getResult();
+        return $qb->getQuery()->getResult(AbstractQuery::HYDRATE_ARRAY);
     }
 
     /**

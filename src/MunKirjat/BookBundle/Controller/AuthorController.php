@@ -63,12 +63,4 @@ class AuthorController extends Controller
             }
         );
     }
-
-    /**
-     * @return \MunKirjat\BookBundle\Service\AuthorService
-     */
-    public function getAuthorService()
-    {
-        return $this->get('munkirjat_book.service.author');
-    }
 }

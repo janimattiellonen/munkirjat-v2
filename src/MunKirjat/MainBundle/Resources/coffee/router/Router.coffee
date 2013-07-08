@@ -1,6 +1,7 @@
 
 App.Router = Backbone.Router.extend(
     routes:
+        "":                 "frontpage"
         "frontpage":        "frontpage"
         "about":            "about"
         "login":            "login"
@@ -12,6 +13,7 @@ App.Router = Backbone.Router.extend(
         "genres":           "listGenres"
         "book":             "book"
         "book/:id":         "getBook"
+        "books(/:authorId)":            "listBooks"
         "search":           "search"
 
     initialize: (options) ->
@@ -29,6 +31,7 @@ App.Router = Backbone.Router.extend(
         @genreView          = new App.GenreView({model: new App.GenreModel(), dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/genre/create'} )
         @genreListView      = new App.GenreListView({model: @genreCollection, dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/genres'} )
         @bookView           = new App.BookView({model: new App.BookModel(), collection: @bookCollection, dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/book/create'} )
+        @bookListView       = new App.BookListView({model: @bookCollection, dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/books'} )
         @searchView         = new App.SearchView({dispatcher: @dispatcher})
 
     preDispatch: () ->
@@ -90,12 +93,15 @@ App.Router = Backbone.Router.extend(
         @dispatcher.trigger "url:changed", 'primary-menu-new-book'
         @bookView.show()
 
-
     getBook: (id) ->
         @preDispatch()
         @dispatcher.trigger "url:changed", 'primary-menu-new-book'
         @bookView.show(id)
 
+    listBooks: (authorId) ->
+        @preDispatch()
+        @dispatcher.trigger "url:changed", 'primary-menu-list-books'
+        @bookListView.reset().show(authorId)
     search: () ->
         @preDispatch()
         @dispatcher.trigger "url:changed", 'primary-menu-search'

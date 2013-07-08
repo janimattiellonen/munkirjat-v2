@@ -49,4 +49,3 @@ security:
         - { path: ^/author,                     roles: IS_AUTHENTICATED_FULLY}
         - { path: ^/genre,                      roles: IS_AUTHENTICATED_FULLY}
         - { path: ^/book,                      roles: IS_AUTHENTICATED_FULLY}
-        - { path: ^/,                           roles: IS_AUTHENTICATED_FULLY}

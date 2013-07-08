@@ -72,7 +72,7 @@ class Author
      * @param string $lastName
      * @return Author
      */
-    public function setLastname($lastName)
+    public function setLastName($lastName)
 	{
 		$this->lastName = $lastName;
 

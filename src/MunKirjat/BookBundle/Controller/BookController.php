@@ -24,6 +24,20 @@ class BookController extends Controller
         return $this->process($this->getBookService()->getBook($id) );
     }
 
+    public function booksByAuthorAction($authorId)
+    {
+        $author = $this->getAuthorService()->getAuthor($authorId);
+
+        $books = $this->getBookService()->getBooksByAuthor($author);
+
+        return $this->getJsonResponse($books);
+    }
+
+    public function listAction()
+    {
+        return $this->getJsonResponse($this->getBookService()->getBooks());
+    }
+
     protected function process(Book $book = null)
     {
         $service    = $this->getBookService();

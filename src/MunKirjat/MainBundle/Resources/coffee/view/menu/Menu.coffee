@@ -5,8 +5,7 @@ $ ->
 
         initialize: (options) ->
             @$el            = options.el
-            #@router        = options.router
-            @dispatcher    = options.dispatcher
+            @dispatcher     = options.dispatcher
             @menuItems      = []
 
             _.bindAll this, 'deselectAllMenuItems'

@@ -1,24 +1,25 @@
 
 App.Router = Backbone.Router.extend(
     routes:
-        "":                 "frontpage"
-        "frontpage":        "frontpage"
-        "about":            "about"
-        "login":            "login"
-        "author":           "author"
-        "author/:id":       "getAuthor"
-        "authors":          "listAuthors"
-        "genre":            "genre"
-        "genre/:id":        "getGenre"
-        "genres":           "listGenres"
-        "book":             "book"
-        "book/:id":         "getBook"
-        "books(/:authorId)":            "listBooks"
-        "search":           "search"
+        "":                     "frontpage"
+        "frontpage":            "frontpage"
+        "frontpage/redirect":   "redirectToFrontpage"
+        "about":                "about"
+        "login":                "login"
+        "logout":               "logout"
+        "author":               "author"
+        "author/:id":           "getAuthor"
+        "authors":              "listAuthors"
+        "genre":                "genre"
+        "genre/:id":            "getGenre"
+        "genres":               "listGenres"
+        "book":                 "book"
+        "book/:id":             "getBook"
+        "books(/:authorId)":    "listBooks"
+        "search":               "search"
 
     initialize: (options) ->
         @dispatcher     = options.dispatcher
-        self            = @
 
         @authorCollection   = new App.AuthorCollection()
         @genreCollection    = new App.GenreCollection()
@@ -37,6 +38,9 @@ App.Router = Backbone.Router.extend(
     preDispatch: () ->
         @dispatcher.trigger "container:hide"
 
+    redirectToFrontpage: () ->
+        window.location.href = Routing.getBaseUrl() + "/"
+
     frontpage: () ->
         @preDispatch()
         @frontPageView.show()
@@ -45,13 +49,16 @@ App.Router = Backbone.Router.extend(
     about: () ->
         @preDispatch()
         @dispatcher.trigger "url:changed", 'primary-menu-about'
-
         @aboutView.show()
 
     login: () ->
         @preDispatch()
+
         @dispatcher.trigger "url:changed", 'primary-menu-login'
         @loginView.show()
+
+    logout: () ->
+        window.location.href = Routing.getBaseUrl() + "/logout"
 
     author: () ->
         @preDispatch()
@@ -67,10 +74,7 @@ App.Router = Backbone.Router.extend(
     listAuthors: () ->
         @preDispatch()
         @dispatcher.trigger "url:changed", 'primary-menu-list-authors'
-
         @authorListView.show()
-        #$('#section-list-authors article').html(@authorListView.render().el)
-        #$('#section-list-authors').show()
 
     genre: () ->
         @preDispatch()
@@ -102,9 +106,9 @@ App.Router = Backbone.Router.extend(
         @preDispatch()
         @dispatcher.trigger "url:changed", 'primary-menu-list-books'
         @bookListView.reset().show(authorId)
+
     search: () ->
         @preDispatch()
         @dispatcher.trigger "url:changed", 'primary-menu-search'
         @searchView.show()
-
 )

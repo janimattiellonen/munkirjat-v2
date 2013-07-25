@@ -22,6 +22,7 @@ $ ->
             $.ajax(
                 url: Routing.getBaseUrl() + '/new-token/new-author',
                 dataType: 'json'
+
                 success: (data) ->
                     self.csrf = data.csrf_token
 
@@ -34,7 +35,7 @@ $ ->
                             csrf_token: data.csrf_token
                             firstName:  self.model.get("firstName")
                             lastName:   self.model.get("lastName")
-                        )
+                    )
                     self.loaded = true
             )
 
@@ -63,13 +64,13 @@ $ ->
                         self.setTitle 'author.edit'
                         # update url
                         self.options.dispatcher.trigger "url:change", "#author/" + self.model.id
-                        console.log self.model.isNew()
+
                         if(isNew)
-                            console.log "RAI RSI: " + JSON.stringify(response)
                             self.options.collection.add self.model
                             self.options.dispatcher.trigger "author:add", self.model
 
                     App.Notifier.success "Author saved".t()
+            return false
 
         show: (id) ->
             @$el.show()

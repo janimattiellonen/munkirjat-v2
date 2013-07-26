@@ -131,7 +131,17 @@ class AuthorService
      */
     public function getAuthors()
     {
-        return $this->authorRepository->getAuthors();
+        $authors = array();
+        $result = $this->authorRepository->getAuthors();
+
+        foreach ($result as $row) {
+            $authors[] = array(
+                'author' => $row[0],
+                'amount' => $row['amount'],
+            );
+        }
+
+        return $authors;
     }
 
     /**

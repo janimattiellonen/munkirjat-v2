@@ -1,4 +1,4 @@
 <script type="text/template" id="tpl-list-authors-item">
 
-    <a href="<%= Routing.getBaseUrl() + '/#author/' + id%>"><%= name %></a>
+    <a href="<%= Routing.getBaseUrl() + '/#author/' + id%>"><%= name %></a> <% if(amount > 0) { %><a href="<%= Routing.getBaseUrl() + '/#books/' + id%>">(<%= amount %>)</a><% } else { print("(0)") } %>
 </script>

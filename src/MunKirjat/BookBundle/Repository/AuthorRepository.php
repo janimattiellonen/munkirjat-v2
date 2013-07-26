@@ -69,9 +69,12 @@ class AuthorRepository extends BaseRepository
     public function getAuthors()
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
-        $qb->select('a')
+
+        $qb->select('a, count(b.id) as amount')
             ->from('MunKirjat\BookBundle\Entity\Author', 'a')
-            ->orderBy('a.lastName');
+            ->leftJoin('a.books', 'b')
+            ->groupBy('a.id')
+            ->orderBy('amount', 'DESC');
 
         return $qb->getQuery()->getResult(AbstractQuery::HYDRATE_ARRAY);
     }

@@ -12,7 +12,6 @@ $ ->
             self = @
             @$ul = $('<ul></ul>')
             options.dispatcher.on "author:add", (author) ->
-                console.log "Adding"
                 self.$ul.append self.createListItemView(author)
 
         render: () ->
@@ -38,6 +37,5 @@ $ ->
             @$el.hide()
 
         createListItemView: (author) ->
-            console.log "what are we adding? " + JSON.stringify author
             new App.AuthorListItemView(model: author, dispatcher: @options.dispatcher).render().el
     )

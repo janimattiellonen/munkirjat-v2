@@ -69,6 +69,8 @@ class BookRepository extends BaseRepository
                 ->setParameter('author' . $i++, $authorId);
         }
 
+        $qb->orderBy('b.created', 'desc');
+
         return $qb->getQuery()->getResult(AbstractQuery::HYDRATE_ARRAY);
     }
 

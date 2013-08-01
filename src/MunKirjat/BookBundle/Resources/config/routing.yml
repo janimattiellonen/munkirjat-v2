@@ -2,6 +2,11 @@ munkirjat_book_test:
     pattern: "/test"
     defaults: { _controller: MunKirjatBookBundle:Default:index }
 
+munkirjat_book_genres:
+    pattern: "/book/genres"
+    defaults: { _controller: MunKirjatBookBundle:Book:genres, _format: 'json' }
+    requirements: { _method: get }
+
 munkirjat_book_view:
     pattern: "/book/{id}"
     defaults: { _controller: MunKirjatBookBundle:Book:view }
@@ -11,6 +16,7 @@ munkirjat_book_create:
     pattern: "/book"
     defaults: { _controller: MunKirjatBookBundle:Book:create, _format: 'json' }
     requirements: { _method: post }
+
 
 munkirjat_book_update:
     pattern: "/book/{id}"

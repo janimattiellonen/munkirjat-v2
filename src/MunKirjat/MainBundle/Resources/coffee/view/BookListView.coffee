@@ -9,10 +9,7 @@ $ ->
             options.dispatcher.on("container:hide", @hide)
 
             @template = _.template $('#tpl-list-books').html()
-            self = @
             @$ul = $('<ul></ul>')
-            #options.dispatcher.on "book:add", (book) ->
-            #    self.$ul.append self.createListItemView(book)
 
         render: (authorId) ->
             self = @

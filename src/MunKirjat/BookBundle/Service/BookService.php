@@ -237,4 +237,12 @@ class BookService extends AbstractTaggableService
     {
         return $this->bookRepository->findBooksByAuthor(array($author->getId()));
     }
+
+    /**
+     * @return array
+     */
+    public function getActiveGenres()
+    {
+        return $this->bookRepository->getActiveGenres();
+    }
 }

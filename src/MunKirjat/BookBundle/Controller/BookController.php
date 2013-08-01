@@ -40,6 +40,11 @@ class BookController extends Controller
         return $this->getJsonResponse($this->getBookService()->getBooks());
     }
 
+    public function genresAction()
+    {
+        return $this->getJsonResponse($this->getBookService()->getActiveGenres());
+    }
+
     protected function process(Book $book = null)
     {
         $service    = $this->getBookService();

@@ -45,14 +45,6 @@ $ ->
 
                     self.$el.find('article div').html container
 
-                    #_.each self.model.models, ((author) ->
-                    #    self.$ul.append self.createListItemView(author)
-                    #), this
-
-                    #self.$el.append($(self.template()))
-
-                    #self.$el.find('article div').html self.$ul
-
         show: () ->
             if !@loaded
                 @render()

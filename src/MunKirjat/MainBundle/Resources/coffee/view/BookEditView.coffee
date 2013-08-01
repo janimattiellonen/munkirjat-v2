@@ -1,8 +1,8 @@
 $ ->
     "use strict"
-    App.BookView = Backbone.View.extend(
+    App.BookEditView = Backbone.View.extend(
 
-        el:         '#section-view-book'
+        el:         '#section-new-book'
         loaded:     false
         csrf:       ""
         formErrorizer: null
@@ -14,7 +14,7 @@ $ ->
             options.dispatcher.on("container:hide", @hide)
 
             @formErrorizer = new App.FormErrorizer.Custom()
-            @template = _.template $('#tpl-view-book').html()
+            @template = _.template $('#tpl-new-book').html()
 
         render: () ->
             self = @
@@ -35,7 +35,6 @@ $ ->
                     ]
 
                     self.$el.html self.template(
-                            id:                 id
                             languages:          languages
                             title:              self.model.get("title")
                             language:           self.model.get("language")
@@ -105,6 +104,61 @@ $ ->
 
             $('#author-list').sortable()
 
+        reset: () ->
+            @model.clear()
+
+        save: () ->
+            @model.unset "created"
+            @model.unset "updated"
+            @model.set "isRead", if $('#isRead').is(':checked') then 1 else 0
+
+
+            authors = []
+            $('#author-list .tag-id').each( (index) ->
+                authors.push $(this).attr "data-id"
+            )
+
+            tags = []
+
+            $('#book_tags .tag-id').each( (index) ->
+                tags.push $(this).attr "value"
+            )
+
+            @model.set "book":
+                "title":                $('#title', @$el).val()
+                "language":             $('#language', @$el).val()
+                "pageCount":            $('#pageCount', @$el).val()
+                "isbn":                 $('#isbn', @$el).val()
+                "startedReading":       $('#startedReading', @$el).val()
+                "finishedReading":      $('#finishedReading', @$el).val()
+                "isRead":               if $('#isRead').is(':checked') then 1 else 0
+                "_token":               @csrf
+                "tags":                 tags
+                "authors":              authors
+
+            self = @
+
+            isNew = @model.isNew()
+
+            @model.save {},
+                success: (model, response) ->
+                    self.formErrorizer.clear($('#new-book-box') )
+                    self.formErrorizer.errorize($('#new-book-box'), response);
+
+                    if(response.success)
+
+                        self.model.id = response.success.id
+                        self.setTitle 'book.edit'
+                        # update url
+                        self.options.dispatcher.trigger "url:change", "#book/" + self.model.id
+
+                        if(isNew)
+                            self.options.collection.add self.model
+                            self.options.dispatcher.trigger "book:add", self.model
+
+                        App.Notifier.success "Book saved".t()
+
+            return false
         show: (id) ->
             @$el.show()
 

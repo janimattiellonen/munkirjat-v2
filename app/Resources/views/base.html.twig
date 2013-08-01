@@ -14,6 +14,14 @@
 
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
 
+        {% stylesheets 'js/twitter-bootstrap/css/bootstrap.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+
+        {% stylesheets 'css/glyphicons/css/glyphicons.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+
         {% stylesheets filter='yui_css' output='/css/generic.css'
             '@MunKirjatMainBundle/Resources/css/normalize/normalize.css'
             '@MunKirjatMainBundle/Resources/css/main.css'
@@ -32,6 +40,8 @@
         <script type="text/javascript">
             var url_tagSource       = '{{ url('xi_tag_search') }}';
             var url_tagAddSource    = '{{ url('xi_tag_add') }}';
+            var loggedIn            = {{ is_granted('ROLE_USER') ? 'true' : 'false' }};
+            window.loggedIn = loggedIn;
         </script>
 
     </head>
@@ -102,6 +112,10 @@
             {% include 'MunKirjatBookBundle:Book:form.js.twig' %}
         </section>
 
+        <section id="section-view-book" class="container">
+            {% include 'MunKirjatBookBundle:Book:view.js.twig' %}
+        </section>
+
         <script src="http://code.jquery.com/jquery-1.7.1.js"></script>
         <script src="http://code.jquery.com/ui/1.8.16/jquery-ui.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.5/numeral.min.js"></script>
@@ -127,6 +141,7 @@
             '@MunKirjatMainBundle/Resources/coffee/view/GenreListItemView.coffee'
             '@MunKirjatMainBundle/Resources/coffee/view/GenreListView.coffee'
             '@MunKirjatMainBundle/Resources/coffee/view/BookView.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/view/BookEditView.coffee'
             '@MunKirjatMainBundle/Resources/coffee/view/BookListItemView.coffee'
             '@MunKirjatMainBundle/Resources/coffee/view/BookListView.coffee'
             '@MunKirjatMainBundle/Resources/coffee/view/SearchView.coffee'
@@ -151,6 +166,7 @@
             '@MunKirjatMainBundle/Resources/coffee/view/menu/Menu.coffee'
             'bundles/fosjsrouting/js/router.js'
             'js/fos_js_routes.js'
+            '@MunKirjatMainBundle/Resources/coffee/Utils.coffee'
             '@MunKirjatMainBundle/Resources/coffee/main.coffee'
             '@MunKirjatMainBundle/Resources/coffee/Notifier.coffee'
             '@MunKirjatBookBundle/Resources/coffee/book.coffee'
@@ -190,6 +206,5 @@
         <div class="ajax-loader2">
 
         </div>
-
     </body>
 </html>

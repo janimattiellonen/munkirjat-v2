@@ -15,6 +15,9 @@ App.Translate =
 String::t = (placeholder, count) ->
     App.Translate.translate @toString(), placeholder, count
 
+String::rtrim = (token) ->
+    return @replace(new RegExp(token + "*$"),'')
+
 class App.FormErrorizer.Custom extends App.AbstractErrorizer
     constructor: (@errorizeClass = 'errorized', @messageClass = 'error', @errorGroupClass = 'error-group') ->
         @formErrorPosition = 'top'
@@ -118,6 +121,16 @@ class App.FormErrorizer.Custom extends App.AbstractErrorizer
             return inputId
 
         path + '[' + inputId + ']'
+
+
+class App.Language
+    @getLanguage: (languageCode) ->
+
+        switch languageCode
+            when "fi" then "Finnish"
+            when "se" then "Swedish"
+            when "en" then "English"
+
 
 
 $(document).ready ->

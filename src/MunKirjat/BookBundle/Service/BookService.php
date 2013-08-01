@@ -87,11 +87,13 @@ class BookService extends AbstractTaggableService
     {
         $book = $form->getData();
 
+        $this->em->getConnection()->beginTransaction();
         $this->em->persist($book);
         $this->em->flush();
 
         $this->getTagService()->getTagManager()->saveTagging($book);
         $this->em->flush();
+        $this->em->getConnection()->commit();
 
         return $book;
     }

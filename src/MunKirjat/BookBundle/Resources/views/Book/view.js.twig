@@ -1,0 +1,56 @@
+<script type="text/html" id="tpl-view-book">
+    <article>
+        <div id="view-book-box">
+            <h1 class="no-margin"><%= title %></h1>
+
+            <p>
+                by:
+                    <%
+                    var name = '';
+
+                    _.each(authors, function(author) {
+                        name = name + author.name + ', ';
+                    });
+
+                    print(name.rtrim(', ') );
+                    %>
+                </ul>
+            </p>
+
+            <p><span class="marker"><%= App.Language.getLanguage(language) %></span> <%= pageCount %> pages</p>
+
+            <div class="section">
+                <label class="genre"><%= Translator.get('book.genres') %>:</label>
+                <div class="tag_item_selector">
+                    <div class="items">
+                        <ul id="book_tags">
+                            <%
+                            _.each(tags, function(tag) { %>
+                                <li><%= tag.name %></li>
+                            <% }); %>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <label for="startedReading"><%= Translator.get('book.isRead') %>:</label>
+                <p><%= App.Utils.yesNo(isRead) %></p>
+            </div>
+
+            <div class="section">
+                <label for="startedReading"><%= Translator.get('book.startedReading') %>:</label>
+                <p><%= startedReading %></p>
+            </div>
+
+            <div class="section">
+                <label for="finishedReading"><%= Translator.get('book.finishedReading') %>:</label>
+                <p><%= finishedReading %></p>
+            </div>
+
+            <% if(loggedIn) { %>
+                <a href="<%= Routing.getBaseUrl() + '/#book/' + id%>/edit"><%= Translator.get('book.edit')%></a>
+            <% }%>
+        </div>
+    </article>
+</script>

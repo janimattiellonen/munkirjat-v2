@@ -19,13 +19,39 @@ $ ->
 
             @model.fetch
                 success: () ->
+                    amount = self.model.models.length
+                    columns = 2
+
+                    if amount % columns != 0
+                        blocksInFirstColumn = Math.floor(amount / columns) + 1
+                    else
+                        blocksInFirstColumn = amount / columns
+
+                    container = '<div class="book-column"><ul>'
+
+                    step = 0
                     _.each self.model.models, ((author) ->
-                        self.$ul.append self.createListItemView(author)
+
+                        container += "<li>" + $(self.createListItemView(author)).html() + "</li>"
+
+                        if(++step == blocksInFirstColumn)
+                            container += '</ul></div>'
+                            container += '<div class="author-column"><ul>'
                     ), this
 
-                    self.$el.append($(self.template()))
+                    container += '</ul></div>'
 
-                    self.$el.find('article div').html self.$ul
+                    self.$el.html($(self.template()))
+
+                    self.$el.find('article div').html container
+
+                    #_.each self.model.models, ((author) ->
+                    #    self.$ul.append self.createListItemView(author)
+                    #), this
+
+                    #self.$el.append($(self.template()))
+
+                    #self.$el.find('article div').html self.$ul
 
         show: () ->
             if !@loaded

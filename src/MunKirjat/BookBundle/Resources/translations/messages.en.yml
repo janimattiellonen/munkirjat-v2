@@ -1,3 +1,14 @@
+menu:
+    home:                 "Home"
+    about:                "About"
+    authors:              "Authors"
+    genres:               "Genres"
+    search:               "Search"
+    new-author:           "New author"
+    new-book:             "New book"
+    logout:               "logout"
+    login:                "login"
+
 author:
     firstName:            "Firstname"
     firstName-required:   "Firstname is required"
@@ -26,7 +37,6 @@ book:
     isbn:                 "Isbn"
     edit:                 "Edit book"
     add:                  "Add book"
-
 
 book.author.required:     "One or more authors required"
 book.title.required:      "Title is required"

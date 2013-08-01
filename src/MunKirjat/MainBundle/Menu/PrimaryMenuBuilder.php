@@ -55,7 +55,6 @@ class PrimaryMenuBuilder extends ContainerAware
         {
             $menu->addChild($this->translator->trans('menu.add-new-book'), array('route' => 'munkirjat_book_test', 'attributes' => array('id' => 'primary-menu-new-book') ) );
             $menu->addChild($this->translator->trans('menu.add-new-author'), array('route' => 'munkirjat_book_test', 'attributes' => array('id' => 'primary-menu-new-author') ) );
-            $menu->addChild($this->translator->trans('menu.add-new-genre'), array('route' => 'munkirjat_book_test', 'attributes' => array('id' => 'primary-menu-new-genre') ) );
             $menu->addChild($this->translator->trans('menu.logout'), array('route' => 'munkirjat_book_test', 'attributes' => array('id' => 'primary-menu-logout') ) );
         }
         else

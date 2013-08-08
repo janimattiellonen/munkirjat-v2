@@ -8,6 +8,8 @@ $ ->
         formErrorizer: null
         events:
             'click #_submit': 'save'
+            'click #startReading': 'startReading'
+            'click #finishReading': 'finishReading'
 
         initialize: (options) ->
             _.bindAll this, 'hide'
@@ -25,7 +27,6 @@ $ ->
                     self.csrf = data.csrf_token
 
                     id = self.model.get "id"
-
                     title = if id then 'book.edit' else 'book.addNew'
 
                     languages = [
@@ -98,20 +99,33 @@ $ ->
             $('.tag_item_selector').on 'click', '.add-item-btn', ->
 
                 tag = $.trim($('.tag_item_selector .item_field').val() )
-                console.log("VAL: " + tag)
                 tagComplete.saveItem tag
+
                 return false
 
             $('#author-list').sortable()
 
+            $('.datepicker').datepicker
+                showButtonPanel:    true
+                dateFormat:         "dd.mm.yy"
+                onSelect: (dataText, inst) ->
+                    if($(inst).attr("id") == 'finishedReading' && dataText != "" && $('#startedReading').val() != "")
+                        date1 = $('#startedReading').datepicker("getDate")
+                        date2 = $('#finishedReading').datepicker("getDate")
+
+                        if(date2 >= date1)
+                            self.markBookAsRead()
+
         reset: () ->
             @model.clear()
+
+        markBookAsRead: () ->
+            $('#isRead').attr("checked", "checked")
 
         save: () ->
             @model.unset "created"
             @model.unset "updated"
             @model.set "isRead", if $('#isRead').is(':checked') then 1 else 0
-
 
             authors = []
             $('#author-list .tag-id').each( (index) ->
@@ -159,6 +173,7 @@ $ ->
                         App.Notifier.success "Book saved".t()
 
             return false
+
         show: (id) ->
             @$el.show()
 
@@ -172,13 +187,18 @@ $ ->
                 @model.id = null
                 @render()
 
-
         hide: () ->
-
             @$el.hide()
 
         setTitle: (title) ->
             @$el.find('h1').html Translator.get title
 
-    )
+        startReading: () ->
+            $('#startedReading').datepicker("setDate", new Date())
+            return false;
 
+        finishReading: () ->
+            $('#finishedReading').datepicker("setDate", new Date())
+            @markBookAsRead()
+            return false;
+    )

@@ -6,8 +6,6 @@ $ ->
         loaded:     false
         csrf:       ""
         formErrorizer: null
-        events:
-            'click #_submit': 'save'
 
         initialize: (options) ->
             _.bindAll this, 'hide'
@@ -99,7 +97,6 @@ $ ->
             $('.tag_item_selector').on 'click', '.add-item-btn', ->
 
                 tag = $.trim($('.tag_item_selector .item_field').val() )
-                console.log("VAL: " + tag)
                 tagComplete.saveItem tag
                 return false
 

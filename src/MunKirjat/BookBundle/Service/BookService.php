@@ -12,6 +12,7 @@ use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+use Xi\Bundle\TagBundle\Entity\Tag;
 use Xi\Bundle\TagBundle\Service\AbstractTaggableService;
 
 class BookService extends AbstractTaggableService
@@ -236,6 +237,15 @@ class BookService extends AbstractTaggableService
     public function getBooksByAuthor(Author $author)
     {
         return $this->bookRepository->findBooksByAuthor(array($author->getId()));
+    }
+
+    /**
+     * @param Tag $genre
+     * @return array
+     */
+    public function getBooksByGenre(Tag $genre)
+    {
+        return $this->bookRepository->findBooksByGenre(array($genre->getId()));
     }
 
     /**

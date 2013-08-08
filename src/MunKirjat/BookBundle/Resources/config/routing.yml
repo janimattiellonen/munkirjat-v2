@@ -33,6 +33,11 @@ munkirjat_book_byAuthor:
     defaults: { _controller: MunKirjatBookBundle:Book:booksByAuthor, _format: 'json' }
     requirements: { _method: get }
 
+munkirjat_book_byGenre:
+    pattern: "/book/byGenre/{genreId}"
+    defaults: { _controller: MunKirjatBookBundle:Book:booksByGenre, _format: 'json' }
+    requirements: { _method: get }
+
 munkirjat_author_new:
     pattern: "/author/new"
     defaults: { _controller: MunKirjatBookBundle:Author:new }

@@ -6,6 +6,7 @@ use Doctrine\ORM\AbstractQuery;
 
 use MunKirjat\Component\Repository\BaseRepository;
 use MunKirjat\Component\Utils\Name;
+use Xi\Bundle\TagBundle\Entity\Tag;
 
 class BookRepository extends BaseRepository
 {
@@ -72,6 +73,20 @@ class BookRepository extends BaseRepository
         $qb->orderBy('b.created', 'desc');
 
         return $qb->getQuery()->getResult(AbstractQuery::HYDRATE_ARRAY);
+    }
+
+    /**
+     * @param Tag $genre
+     *
+     * @return array
+     */
+    public function findBooksByGenre(Tag $genre)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $qb->select('b')
+            ->from('MunKirjat\BookBundle\Entity\Book', 'b')
+            ->join('b.authors', 'a');
     }
 
     /**

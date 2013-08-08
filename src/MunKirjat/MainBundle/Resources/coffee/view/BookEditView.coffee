@@ -69,7 +69,6 @@ $ ->
             }
 
             authorComplete = new App.Selector(authorOptions)
-            authorComplete.bind()
 
             selected = []
             $('.tag_item_selector .item ul li').each (i) ->
@@ -94,10 +93,16 @@ $ ->
                 $('#language', self.el).val $(this).val()
 
             tagComplete = new App.Selector(tagOptions)
-            tagComplete.bind()
+
+            bound = false
+
+            $('.item_field').on "click", (e) ->
+                if(!bound)
+                    tagComplete.bind()
+                    authorComplete.bind()
+                    bound = true
 
             $('.tag_item_selector').on 'click', '.add-item-btn', ->
-
                 tag = $.trim($('.tag_item_selector .item_field').val() )
                 tagComplete.saveItem tag
 
@@ -110,10 +115,10 @@ $ ->
                 dateFormat:         "dd.mm.yy"
                 onSelect: (dataText, inst) ->
                     if($(inst).attr("id") == 'finishedReading' && dataText != "" && $('#startedReading').val() != "")
-                        date1 = $('#startedReading').datepicker("getDate")
-                        date2 = $('#finishedReading').datepicker("getDate")
+                        startedReading = $('#startedReading').datepicker("getDate")
+                        finishedReading = $('#finishedReading').datepicker("getDate")
 
-                        if(date2 >= date1)
+                        if(finishedReading >= startedReading)
                             self.markBookAsRead()
 
         reset: () ->

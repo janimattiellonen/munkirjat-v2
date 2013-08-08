@@ -47,60 +47,7 @@ $ ->
                             authors:            self.model.get("authors")
                         )
                     self.loaded = true
-
-                    self.initListeners()
             )
-
-        initListeners: () ->
-            $('#languages').buttonset()
-
-            selected = []
-
-            authorOptions = {
-                mainElement:            '.author_item_selector',
-                autoCompleteElement:    '.item_field',
-                containerElement:       '.items ul',
-                source:                 Routing.generate("munkirjat_author_search"),
-                selected:               selected,
-                canAddNew:              false,
-                minLength:              3
-            }
-
-            authorComplete = new App.Selector(authorOptions)
-            authorComplete.bind()
-
-            selected = []
-            $('.tag_item_selector .item ul li').each (i) ->
-                val = $(this).attr 'data-id'
-                val = parseInt val
-                selected.push val
-
-            tagOptions = {
-                mainElement:            '.tag_item_selector',
-                autoCompleteElement:    '.item_field',
-                containerElement:       '.items ul',
-                source:                 Routing.generate("xi_tag_search"),
-                saveUrl:                Routing.generate("xi_tag_add"),
-                selected:               selected,
-                canAddNew:              true,
-                minLength:              3
-            }
-
-            self = @
-
-            $(@el).on "click",  'input[type=radio]', (e) ->
-                $('#language', self.el).val $(this).val()
-
-            tagComplete = new App.Selector(tagOptions)
-            tagComplete.bind()
-
-            $('.tag_item_selector').on 'click', '.add-item-btn', ->
-
-                tag = $.trim($('.tag_item_selector .item_field').val() )
-                tagComplete.saveItem tag
-                return false
-
-            $('#author-list').sortable()
 
         show: (id) ->
             @$el.show()
@@ -115,13 +62,11 @@ $ ->
                 @model.id = null
                 @render()
 
-
         hide: () ->
 
             @$el.hide()
 
         setTitle: (title) ->
             @$el.find('h1').html Translator.get title
-
     )
 

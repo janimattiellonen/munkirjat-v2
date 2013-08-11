@@ -11,7 +11,7 @@ app/config/parameters.yml
 .DS_Store
 node_modules
 /web/css/*
-/web/css/!jquery-ui
-/web/css/!glyphicons
+!/web/css/jquery-ui
+!/web/css/glyphicons
 /web/js/*
-/web/js/!twitter-bootstrap
+!/web/js/twitter-bootstrap

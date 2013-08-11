@@ -9,7 +9,7 @@ $ ->
             @template = _.template $('#tpl-list-genres-item').html()
 
         render: () ->
-            $(@el).html @template(id: @model.get("id"), name: @model.get("name"))
+            $(@el).html @template(id: @model.get("id"), name: @model.get("name"), amount: @model.get("amount"))
             @
 
         show: (id) ->

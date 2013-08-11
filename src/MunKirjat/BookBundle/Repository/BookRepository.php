@@ -6,6 +6,7 @@ use Doctrine\ORM\AbstractQuery;
 
 use MunKirjat\Component\Repository\BaseRepository;
 use MunKirjat\Component\Utils\Name;
+use Xi\Bundle\TagBundle\Entity\Tag;
 
 class BookRepository extends BaseRepository
 {
@@ -72,6 +73,20 @@ class BookRepository extends BaseRepository
         $qb->orderBy('b.created', 'desc');
 
         return $qb->getQuery()->getResult(AbstractQuery::HYDRATE_ARRAY);
+    }
+
+    /**
+     * @param Tag $genre
+     *
+     * @return array
+     */
+    public function findBooksByGenre(Tag $genre)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $qb->select('b')
+            ->from('MunKirjat\BookBundle\Entity\Book', 'b')
+            ->join('b.authors', 'a');
     }
 
     /**
@@ -479,21 +494,25 @@ class BookRepository extends BaseRepository
     }
 
     /**
-     * @return double
+     * @return array
      */
-    public function getGenreDistribution()
+    public function getActiveGenres()
     {
         $conn = $this->getEntityManager()->getConnection();
-        $stmt = $conn->prepare("
-		SELECT
-          g.name,
-          count(g.id) AS amount
+        $stmt = $conn->prepare("SELECT
+            t.id,
+            t.name,
+            count(t.id) as amount
         FROM
-          genre AS g
-          JOIN book_genre AS bg ON g.id = bg.genre_id
-          JOIN book AS b ON b.id = bg.book_id
+            xi_tag AS t
+            LEFT JOIN xi_tagging AS xt
+            ON t.id = xt.tag_id
+        WHERE
+            xt.resource_type = 'book'
         GROUP BY
-          g.id");
+            t.name
+        ORDER BY
+            amount DESC");
 
         $stmt->execute();
 

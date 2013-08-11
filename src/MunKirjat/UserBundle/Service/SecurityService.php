@@ -8,7 +8,7 @@ use MunKirjat\UserBundle\Service\Exception\InvalidUserResourceException;
 class SecurityService
 {
     /**
-     * @param \FOS\UserBundle\Model\UserInterface|string $user
+     * @param UserInterface|string $user
      *
      * @return array
      */
@@ -22,6 +22,7 @@ class SecurityService
             'list-books'    => '/#books',
             'statistics'    => '',
             'search'        => '/#search',
+            'view-book'     => '/#book/:id'
         );
 
         $loggedOut = array(

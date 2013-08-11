@@ -15,6 +15,9 @@ App.Translate =
 String::t = (placeholder, count) ->
     App.Translate.translate @toString(), placeholder, count
 
+String::rtrim = (token) ->
+    return @replace(new RegExp(token + "*$"),'')
+
 class App.FormErrorizer.Custom extends App.AbstractErrorizer
     constructor: (@errorizeClass = 'errorized', @messageClass = 'error', @errorGroupClass = 'error-group') ->
         @formErrorPosition = 'top'
@@ -76,7 +79,6 @@ class App.FormErrorizer.Custom extends App.AbstractErrorizer
     getWrappedError: (message) ->
         @getErrorElement().text message
 
-
     # Get error element for display.
     getErrorElement: ->
         $('<div/>', {'class': "#{@errorizeClass} #{@messageClass}"})
@@ -119,6 +121,13 @@ class App.FormErrorizer.Custom extends App.AbstractErrorizer
 
         path + '[' + inputId + ']'
 
+class App.Language
+    @getLanguage: (languageCode) ->
+
+        switch languageCode
+            when "fi" then "Finnish"
+            when "se" then "Swedish"
+            when "en" then "English"
 
 $(document).ready ->
     localizedErrorizer = new App.FatalErrorizer.Default()
@@ -137,12 +146,7 @@ $(document).ready ->
     )
 
     $(document).ajaxError((event, xhr, settings) ->
-        #console.log "event: " + JSON.stringify(event)
-        #console.log "xhr: " + JSON.stringify(xhr)
-        #console.log "settings: " + JSON.stringify(settings)
-
         if xhr.status == 403
-
             router.navigate "#/login",
                 trigger: true
         else if xhr.status == 500

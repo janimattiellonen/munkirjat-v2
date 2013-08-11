@@ -12,6 +12,7 @@ use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+use Xi\Bundle\TagBundle\Entity\Tag;
 use Xi\Bundle\TagBundle\Service\AbstractTaggableService;
 
 class BookService extends AbstractTaggableService
@@ -87,11 +88,13 @@ class BookService extends AbstractTaggableService
     {
         $book = $form->getData();
 
+        $this->em->getConnection()->beginTransaction();
         $this->em->persist($book);
         $this->em->flush();
 
         $this->getTagService()->getTagManager()->saveTagging($book);
         $this->em->flush();
+        $this->em->getConnection()->commit();
 
         return $book;
     }
@@ -234,5 +237,22 @@ class BookService extends AbstractTaggableService
     public function getBooksByAuthor(Author $author)
     {
         return $this->bookRepository->findBooksByAuthor(array($author->getId()));
+    }
+
+    /**
+     * @param Tag $genre
+     * @return array
+     */
+    public function getBooksByGenre(Tag $genre)
+    {
+        return $this->bookRepository->findBooksByGenre(array($genre->getId()));
+    }
+
+    /**
+     * @return array
+     */
+    public function getActiveGenres()
+    {
+        return $this->bookRepository->getActiveGenres();
     }
 }

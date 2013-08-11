@@ -42,10 +42,8 @@ security:
         - { path: ^/author$,                      roles: IS_AUTHENTICATED_ANONYMOUSLY}
         - { path: ^/new-token/new-author$,                      roles: IS_AUTHENTICATED_ANONYMOUSLY}
         - { path: ^/genre$,                      roles: IS_AUTHENTICATED_ANONYMOUSLY}
-        - { path: ^/book$,                      roles: IS_AUTHENTICATED_ANONYMOUSLY}
         - { path: ^/search,                      roles: IS_AUTHENTICATED_ANONYMOUSLY}
 
         - { path: ^/logout,                     roles: IS_AUTHENTICATED_FULLY}
         - { path: ^/author,                     roles: IS_AUTHENTICATED_FULLY}
         - { path: ^/genre,                      roles: IS_AUTHENTICATED_FULLY}
-        - { path: ^/book,                      roles: IS_AUTHENTICATED_FULLY}

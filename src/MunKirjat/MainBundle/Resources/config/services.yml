@@ -16,3 +16,9 @@ services:
           class: MunKirjat\MainBundle\Event\AjaxAuthenticationListener
           tags:
             - { name: kernel.event_listener, event: kernel.exception, method: onCoreException, priority: 1000 }
+
+    munkirjar_main.type.custom_tag:
+        class: MunKirjat\MainBundle\Form\Type\TagType
+        arguments: ["@fpn_tag.tag_manager"]
+        tags:
+            - { name: form.type, alias: custom_tag }

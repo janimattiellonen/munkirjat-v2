@@ -7,7 +7,7 @@ $ ->
             "_token":     ""
             "name":   ""
 
-        urlRoot: Routing.generate('munkirjat_genre_create')
+        urlRoot: Routing.generate('munkirjat_book_genres')
 
         parse: (response, options) ->
             console.log "parsing: " + JSON.stringify(response)

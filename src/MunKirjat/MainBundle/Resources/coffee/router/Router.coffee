@@ -14,7 +14,8 @@ App.Router = Backbone.Router.extend(
         "genre/:id":            "getGenre"
         "genres":               "listGenres"
         "book":                 "book"
-        "book/:id":             "getBook"
+        "book/:id":             "viewBook"
+        "book/:id/edit":        "editBook"
         "books(/:authorId)":    "listBooks"
         "search":               "search"
 
@@ -31,7 +32,8 @@ App.Router = Backbone.Router.extend(
         @authorListView     = new App.AuthorListView({model: @authorCollection, dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/authors'} )
         @genreView          = new App.GenreView({model: new App.GenreModel(), dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/genre/create'} )
         @genreListView      = new App.GenreListView({model: @genreCollection, dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/genres'} )
-        @bookView           = new App.BookView({model: new App.BookModel(), collection: @bookCollection, dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/book/create'} )
+        @bookView           = new App.BookView({model: new App.BookModel(), collection: @bookCollection, dispatcher: @dispatcher} )
+        @bookEditView       = new App.BookEditView({model: new App.BookModel(), collection: @bookCollection, dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/book/create'} )
         @bookListView       = new App.BookListView({model: @bookCollection, dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/books'} )
         @searchView         = new App.SearchView({dispatcher: @dispatcher})
 
@@ -53,7 +55,6 @@ App.Router = Backbone.Router.extend(
 
     login: () ->
         @preDispatch()
-
         @dispatcher.trigger "url:changed", 'primary-menu-login'
         @loginView.show()
 
@@ -95,12 +96,17 @@ App.Router = Backbone.Router.extend(
     book: () ->
         @preDispatch()
         @dispatcher.trigger "url:changed", 'primary-menu-new-book'
-        @bookView.show()
+        @bookEditView.show()
 
-    getBook: (id) ->
+    viewBook: (id) ->
+        @preDispatch()
+        @dispatcher.trigger "url:changed", 'primary-menu-view-book'
+        @bookView.show(id)
+
+    editBook: (id) ->
         @preDispatch()
         @dispatcher.trigger "url:changed", 'primary-menu-new-book'
-        @bookView.show(id)
+        @bookEditView.show(id)
 
     listBooks: (authorId) ->
         @preDispatch()

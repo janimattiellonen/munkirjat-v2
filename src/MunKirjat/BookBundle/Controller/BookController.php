@@ -21,6 +21,8 @@ class BookController extends Controller
 
     public function updateAction($id)
     {
+        $this->assertHasAccess();
+
         return $this->process($this->getBookService()->getBook($id) );
     }
 
@@ -33,9 +35,22 @@ class BookController extends Controller
         return $this->getJsonResponse($books);
     }
 
+    public function booksByGenreAction($genreId)
+    {
+        $genre = null;
+        $books = $this->getBookService()->getBooksByGenre($genre);
+
+        return $this->getJsonResponse($books);
+    }
+
     public function listAction()
     {
         return $this->getJsonResponse($this->getBookService()->getBooks());
+    }
+
+    public function genresAction()
+    {
+        return $this->getJsonResponse($this->getBookService()->getActiveGenres());
     }
 
     protected function process(Book $book = null)
@@ -47,6 +62,7 @@ class BookController extends Controller
         return $this->processForm($form, function() use($form, $service, $self) {
 
                 $book = $form->getData();
+
                 $book->setIsRead($self->getRequest()->request->get('isRead') );
 
                 $book = $service->saveByForm($form);

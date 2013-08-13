@@ -100,6 +100,12 @@
 
         </section>
 
+        <section id="section-stats" class="container">
+
+        </section>
+
+        {% include 'MunKirjatBookBundle:Book:stats.js.twig' %}
+
         {% include 'MunKirjatBookBundle:Genre:list.js.twig' %}
 
         {% include 'MunKirjatBookBundle:Genre:item.js.twig' %}
@@ -118,7 +124,8 @@
 
         <script src="http://code.jquery.com/jquery-1.7.1.js"></script>
         <script src="http://code.jquery.com/ui/1.8.16/jquery-ui.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.5/numeral.min.js"></script>
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.5/numeral.min.js"></script>
         <script type="text/javascript" src="{{ asset('bundles/bazingaexposetranslation/js/translator.min.js') }}"></script>
         <script type="text/javascript" src="{{ url('bazinga_exposetranslation_js') }}"></script>
 
@@ -145,6 +152,7 @@
             '@MunKirjatMainBundle/Resources/coffee/view/BookListItemView.coffee'
             '@MunKirjatMainBundle/Resources/coffee/view/BookListView.coffee'
             '@MunKirjatMainBundle/Resources/coffee/view/SearchView.coffee'
+            '@MunKirjatMainBundle/Resources/coffee/view/StatsView.coffee'
             '@MunKirjatMainBundle/Resources/coffee/model/GenreModel.coffee'
             '@MunKirjatMainBundle/Resources/coffee/model/BookModel.coffee'
             '@MunKirjatMainBundle/Resources/coffee/model/menu/MenuItemModel.coffee'

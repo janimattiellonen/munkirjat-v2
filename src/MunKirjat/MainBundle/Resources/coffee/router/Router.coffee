@@ -18,6 +18,7 @@ App.Router = Backbone.Router.extend(
         "book/:id/edit":        "editBook"
         "books(/:authorId)":    "listBooks"
         "search":               "search"
+        "stats":                "stats"
 
     initialize: (options) ->
         @dispatcher     = options.dispatcher
@@ -36,6 +37,7 @@ App.Router = Backbone.Router.extend(
         @bookEditView       = new App.BookEditView({model: new App.BookModel(), collection: @bookCollection, dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/book/create'} )
         @bookListView       = new App.BookListView({model: @bookCollection, dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/books'} )
         @searchView         = new App.SearchView({dispatcher: @dispatcher})
+        @statsView          = new App.StatsView({dispatcher: @dispatcher})
 
     preDispatch: () ->
         @dispatcher.trigger "container:hide"
@@ -117,4 +119,9 @@ App.Router = Backbone.Router.extend(
         @preDispatch()
         @dispatcher.trigger "url:changed", 'primary-menu-search'
         @searchView.show()
+
+    stats: () ->
+        @preDispatch()
+        @dispatcher.trigger "url:changed", 'primary-menu-stats'
+        @statsView.show()
 )

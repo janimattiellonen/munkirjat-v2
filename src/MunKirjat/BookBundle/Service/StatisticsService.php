@@ -63,6 +63,32 @@ class StatisticsService
         return $stats;
     }
 
+    public function getCharts()
+    {
+        $stats = array(
+            'genres' => $this->bookService->getActiveGenres(),
+            'books_by_languages' => $this->bookService->getBookCountByLanguages(),
+        );
+
+        return $stats;
+
+        // hakee kirjojen lukumäärän kielen mukaan
+        // SELECT language_id, count(language_id) FROM `book` GROUP BY language_id
+
+        // hakee kirjojen lukumäärän genren mukaan
+
+        /*
+         SELECT
+            t.name,
+            count(xt.tag_id)
+        FROM
+            xi_tag AS t
+            LEFT JOIN xi_tagging AS xt ON t.id = tag_id
+        GROUP BY
+            xt.tag_id
+         */
+    }
+
     /**
      * @return double
      */

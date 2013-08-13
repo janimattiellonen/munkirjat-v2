@@ -255,4 +255,12 @@ class BookService extends AbstractTaggableService
     {
         return $this->bookRepository->getActiveGenres();
     }
+
+    /**
+     * @return array
+     */
+    public function getBookCountByLanguages()
+    {
+        return $this->bookRepository->getBookCountByLanguages();
+    }
 }

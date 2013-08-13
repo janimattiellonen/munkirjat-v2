@@ -14,6 +14,13 @@ class StatisticsController extends Controller
         return $this->getJsonResponse($stats);
     }
 
+    public function chartsAction()
+    {
+        $stats = $this->getStatisticsService()->getCharts();
+
+        return $this->getJsonResponse($stats);
+    }
+
     /**
      * @return \MunKirjat\BookBundle\Service\StatisticsService
      */

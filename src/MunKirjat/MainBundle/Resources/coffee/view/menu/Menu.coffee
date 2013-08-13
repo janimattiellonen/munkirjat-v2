@@ -24,6 +24,7 @@ $ ->
             authors     = new App.MenuItem(title: Translator.get("menu.authors"), dispatcher: @dispatcher, clz: "glyphicons-icon parents", id: "primary-menu-list-authors", url: Routing.getBaseUrl() + menuItems['list-authors'], parent: @$el)
             genres      = new App.MenuItem(title: Translator.get("menu.genres"), dispatcher: @dispatcher, clz: "glyphicons-icon tags", id: "primary-menu-list-genres", url: Routing.getBaseUrl() + menuItems['list-genres'], parent: @$el)
             search      = new App.MenuItem(title: Translator.get("menu.search"), dispatcher: @dispatcher, clz: "glyphicons-icon search", id: "primary-menu-search", url: Routing.getBaseUrl() + menuItems['search'], parent: @$el)
+            stats       = new App.MenuItem(title: Translator.get("menu.stats"), dispatcher: @dispatcher, clz: "glyphicons-icon charts", id: "primary-menu-stats", url: Routing.getBaseUrl() + menuItems['stats'], parent: @$el)
 
             @addMenuItem frontPage
             @addMenuItem about
@@ -31,6 +32,7 @@ $ ->
             @addMenuItem authors
             @addMenuItem genres
             @addMenuItem search
+            @addMenuItem stats
 
             if loggedIn
                 newAuthor   = new App.MenuItem(title: Translator.get("menu.new-author"), dispatcher: @dispatcher, clz: "glyphicons-icon user_add", id: "primary-menu-new-author", url: Routing.getBaseUrl() + menuItems['add-new-author'], parent: @$el)

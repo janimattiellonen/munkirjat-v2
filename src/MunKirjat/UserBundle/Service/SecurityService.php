@@ -22,6 +22,7 @@ class SecurityService
             'list-books'    => '/#books',
             'statistics'    => '',
             'search'        => '/#search',
+            'stats'         => '/#stats',
             'view-book'     => '/#book/:id'
         );
 

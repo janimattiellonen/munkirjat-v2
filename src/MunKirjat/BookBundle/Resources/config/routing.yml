@@ -93,6 +93,11 @@ munkirjat_statistics_statistics:
     defaults: { _controller: MunKirjatBookBundle:Statistics:statistics }
     requirements: { _method: get}
 
+munkirjat_statistics_charts:
+    pattern: "/charts"
+    defaults: { _controller: MunKirjatBookBundle:Statistics:charts }
+    requirements: { _method: get}
+
 munkirjat_search:
     pattern: "/search"
     defaults: { _controller: MunKirjatBookBundle:Search:search, _format: 'json' }

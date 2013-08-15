@@ -8,6 +8,7 @@ menu:
     new-book:             "New book"
     logout:               "logout"
     login:                "login"
+    stats:                "Statistics"
 
 author:
     firstName:            "Firstname"

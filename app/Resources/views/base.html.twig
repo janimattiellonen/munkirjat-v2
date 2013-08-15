@@ -44,6 +44,7 @@
             window.loggedIn = loggedIn;
         </script>
 
+
     </head>
 
     <body>
@@ -131,6 +132,7 @@
 
         <script type="text/javascript">
             var App = App || {};
+            google.load("visualization", "1", {packages:["corechart"] })
         </script>
 
         {% javascripts output="/js/app.js" filter="?yui_js"

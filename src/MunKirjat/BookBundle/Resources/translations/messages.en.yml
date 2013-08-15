@@ -43,3 +43,5 @@ book.author.required:     "One or more authors required"
 book.title.required:      "Title is required"
 book.language.required:   "Language is required"
 book.pageCount.required:  "Page count is required"
+
+stats:                    "Statistics"

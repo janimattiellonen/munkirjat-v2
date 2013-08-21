@@ -525,4 +525,28 @@ class BookRepository extends BaseRepository
 
         return $rows;
     }
+
+    /**
+     * @return array
+     */
+    public function getAverageBookPrice()
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $stmt = $conn->prepare("SELECT
+            COUNT(*) AS amount,
+            AVG(price) AS average_price
+        FROM
+            book
+        WHERE
+            price > 0;");
+
+        $stmt->execute();
+
+        if($row = $stmt->fetch() )
+        {
+            return $row;
+        }
+
+        return array('amount' => 0, 'average_price' => 0);
+    }
 }

@@ -58,6 +58,7 @@ class StatisticsService
             'favourite_authors'             => $this->authorService->getFavouriteAuthors(1, 10),
             'recently_read'                 => $this->bookService->getRecentlyReadBooks(10),
             'unread_books'                  => $this->bookService->getUnreadBooks(10),
+            'average_book_price'            => $this->bookService->getAverageBookPrice(),
         );
 
         return $stats;
@@ -72,21 +73,6 @@ class StatisticsService
 
         return $stats;
 
-        // hakee kirjojen lukumäärän kielen mukaan
-        // SELECT language_id, count(language_id) FROM `book` GROUP BY language_id
-
-        // hakee kirjojen lukumäärän genren mukaan
-
-        /*
-         SELECT
-            t.name,
-            count(xt.tag_id)
-        FROM
-            xi_tag AS t
-            LEFT JOIN xi_tagging AS xt ON t.id = tag_id
-        GROUP BY
-            xt.tag_id
-         */
     }
 
     /**

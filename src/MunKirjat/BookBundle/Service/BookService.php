@@ -263,4 +263,12 @@ class BookService extends AbstractTaggableService
     {
         return $this->bookRepository->getBookCountByLanguages();
     }
+
+    /**
+     * @return array
+     */
+    public function getAverageBookPrice()
+    {
+        return $this->bookRepository->getAverageBookPrice();
+    }
 }

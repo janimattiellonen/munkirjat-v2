@@ -59,6 +59,7 @@ class StatisticsService
             'recently_read'                 => $this->bookService->getRecentlyReadBooks(10),
             'unread_books'                  => $this->bookService->getUnreadBooks(10),
             'average_book_price'            => $this->bookService->getAverageBookPrice(),
+            'money_spent_on_books'          => $this->bookService->getMoneySpentOnBooks(),
         );
 
         return $stats;
@@ -72,7 +73,6 @@ class StatisticsService
         );
 
         return $stats;
-
     }
 
     /**

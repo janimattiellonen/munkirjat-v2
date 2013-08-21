@@ -538,7 +538,7 @@ class BookRepository extends BaseRepository
         FROM
             book
         WHERE
-            price > 0;");
+            price > 0");
 
         $stmt->execute();
 
@@ -548,5 +548,29 @@ class BookRepository extends BaseRepository
         }
 
         return array('amount' => 0, 'average_price' => 0);
+    }
+
+    /**
+     * @return array
+     */
+    public function getMoneySpentOnBooks()
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $stmt = $conn->prepare("SELECT
+            COUNT(*) AS amount,
+            SUM(price) AS book_sum
+        FROM
+            book
+        WHERE
+            price > 0");
+
+        $stmt->execute();
+
+        if($row = $stmt->fetch() )
+        {
+            return $row;
+        }
+
+        return array('amount' => 0, 'sum' => 0);
     }
 }

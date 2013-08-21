@@ -271,4 +271,9 @@ class BookService extends AbstractTaggableService
     {
         return $this->bookRepository->getAverageBookPrice();
     }
+
+    public function getMoneySpentOnBooks()
+    {
+        return $this->bookRepository->getMoneySpentOnBooks();
+    }
 }

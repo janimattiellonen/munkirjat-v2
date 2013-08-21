@@ -101,5 +101,8 @@
 
         <h3>{{ 'stats.average-book-price'|trans }}</h3>
         <p><%= numeral(parseFloat(average_book_price.average_price) ).format('00.00') %>&euro; (<%= average_book_price.amount %> books)</p>
+
+        <h3>{{ 'stats.money-spent-on-books'|trans }}</h3>
+        <p><%= numeral(parseFloat(money_spent_on_books.book_sum) ).format('00.00') %>&euro; (<%= money_spent_on_books.amount %> books)</p>
     </div>
 </article>

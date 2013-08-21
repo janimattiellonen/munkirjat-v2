@@ -26,6 +26,7 @@ stats:
     latest-read-book:         "Latest read book"
     latest-added-book:        "Latest added book"
     average-book-price:       "Average book price"
+    money-spent-on-books:     "Money spent on books"
 
 bookshelf:
     favourite-authors:    "Favourite authors"

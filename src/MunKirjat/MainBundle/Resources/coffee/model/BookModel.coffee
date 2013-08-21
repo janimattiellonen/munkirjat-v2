@@ -13,7 +13,8 @@ $ ->
             "updated":          ""
             "startedReading":   ""
             "finishedReading":  ""
-            "bookRead":             ""
+            "bookRead":         ""
+            "price":            ""
 
         urlRoot: Routing.generate('munkirjat_book_create')
     )

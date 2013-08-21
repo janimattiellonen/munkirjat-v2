@@ -45,6 +45,7 @@ $ ->
                             isRead:             self.model.get("isRead")
                             tags:               self.model.get("tags")
                             authors:            self.model.get("authors")
+                            price:              self.model.get("price")
                         )
                     self.loaded = true
             )

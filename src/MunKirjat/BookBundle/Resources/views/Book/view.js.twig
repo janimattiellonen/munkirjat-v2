@@ -17,7 +17,12 @@
                 </ul>
             </p>
 
-            <p><span class="marker"><%= App.Language.getLanguage(language) %></span> <%= pageCount %> pages</p>
+            <p><span class="marker"><%= App.Language.getLanguage(language) %></span>
+
+            <% if(price > 0) { %>
+                <%= price.replace(".", ",") %>&euro;
+            <% } %>
+            </p>
 
             <div class="section">
                 <label class="genre"><%= Translator.get('book.genres') %>:</label>

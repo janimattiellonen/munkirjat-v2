@@ -38,6 +38,7 @@ book:
     isbn:                 "Isbn"
     edit:                 "Edit book"
     add:                  "Add book"
+    price:                "Price"
 
 book.author.required:     "One or more authors required"
 book.title.required:      "Title is required"

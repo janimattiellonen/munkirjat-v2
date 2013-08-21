@@ -126,6 +126,15 @@ class Book implements Taggable
 	 * @ORM\Column(name="rating", type="float", nullable=true)
 	 */
 	protected $rating;
+
+    /**
+     * @var float
+     *
+     * @Assert\Min(limit = "0", message="Price must be {{ limit }} or more")
+     * @Assert\Max(limit = "9999", message="Price must be {{ limit }} or less")
+     * @ORM\Column(name="price", type="decimal", precision=8, scale=2, nullable=true)
+     */
+    protected $price;
 	
 	public function __construct()
 	{
@@ -624,7 +633,8 @@ class Book implements Taggable
             'pageCount'         => $this->getPageCount(),
             'isRead'            => $this->getIsRead(),
             'tags'              => $this->getTagsAsArray(),
-            'authors'           => $this->getAuthorsAsArray()
+            'authors'           => $this->getAuthorsAsArray(),
+            'price'             => $this->getPrice(),
         );
     }
 
@@ -633,7 +643,7 @@ class Book implements Taggable
      *
      * @return string
      */
-    function getTaggableType()
+    public function getTaggableType()
     {
         return 'book';
     }
@@ -641,8 +651,27 @@ class Book implements Taggable
     /**
      * @return int
      */
-    function getTaggableId()
+    public function getTaggableId()
     {
         return $this->getId();
+    }
+
+    /**
+     * @param float $price
+     *
+     * @return Book
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getPrice()
+    {
+        return $this->price;
     }
 }

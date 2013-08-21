@@ -75,6 +75,11 @@
                 </div>
 
                 <div class="section">
+                    <label for="price"><%= Translator.get('book.price') %>:</label>
+                    <input type="text" id="price" name="book[price]" value="<%= price %>" />
+                </div>
+
+                <div class="section">
                     <label for="isRead"><%= Translator.get('book.isRead') %>:</label>
                     <input type="checkbox" id="isRead" name="book[isRead]" <% if(isRead) print('checked="checked"')%> value="1" />
                 </div>

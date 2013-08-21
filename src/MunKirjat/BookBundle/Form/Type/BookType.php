@@ -28,6 +28,7 @@ class BookType extends AbstractType
                     'widget' => 'single_text',
                     'format' => 'dd.MM.yyyy' ) )
                 ->add('isbn', 'text')
+                ->add('price', 'text')
         ;
     }
 

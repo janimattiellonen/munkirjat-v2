@@ -123,5 +123,5 @@ App.Router = Backbone.Router.extend(
     stats: () ->
         @preDispatch()
         @dispatcher.trigger "url:changed", 'primary-menu-stats'
-        @statsView.show()
+        #@statsView.show()
 )

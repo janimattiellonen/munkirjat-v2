@@ -63,6 +63,8 @@ doctrine:
         charset:  UTF8
 
     orm:
+        metadata_cache_driver: apc
+        query_cache_driver: apc
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
         dql:

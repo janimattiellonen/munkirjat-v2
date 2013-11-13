@@ -2,9 +2,18 @@ mun_kirjat_main_frontpage:
     defaults: { _controller: MunKirjatMainBundle:Default:index }
     pattern: "/"
 
-mun_kirjat_main_about:
+mun_kirjat_main_about_OLD:
     pattern: "/about"
     defaults: { _controller: MunKirjatMainBundle:Default:about }
+
+mun_kirjat_main_about:
+    pattern: "/about"
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template: MunKirjatMainBundle:Default:about.html.twig
+        maxAge: 86400
+        sharedMaxAge: 86400
+        private: false
 
 mun_kirjat_main_template:
     pattern: "/tpl"

@@ -99,6 +99,80 @@
                     <input type="text" id="isbn" name="book[isbn]" value="<%= isbn %>"  />
                 </div>
 
+
+                <div>
+                    <label>Upload book cover</label>
+
+                    <input type="file" id="bookCover" name="file" accept="image/*" capture="camera"/>
+
+                </div>
+
+                <script type="text/javascript">
+
+                    $('#bookCover').on('change', function(e) {
+                        e.preventDefault();
+
+                        if (this.files.length === 0) {
+                            return;
+                        }
+
+                        var url = '/book/cover/upload';
+
+
+                        var file = this.files[0];
+                        var xhr = new XMLHttpRequest();
+
+                        xhr.file = file; // not necessary if you create scopes like this
+
+                        xhr.addEventListener('progress', function(e) {
+                        var done = e.position || e.loaded, total = e.totalSize || e.total;
+                        console.log('xhr progress: ' + (Math.floor(done/total*1000)/10) + '%');
+                        }, false);
+                        if ( xhr.upload ) {
+                        xhr.upload.onprogress = function(e) {
+                        var done = e.position || e.loaded, total = e.totalSize || e.total;
+                        console.log('xhr.upload progress: ' + done + ' / ' + total + ' = ' + (Math.floor(done/total*1000)/10) + '%');
+                        };
+                        }
+                        xhr.onreadystatechange = function(e) {
+                        if ( 4 == this.readyState ) {
+                        console.log(['xhr upload complete', e]);
+                        }
+                        };
+                        xhr.open('post', url, true);
+                        xhr.setRequestHeader("X-FILENAME", file.name);
+                        xhr.send(file);
+
+
+
+                    /*
+                        var imageFile = this.files[0];
+
+                        alert(imageFile.size);
+
+                        var fileReader = new FileReader();
+
+                        fileReader.onloadend = function() {
+                            var imageData = fileReader.result;
+
+                            $.ajax({
+                                url: '/book/cover/upload',
+                                type: 'post',
+                                data: imageData,
+                                contentType: 'multipart/form-data; boundary=' + '------multipartformboundary' + (new Date).getTime(),
+                                //contentType: false,
+                                success: function(result) {
+                                    alert(JSON.stringify(result));
+                                }
+                            });
+                        };
+
+                        fileReader.readAsBinaryString(imageFile);
+                    */
+                    });
+
+                </script>
+
                 <input type="submit" id="_submit" name="_submit" value="<%= Translator.get('form.save') %>" />
             </form>
         </div>

@@ -38,6 +38,12 @@ munkirjat_book_byGenre:
     defaults: { _controller: MunKirjatBookBundle:Book:booksByGenre, _format: 'json' }
     requirements: { _method: get }
 
+munkirjat_book_upload_cover:
+    pattern: "/book/cover/upload"
+    defaults: { _controller: MunKirjatBookBundle:Book:uploadCover, _format: 'json' }
+    requirements: { _method: post }
+
+
 munkirjat_author_new:
     pattern: "/author/new"
     defaults: { _controller: MunKirjatBookBundle:Author:new }

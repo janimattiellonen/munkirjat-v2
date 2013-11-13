@@ -53,6 +53,21 @@ class BookController extends Controller
         return $this->getJsonResponse($this->getBookService()->getActiveGenres());
     }
 
+    public function uploadCoverAction()
+    {
+       // $filename = basename($_FILES['file']['name']);
+
+        //die($filename);
+        $request = $this->getRequest();
+
+        $data = $request->getContent();
+
+        file_put_contents('/opt/local/nginx/wwwroot/munkirjat-v2/app/data/kuva.jpg', $data);
+
+        print_r($_SERVER);die;
+        //die($data);
+    }
+
     protected function process(Book $book = null)
     {
         $service    = $this->getBookService();

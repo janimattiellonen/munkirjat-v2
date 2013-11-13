@@ -43,7 +43,7 @@ class Book implements Taggable
 	
     /**
      * @Assert\NotBlank(message="book.author.required")
-     * @ORM\ManyToMany(targetEntity="Author", inversedBy="books")
+     * @ORM\ManyToMany(targetEntity="Author", inversedBy="books", fetch="EAGER")
      * @ORM\JoinTable(name="book_author",
      * 		joinColumns={@ORM\JoinColumn(name="book_id", referencedColumnName="id")},
      * 		inverseJoinColumns={@ORM\JoinColumn(name="author_id", referencedColumnName="id")}

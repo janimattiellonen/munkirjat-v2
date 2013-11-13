@@ -4,6 +4,8 @@ namespace MunKirjat\BookBundle\Controller;
 use MunKirjat\Component\Controller\Controller;
 use MunKirjat\BookBundle\Entity\Author;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
+
 class AuthorController extends Controller
 {
     public function newAction()
@@ -35,6 +37,10 @@ class AuthorController extends Controller
         return $this->process($service->getAuthor($id) );
     }
 
+    /**
+     * @Cache(maxage="3600", expires="tomorrow", public="true")
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
     public function listAction()
     {
         return $this->getJsonResponse($this->getAuthorService()->getAuthors() );

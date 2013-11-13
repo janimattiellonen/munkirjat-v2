@@ -3,8 +3,14 @@ namespace MunKirjat\BookBundle\Controller;
 
 use MunKirjat\Component\Controller\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
+
 class StatisticsController extends Controller
 {
+    /**
+     * @Cache(maxage="86400", expires="tomorrow", public="true")
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
     public function statisticsAction()
     {
         $stats = $this->getStatisticsService()->getBookStatistics();

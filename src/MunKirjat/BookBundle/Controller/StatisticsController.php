@@ -9,8 +9,6 @@ class StatisticsController extends Controller
     {
         $stats = $this->getStatisticsService()->getBookStatistics();
 
-        $this->getCurrentUser();
-
         return $this->getJsonResponse($stats);
     }
 

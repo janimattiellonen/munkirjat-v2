@@ -43,6 +43,7 @@ class StatisticsService
     public function getBookStatistics()
     {
         $stats = array(
+            'currently_reading'             => $this->bookService->getCurrentlyReadBook(),
             'latest_read_book'              => $this->bookService->getLatestReadBook(),
             'latest_added_book'             => $this->bookService->getLatestAddedBook(),
             'author_count'                  => $this->authorService->getAuthorCount(),

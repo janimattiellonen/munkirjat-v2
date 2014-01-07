@@ -133,6 +133,14 @@ class BookService extends AbstractTaggableService
     /**
      * @return \MunKirjat\BookBundle\Entity\Book|null
      */
+    public function getCurrentlyReadBook()
+    {
+        return $this->bookRepository->getCurrentlyReadBook();
+    }
+
+    /**
+     * @return \MunKirjat\BookBundle\Entity\Book|null
+     */
     public function getLatestReadBook()
     {
         return $this->bookRepository->getLatestReadBook();

@@ -27,7 +27,9 @@ stats:
     latest-added-book:        "Latest added book"
     average-book-price:       "Average book price"
     money-spent-on-books:     "Money spent on books"
-
+    currently-reading:        "Currently reading"
+    nothing-at-the-moment:    "Nothing at the moment"
+    days-read:                "Days read"
 bookshelf:
     favourite-authors:    "Favourite authors"
     recently-read:        "Recently read"

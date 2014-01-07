@@ -188,6 +188,24 @@ class BookRepository extends BaseRepository
     /**
      * @return \MunKirjat\BookBundle\Entity\Book|null
      */
+    public function getCurrentlyReadBook()
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $qb->select('b')
+            ->from('MunKirjat\BookBundle\Entity\Book', 'b')
+            ->where('b.isRead = 0')
+            ->andWhere('b.startedReading IS NOT NULL')
+            ->andWhere('b.finishedReading IS NULL')
+            ->orderBy('b.finishedReading', 'DESC')
+            ->setMaxResults(1);
+
+        return $this->getSingleResult($qb, AbstractQuery::HYDRATE_ARRAY);
+    }
+
+    /**
+     * @return \MunKirjat\BookBundle\Entity\Book|null
+     */
     public function getLatestReadBook()
     {
         $qb = $this->getEntityManager()->createQueryBuilder();

@@ -26,7 +26,7 @@ $ ->
                     else
                         blocksInFirstColumn = amount / columns
 
-                    container = '<div class="book-column">UUGA<ul>'
+                    container = '<div class="book-column"><ul>'
 
                     step = 0
                     _.each self.model.models, ((book) ->

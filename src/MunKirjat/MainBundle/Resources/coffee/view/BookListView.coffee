@@ -30,9 +30,6 @@ $ ->
 
                     step = 0
                     _.each self.model.models, ((book) ->
-
-                        console.log(book.get("title"))
-
                         container += "<li>" + $(self.createListItemView(book)).html() + "</li>"
 
                         if(++step == blocksInFirstColumn)

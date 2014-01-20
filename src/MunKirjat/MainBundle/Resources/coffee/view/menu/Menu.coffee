@@ -17,14 +17,15 @@ $ ->
         # convenience method for bootstrapping the menu right away
         buildMenu: (loggedIn, menuItems) ->
 
-            frontPage   = new App.MenuItem(title: Translator.get("menu.home"), dispatcher: @dispatcher, clz: "home", id: "primary-menu-frontpage", url: Routing.getBaseUrl() + menuItems['frontpage'], parent: @$el)
-            about       = new App.MenuItem(title: Translator.get("menu.about"), dispatcher: @dispatcher, clz: "circle_info", id: "primary-menu-about", url: Routing.getBaseUrl() + menuItems['about'], parent: @$el)
-            books       = new App.MenuItem(title: Translator.get("menu.books"), dispatcher: @dispatcher, clz: "list", id: "primary-menu-books", url: Routing.getBaseUrl() + menuItems['list-books'], parent: @$el)
+            frontPage       = new App.MenuItem(title: Translator.get("menu.home"), dispatcher: @dispatcher, clz: "home", id: "primary-menu-frontpage", url: Routing.getBaseUrl() + menuItems['frontpage'], parent: @$el)
+            about           = new App.MenuItem(title: Translator.get("menu.about"), dispatcher: @dispatcher, clz: "circle_info", id: "primary-menu-about", url: Routing.getBaseUrl() + menuItems['about'], parent: @$el)
+            books           = new App.MenuItem(title: Translator.get("menu.books"), dispatcher: @dispatcher, clz: "list", id: "primary-menu-books", url: Routing.getBaseUrl() + menuItems['list-books'], parent: @$el)
+            unreadBooks     = new App.MenuItem(title: Translator.get("menu.unread-books"), dispatcher: @dispatcher, clz: "list", id: "primary-menu-unread-books", url: Routing.getBaseUrl() + menuItems['list-unread-books'], parent: @$el)
 
-            authors     = new App.MenuItem(title: Translator.get("menu.authors"), dispatcher: @dispatcher, clz: "parents", id: "primary-menu-list-authors", url: Routing.getBaseUrl() + menuItems['list-authors'], parent: @$el)
-            genres      = new App.MenuItem(title: Translator.get("menu.genres"), dispatcher: @dispatcher, clz: "tags", id: "primary-menu-list-genres", url: Routing.getBaseUrl() + menuItems['list-genres'], parent: @$el)
-            search      = new App.MenuItem(title: Translator.get("menu.search"), dispatcher: @dispatcher, clz: "search", id: "primary-menu-search", url: Routing.getBaseUrl() + menuItems['search'], parent: @$el)
-            stats       = new App.MenuItem(title: Translator.get("menu.stats"), dispatcher: @dispatcher, clz: "charts", id: "primary-menu-stats", url: Routing.getBaseUrl() + menuItems['stats'], parent: @$el)
+            authors         = new App.MenuItem(title: Translator.get("menu.authors"), dispatcher: @dispatcher, clz: "parents", id: "primary-menu-list-authors", url: Routing.getBaseUrl() + menuItems['list-authors'], parent: @$el)
+            genres          = new App.MenuItem(title: Translator.get("menu.genres"), dispatcher: @dispatcher, clz: "tags", id: "primary-menu-list-genres", url: Routing.getBaseUrl() + menuItems['list-genres'], parent: @$el)
+            search          = new App.MenuItem(title: Translator.get("menu.search"), dispatcher: @dispatcher, clz: "search", id: "primary-menu-search", url: Routing.getBaseUrl() + menuItems['search'], parent: @$el)
+            stats           = new App.MenuItem(title: Translator.get("menu.stats"), dispatcher: @dispatcher, clz: "charts", id: "primary-menu-stats", url: Routing.getBaseUrl() + menuItems['stats'], parent: @$el)
 
             @addMenuItem frontPage
             @addMenuItem about

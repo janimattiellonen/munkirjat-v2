@@ -9,17 +9,15 @@ $ ->
             options.dispatcher.on("container:hide", @hide)
 
             @template = _.template $('#tpl-list-books').html()
-            @$ul = $('<ul></ul>')
 
-        render: (authorId) ->
+        render: () ->
             self = @
-
-            if(authorId)
-                @model.url = 'book/byAuthor/' + authorId
+            @template = _.template $('#tpl-list-books').html()
+            @$ul = $('<ul></ul>')
+            @model.reset()
 
             @model.fetch
                 success: () ->
-
                     amount = self.model.models.length
                     columns = 2
 
@@ -28,10 +26,12 @@ $ ->
                     else
                         blocksInFirstColumn = amount / columns
 
-                    container = '<div class="book-column"><ul>'
+                    container = '<div class="book-column">UUGA<ul>'
 
                     step = 0
                     _.each self.model.models, ((book) ->
+
+                        console.log(book.get("title"))
 
                         container += "<li>" + $(self.createListItemView(book)).html() + "</li>"
 
@@ -46,8 +46,20 @@ $ ->
 
                     self.$el.find('article div').html container
 
-        show: (authorId) ->
-            @render(authorId)
+        showBooksByAuthor: (authorId) ->
+            @model.url = 'book/byAuthor/' + authorId
+            @show()
+
+        showBooks: () ->
+            @model.url = 'book'
+            @show()
+
+        showUnreadBooks: () ->
+            @model.url = 'book/unread'
+            @show()
+
+        show: () ->
+            @render()
 
             @$el.show()
 

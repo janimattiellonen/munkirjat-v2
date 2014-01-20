@@ -6,6 +6,7 @@ menu:
     add-new-genre:    "Add new genre"
     list-authors:     "Authors"
     books:            "Books"
+    unread-books:     "Unread books"
     list-genres:      "Genres"
     statistics:       "Statistics"
 
@@ -47,3 +48,5 @@ bookshelf:
 form:
     save:                 "Save"
     search:               "Search"
+
+books:                    "Books"

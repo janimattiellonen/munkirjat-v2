@@ -6,7 +6,6 @@
             <a href="<%=Routing.getBaseUrl() + '/#book/' + currently_reading.id %>">
 
                 <%
-
                     var startedReading = moment(currently_reading.startedReading.date);
                     var now = moment();
                     var daysRead = now.diff(startedReading, 'days');

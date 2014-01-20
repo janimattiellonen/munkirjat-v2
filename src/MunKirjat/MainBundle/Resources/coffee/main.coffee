@@ -130,6 +130,8 @@ class App.Language
             when "en" then "English"
 
 $(document).ready ->
+    $.ajaxSetup({ cache: false })
+
     localizedErrorizer = new App.FatalErrorizer.Default()
     router = new Backbone.Router()
 

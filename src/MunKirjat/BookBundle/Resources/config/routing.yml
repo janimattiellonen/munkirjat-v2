@@ -10,18 +10,22 @@ munkirjat_book_genres:
 munkirjat_book_view:
     pattern: "/book/{id}"
     defaults: { _controller: MunKirjatBookBundle:Book:view }
-    requirements: { _method: get }
+    requirements: { _method: get, id: \d+ }
 
 munkirjat_book_create:
     pattern: "/book"
     defaults: { _controller: MunKirjatBookBundle:Book:create, _format: 'json' }
     requirements: { _method: post }
 
+munkirjat_book_unread:
+    pattern: "/book/unread"
+    defaults: { _controller: MunKirjatBookBundle:Book:unreadBooks, _format: 'json' }
+    requirements: { _method: get }
 
 munkirjat_book_update:
     pattern: "/book/{id}"
     defaults: { _controller: MunKirjatBookBundle:Book:update, _format: 'json' }
-    requirements: { _method: put }
+    requirements: { _method: put, id: \d+ }
 
 munkirjat_book_list:
     pattern: "/book"

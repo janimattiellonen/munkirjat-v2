@@ -16,6 +16,7 @@ App.Router = Backbone.Router.extend(
         "book":                 "book"
         "book/:id":             "viewBook"
         "book/:id/edit":        "editBook"
+        "books/unread":         "listUnreadBooks"
         "books(/:authorId)":    "listBooks"
         "search":               "search"
         "stats":                "stats"
@@ -113,7 +114,17 @@ App.Router = Backbone.Router.extend(
     listBooks: (authorId) ->
         @preDispatch()
         @dispatcher.trigger "url:changed", 'primary-menu-list-books'
-        @bookListView.reset().show(authorId)
+
+        if(authorId)
+            @bookListView.reset().showBooksByAuthor(authorId)
+        else
+            @bookListView.reset().showBooks()
+
+    listUnreadBooks: () ->
+        @preDispatch()
+        @dispatcher.trigger "url:changed", 'primary-menu-list-books'
+
+        @bookListView.reset().showUnreadBooks()
 
     search: () ->
         @preDispatch()

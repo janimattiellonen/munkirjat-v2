@@ -15,15 +15,16 @@ class SecurityService
     public function getAllowedResources($user)
     {
         $allowed = array(
-            'frontpage'     => '/#frontpage',
-            'about'         => '/#about',
-            'list-authors'  => '/#authors',
-            'list-genres'   => '/#genres',
-            'list-books'    => '/#books',
-            'statistics'    => '',
-            'search'        => '/#search',
-            'stats'         => '/#stats',
-            'view-book'     => '/#book/:id'
+            'frontpage'         => '/#frontpage',
+            'about'             => '/#about',
+            'list-authors'      => '/#authors',
+            'list-genres'       => '/#genres',
+            'list-unread-books' => '/#books/unread',
+            'list-books'        => '/#books',
+            'statistics'        => '',
+            'search'            => '/#search',
+            'stats'             => '/#stats',
+            'view-book'         => '/#book/:id'
         );
 
         $loggedOut = array(

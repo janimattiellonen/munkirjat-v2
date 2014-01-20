@@ -17,6 +17,7 @@ nav {
 
     &#menu {
         display: none;
+        width: 96.5%;
     }
 
     width: 59px;
@@ -53,15 +54,24 @@ nav {
         border: solid 3px #d3d3d3;
 
 
-        a {
-            display: inline-block;
+        li {
+            margin-left: 26px;
 
-            span {
+            a {
                 display: inline-block;
-                margin-left: -20px;
-                margin-right: 17px;
-                padding-top: 12px;
+
                 color: black;
+
+                span {
+                    display: inline-block;
+                    margin-left: -20px;
+                    margin-right: 17px;
+                    padding-top: 12px;
+                }
+
+                &:hover {
+                    color: white;
+                }
             }
         }
 

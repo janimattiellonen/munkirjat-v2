@@ -22,7 +22,17 @@
     <div class="col _33">
         <h2>{{ 'stats.latest-read-book'|trans }}</h2>
 
-        <a href="<%=Routing.getBaseUrl() + '/#book/' + latest_read_book.id %>"><%= latest_read_book.title %></a>
+        <a href="<%=Routing.getBaseUrl() + '/#book/' + latest_read_book.id %>">
+
+        <%
+            var startedReading = moment(latest_read_book.startedReading.date);
+            var now = moment(latest_read_book.finishedReading.date);
+            var daysRead = now.diff(startedReading, 'days');
+
+            print(latest_read_book.title + " (" + startedReading.format('DD.MM.YYYY') + ")");
+        %>
+        </a><br/>
+        {{ 'stats.days-read'|trans }}: <%= daysRead %>
     </div>
 
     <div class="col _33">

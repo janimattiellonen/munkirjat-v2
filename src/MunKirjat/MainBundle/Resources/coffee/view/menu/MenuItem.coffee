@@ -39,7 +39,7 @@ $ ->
             $(document).on "mouseout", "#" + @id, () ->
                 $(this).removeClass("white")
 
-            template = _.template('<a href="<%= url %>"><i class="<%= clz %>" id="<%= id %>"></i><span><%= title %></span></a>')
+            template = _.template('<li><a href="<%= url %>"><i class="<%= clz %>" id="<%= id %>"></i><span><%= title %></span></a></li>')
 
             @el = template(id: @id, title: @title, url: @url, clz: @clz)
 

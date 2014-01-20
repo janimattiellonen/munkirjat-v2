@@ -45,7 +45,11 @@ class BookRepository extends BaseRepository
         $qb->select('b')
             ->from('MunKirjat\BookBundle\Entity\Book', 'b')
             ->where('b.isRead != 1')
-            ->setMaxResults($limit);
+            ->orderBy('b.title');
+
+        if ($limit > 0) {
+            $qb->setMaxResults($limit);
+        }
 
         return $qb->getQuery()->getResult(AbstractQuery::HYDRATE_ARRAY);
     }

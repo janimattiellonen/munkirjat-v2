@@ -43,6 +43,13 @@ class BookController extends Controller
         return $this->getJsonResponse($books);
     }
 
+    public function unreadBooksAction()
+    {
+        $books = $this->getBookService()->getUnreadBooks(null);
+
+        return $this->getJsonResponse($books);
+    }
+
     public function listAction()
     {
         return $this->getJsonResponse($this->getBookService()->getBooks());

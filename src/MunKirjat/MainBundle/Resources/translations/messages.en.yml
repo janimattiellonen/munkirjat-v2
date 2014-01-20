@@ -6,10 +6,20 @@ menu:
     add-new-genre:    "Add new genre"
     list-authors:     "Authors"
     books:            "Books"
+    unread-books:     "Unread books"
     list-genres:      "Genres"
     statistics:       "Statistics"
-    login:            "Login"
-    logout:           "Logout"
+
+    home:                 "Home"
+    authors:              "Authors"
+    genres:               "Genres"
+    search:               "Search"
+    new-author:           "New author"
+    new-book:             "New book"
+
+    stats:                "Statistics"
+    logout:               "Logout"
+    login:                "Login"
 
 stats:
     statistics:               "Statistics"
@@ -38,3 +48,5 @@ bookshelf:
 form:
     save:                 "Save"
     search:               "Search"
+
+books:                    "Books"

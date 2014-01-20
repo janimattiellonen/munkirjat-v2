@@ -10,6 +10,5 @@ $ ->
         urlRoot: Routing.generate('munkirjat_book_genres')
 
         parse: (response, options) ->
-            console.log "parsing: " + JSON.stringify(response)
             return response unless response.success
     )

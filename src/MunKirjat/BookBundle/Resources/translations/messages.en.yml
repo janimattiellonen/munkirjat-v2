@@ -23,6 +23,8 @@ book:
     isRead:               "Book is read"
     startedReading:       "Started reading"
     finishedReading:      "Finished reading"
+    startReading:         "Start reading"
+    finishReading:        "Finish reading"
     isbn:                 "Isbn"
     edit:                 "Edit book"
     add:                  "Add book"

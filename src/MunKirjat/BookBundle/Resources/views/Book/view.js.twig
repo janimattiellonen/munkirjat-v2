@@ -53,8 +53,18 @@
                 <p><%= finishedReading %></p>
             </div>
 
-            <% if(loggedIn) { %>
-                <a href="<%= Routing.getBaseUrl() + '/#book/' + id%>/edit"><%= Translator.get('book.edit')%></a>
+            <% if (loggedIn) { %>
+                <p><a href="<%= Routing.getBaseUrl() + '/#book/' + id%>/edit"><%= Translator.get('book.edit')%></a></p>
+                <p>
+                    <% if (!isRead) { %>
+                        <% if (_.isNull(startedReading)) { %>
+                            <input id="startReading" data-id="<%= id %>" class="read-button" type="submit" value="<%= Translator.get('book.startReading') %>!" />
+                        <% } else if (!_.isNull(startedReading)) { %>
+                            <input id="finishReading" data-id="<%= id %>" class="read-button" type="submit" value="<%= Translator.get('book.finishReading') %>!" />
+                        <% } %>
+                    <% } %>
+
+                </p>
             <% }%>
         </div>
     </article>

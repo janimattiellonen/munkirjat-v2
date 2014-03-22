@@ -8,7 +8,7 @@
                 <%
                     var startedReading = moment(currently_reading.startedReading.date);
                     var now = moment();
-                    var daysRead = now.diff(startedReading, 'days');
+                    var daysRead = now.diff(startedReading, 'days') + 1;
 
                     print(currently_reading.title + " (" + startedReading.format('DD.MM.YYYY') + ")");
                 %>
@@ -27,7 +27,7 @@
         <%
             var startedReading = moment(latest_read_book.startedReading.date);
             var now = moment(latest_read_book.finishedReading.date);
-            var daysRead = now.diff(startedReading, 'days');
+            var daysRead = now.diff(startedReading, 'days') + 1;
 
             print(latest_read_book.title + " (" + startedReading.format('DD.MM.YYYY') + ")");
         %>

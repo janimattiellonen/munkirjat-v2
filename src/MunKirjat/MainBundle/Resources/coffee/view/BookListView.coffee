@@ -9,6 +9,7 @@ $ ->
             options.dispatcher.on("container:hide", @hide)
 
             @template = _.template $('#tpl-list-books').html()
+            @showAuthor = false;
 
         render: () ->
             self = @
@@ -41,9 +42,19 @@ $ ->
 
                     self.$el.html($(self.template()))
 
-                    self.$el.find('article div').html container
+
+                    if (self.authorModel && self.showAuthor)
+                        self.authorModel.fetch
+                            success: (model, response) ->
+                                self.$el.find('article div.author h2').html model.get("firstName") + " " + model.get("lastName")
+                                self.showAuthor = false;
+
+                    self.$el.find('article div.books').html container
 
         showBooksByAuthor: (authorId) ->
+            @authorModel = new App.AuthorModel();
+            @authorModel.id = authorId;
+            @showAuthor = true
             @model.url = 'book/byAuthor/' + authorId
             @show()
 
@@ -62,6 +73,7 @@ $ ->
 
         reset: () ->
             @$ul = $('<ul></ul>')
+            @$el.find('article div.author h2').html ""
             @
 
         hide: () ->

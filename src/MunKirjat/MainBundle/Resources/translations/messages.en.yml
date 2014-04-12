@@ -50,3 +50,6 @@ form:
     search:               "Search"
 
 books:                    "Books"
+
+search:
+    no-results:           "No books or authors was found with the search criteria. Please check input."

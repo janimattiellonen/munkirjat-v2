@@ -30,6 +30,7 @@ $ ->
         search: () ->
 
             self = @
+
             $.ajax(
                 url: Routing.generate('munkirjat_search')
                 data: 'term=' + $('#searchvalue', @el).val()

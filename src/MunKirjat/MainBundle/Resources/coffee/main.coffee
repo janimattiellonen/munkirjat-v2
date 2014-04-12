@@ -144,7 +144,10 @@ $(document).ready ->
     )
 
     $(document).ajaxStop(() ->
-        $('.ajax-loader').remove()
+        setTimeout (->
+            $(".ajax-loader").remove()
+            return
+        ), 500
     )
 
     $(document).ajaxError((event, xhr, settings) ->

@@ -190,9 +190,11 @@ class BookRepository extends BaseRepository
     }
 
     /**
+     * @param boolean $asArray
+     *
      * @return \MunKirjat\BookBundle\Entity\Book|null
      */
-    public function getCurrentlyReadBook()
+    public function getCurrentlyReadBook($asArray = true)
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
 
@@ -204,7 +206,7 @@ class BookRepository extends BaseRepository
             ->orderBy('b.finishedReading', 'DESC')
             ->setMaxResults(1);
 
-        return $this->getSingleResult($qb, AbstractQuery::HYDRATE_ARRAY);
+        return $this->getSingleResult($qb, $asArray ? AbstractQuery::HYDRATE_ARRAY : AbstractQuery::HYDRATE_OBJECT);
     }
 
     /**

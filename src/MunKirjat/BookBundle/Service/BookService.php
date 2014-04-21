@@ -131,11 +131,13 @@ class BookService extends AbstractTaggableService
     }
 
     /**
+     * @param boolean $asArray
+     *
      * @return \MunKirjat\BookBundle\Entity\Book|null
      */
-    public function getCurrentlyReadBook()
+    public function getCurrentlyReadBook($asArray = true)
     {
-        return $this->bookRepository->getCurrentlyReadBook();
+        return $this->bookRepository->getCurrentlyReadBook($asArray);
     }
 
     /**

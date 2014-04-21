@@ -38,6 +38,8 @@ stats:
     average-book-price:       "Average book price"
     money-spent-on-books:     "Money spent on books"
     currently-reading:        "Currently reading"
+    new-session:              "New session"
+    continue-session:         "Continue session"
     nothing-at-the-moment:    "Nothing at the moment"
     days-read:                "Days read"
 bookshelf:

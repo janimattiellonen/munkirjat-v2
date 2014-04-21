@@ -18,6 +18,7 @@ App.Router = Backbone.Router.extend(
         "book/:id/edit":        "editBook"
         "books/unread":         "listUnreadBooks"
         "books(/:authorId)":    "listBooks"
+        "reading-session(/:bookId)": "readingSession"
         "search":               "search"
         "stats":                "stats"
 
@@ -37,6 +38,7 @@ App.Router = Backbone.Router.extend(
         @bookView           = new App.BookView({model: new App.BookModel(), collection: @bookCollection, dispatcher: @dispatcher} )
         @bookEditView       = new App.BookEditView({model: new App.BookModel(), collection: @bookCollection, dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/book/create'} )
         @bookListView       = new App.BookListView({model: @bookCollection, dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/books'} )
+        @readingSessionView = new App.ReadingSessionView({dispatcher: @dispatcher})
         @searchView         = new App.SearchView({dispatcher: @dispatcher})
         @statsView          = new App.StatsView({dispatcher: @dispatcher})
 
@@ -125,6 +127,11 @@ App.Router = Backbone.Router.extend(
         @dispatcher.trigger "url:changed", 'primary-menu-list-books'
 
         @bookListView.reset().showUnreadBooks()
+
+    readingSession: (bookId) ->
+        @preDispatch()
+
+        @readingSessionView.show()
 
     search: () ->
         @preDispatch()

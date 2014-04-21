@@ -42,8 +42,19 @@ class StatisticsService
      */
     public function getBookStatistics()
     {
+        $currentlyReadBook = $this->bookService->getCurrentlyReadBook(false);
+
+        $hasOpenReadingSession = false;
+
+        if ($currentlyReadBook) {
+            if ($currentlyReadBook->hasOpenReadingSession()) {
+                $hasOpenReadingSession = true;
+            }
+        }
+
         $stats = array(
             'currently_reading'             => $this->bookService->getCurrentlyReadBook(),
+            'has_open_reading_session'      => $hasOpenReadingSession,
             'latest_read_book'              => $this->bookService->getLatestReadBook(),
             'latest_added_book'             => $this->bookService->getLatestAddedBook(),
             'author_count'                  => $this->authorService->getAuthorCount(),

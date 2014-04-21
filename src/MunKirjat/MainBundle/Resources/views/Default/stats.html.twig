@@ -14,6 +14,12 @@
                 %>
             </a>
             <br/>{{ 'stats.days-read'|trans }}: <%= daysRead %>
+
+            <% if (has_open_reading_session) { %>
+                <p><a href="<%= Routing.getBaseUrl() + '/#reading-session' %>">{{ 'stats.continue-session'|trans }}</a></p>
+            <% } else { %>
+                <p><a href="<%= Routing.getBaseUrl() + '/#reading-session' %>">{{ 'stats.new-session'|trans }}</a></p>
+            <% } %>
         <% } else { %>
             {{ 'stats.nothing-at-the-moment'|trans }}
         <% } %>

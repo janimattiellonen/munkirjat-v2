@@ -135,12 +135,20 @@ class Book implements Taggable
      * @ORM\Column(name="price", type="decimal", precision=8, scale=2, nullable=true)
      */
     protected $price;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="MunKirjat\BookBundle\Entity\ReadingSession", mappedBy="book")
+     */
+    protected $readingSessions;
 	
 	public function __construct()
 	{
 	    $this->authors  = new ArrayCollection();
 	    $this->genres   = new ArrayCollection();
 	    $this->tags     = new ArrayCollection();
+        $this->readingSessions = new ArrayCollection();
 	    $this->created  = $this->updated = new DateTime();
 	    $this->rating   = 0.0;
         $this->isRead   = false;
@@ -204,20 +212,6 @@ class Book implements Taggable
 	}
 
     /**
-     * @param Author $author
-     * @return Book
-     */
-    public function addAuthor22(Author $author)
-    {
-        if (!$this->authors->contains($author)) {
-            $this->authors->add($author);
-            $author->addBook($this);
-        }
-        
-        return $this;
-    }
-
-    /**
      * @param $authors
      * @return $this
      */
@@ -239,20 +233,6 @@ class Book implements Taggable
             $this->authors->removeElement($author);
         }
 
-        return $this;
-    }
-
-    /**
-     * @param Author $author
-     * @return Book
-     */
-    public function removeAuthor22(Author $author)
-    {
-        if ($this->authors->contains($author)) {
-            $this->authors->removeElement($author);
-            $author->removeBook($this);
-        }
-        
         return $this;
     }
 
@@ -384,7 +364,6 @@ class Book implements Taggable
      */
     public function setTags($tags)
     {
-       // print_r($tags);die;
         $this->tags = $tags;
 
         return $this;
@@ -401,20 +380,6 @@ class Book implements Taggable
             $this->getTags()->removeElement($tag);
         }
 
-        return $this;
-    }
-
-    /**
-     * @param Tag $tag
-     * @return Book
-     */
-    public function removeTag2(Tag $tag)
-    {
-        if ($this->getTags()->contains($tag)) {
-            $this->getTags()->removeElement($tag);
-            $tag->removeBook($this);
-        }
-        
         return $this;
     }
 
@@ -673,5 +638,54 @@ class Book implements Taggable
     public function getPrice()
     {
         return $this->price;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\ArrayCollection $readingSessions
+     *
+     * @return Book
+     */
+    public function setReadingSessions($readingSessions)
+    {
+        $this->readingSessions = $readingSessions;
+
+        return $this;
+    }
+
+    /**
+     * @param ReadingSession $readingSession
+     *
+     * @return Book
+     */
+    public function addReadingSession(ReadingSession $readingSession)
+    {
+        if (!$this->readingSessions->contains($readingSession)) {
+            $this->readingSessions->add($readingSession);
+            $readingSession->setBook($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getReadingSessions()
+    {
+        return $this->readingSessions;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function hasOpenReadingSession()
+    {
+        foreach ($this->readingSessions as $readingSession) {
+            if ($readingSession->hasOpenSession()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

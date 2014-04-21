@@ -36,6 +36,7 @@ class SecurityService
             'add-new-book'      => '/#book',
             'add-new-genre'     => '/#genre',
             'logout'            => '/#logout',
+            'reading-session'   => '/#reading-session',
         );
 
         if(is_string($user) )

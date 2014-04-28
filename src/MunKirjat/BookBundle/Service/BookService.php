@@ -4,6 +4,7 @@ namespace MunKirjat\BookBundle\Service;
 use Doctrine\ORM\EntityManager;
 
 use MunKirjat\BookBundle\Entity\Author;
+use MunKirjat\BookBundle\Entity\ReadingSession;
 use MunKirjat\BookBundle\Form\Type\BookType;
 use MunKirjat\BookBundle\Entity\Book;
 use MunKirjat\BookBundle\Repository\BookRepository;
@@ -285,5 +286,52 @@ class BookService extends AbstractTaggableService
     public function getMoneySpentOnBooks()
     {
         return $this->bookRepository->getMoneySpentOnBooks();
+    }
+
+    /**
+     * @param Book $book
+     * @return ReadingSession
+     */
+    public function startNewReadingSession(Book $book)
+    {
+        $startingPage = 1;
+
+        if ($book->hasOpenReadingSession()) {
+            $currentSession = $book->getCurrentReadingSession();
+
+            if ($currentSession) {
+                $startingPage = $currentSession->getEndingPage();
+            }
+        }
+
+        $session = new ReadingSession();
+        $session->setBook($book)
+            ->setStartingDate(new \DateTime())
+            ->setStartingPage($startingPage);
+
+        $this->em->persist($session);
+        $this->em->flush();
+
+        return $session;
+    }
+
+    /**
+     * @param Book $book
+     * @param \DateTime $time
+     * @param int $page
+     * @throws \Exception
+     */
+    public function endReadingSession(Book $book, \DateTime $time, $page)
+    {
+        $currentSession = $book->getCurrentReadingSession();
+
+        if (!$currentSession) {
+            throw new \Exception("No session was found");
+        }
+
+        $currentSession->setEndingDate($time)
+            ->setEndingPage($page);
+
+        $this->em->flush();
     }
 }

@@ -29,6 +29,8 @@ book:
     edit:                 "Edit book"
     add:                  "Add book"
     price:                "Price"
+    new-session:          "New session"
+    end-session:          "End session"
 
 book.author.required:     "One or more authors required"
 book.title.required:      "Title is required"

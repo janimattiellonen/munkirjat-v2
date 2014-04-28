@@ -38,7 +38,7 @@ App.Router = Backbone.Router.extend(
         @bookView           = new App.BookView({model: new App.BookModel(), collection: @bookCollection, dispatcher: @dispatcher} )
         @bookEditView       = new App.BookEditView({model: new App.BookModel(), collection: @bookCollection, dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/book/create'} )
         @bookListView       = new App.BookListView({model: @bookCollection, dispatcher: @dispatcher, url: Routing.getBaseUrl() + '/books'} )
-        @readingSessionView = new App.ReadingSessionView({dispatcher: @dispatcher})
+        @readingSessionView = new App.ReadingSessionView({model: new App.ReadingSessionModel(), dispatcher: @dispatcher})
         @searchView         = new App.SearchView({dispatcher: @dispatcher})
         @statsView          = new App.StatsView({dispatcher: @dispatcher})
 

@@ -2,6 +2,54 @@
     <article>
         <h1><%= Translator.get('stats.currently-reading') %></h1>
 
+        <%= title %> - <%= authors %>
 
+        <% if(hasOpenSession) { %>
+            <div class="reading-time-box">
+                <div class="row">
+                    <h2>Started reading</h2>
+                    <div>
+                        <label for="starting_date">Date:</label>
+                        <input type="text" class="date" id="starting_date" name="starting_date" value="<%= startingDate %>" />
+                    </div>
+
+                    <div>
+                        <label for="starting_time">Time:</label>
+                        <input type="text" class="time" id="starting_time" name="starting_time" value="<%= startingTime %>" />
+                    </div>
+
+                    <div class="page-div">
+                        <label for="starting_page">Page:</label>
+                        <input type="text" class="page" id="starting_page" name="starting_page" value="<%= startingPage %>" />
+                        <input id="stop-reading" type="submit" class="read-button" value="<%= Translator.get('book.end-session') %>"/>
+                    </div>
+                </div>
+
+                <div class="row end-session">
+                    <h2>Finished reading</h2>
+
+                    <div>
+                        <label for="ending_date">Date:</label>
+                        <input type="text" class="date" id="ending_date" name="ending_date" value="<%= endingDate %>" />
+                    </div>
+
+                    <div>
+                        <label for="ending_time">Time:</label>
+                        <input type="text" class="time" id="ending_time" name="ending_time" value="<%= endingTime %>" />
+                    </div>
+
+                    <div class="page-div">
+                        <label for="ending_page">Page:</label>
+                        <input type="text" class="page" id="ending_page" name="ending_page" value="<%= endingPage %>" />
+                        <input id="end-session" type="submit" class="read-button" value="<%= Translator.get('form.save') %>"/>
+                    </div>
+
+                </div>
+
+
+            </div>
+        <% } else { %>
+            <p><input id="new-session" type="submit" class="read-button" value="<%= Translator.get('book.new-session') %>"/></p>
+        <% } %>
     </article>
 </script>

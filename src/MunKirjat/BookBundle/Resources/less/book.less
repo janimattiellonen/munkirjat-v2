@@ -56,3 +56,48 @@ div.book-column {
 .chart-box {
     width: 70%;
 }
+
+.reading-time-box {
+    float: left;
+    width: 100%;
+    margin: 20px;
+
+    div.row {
+        float: left;
+        width: 100%;
+
+        div {
+            float: left;
+            margin: 10px;
+
+            &.page-div {
+                width: 250px;
+            }
+
+            input {
+
+                &#starting_page, &#ending_page {
+                    display: inline;
+                    margin-right: 30px;
+                }
+
+                &.date {
+                    width: 100px;
+                }
+
+                &.time {
+                    width: 50px;
+                }
+
+                &.page {
+                    width: 50px;
+                    text-align: right;
+                }
+            }
+        }
+    }
+
+    .end-session {
+        display: none;
+    }
+}

@@ -78,12 +78,4 @@ class BookController extends Controller
             }
         );
     }
-
-    /**
-     * @return \MunKirjat\BookBundle\Service\BookService
-     */
-    public function getBookService()
-    {
-        return $this->get('munkirjat_book.service.book');
-    }
 }

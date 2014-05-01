@@ -10,6 +10,7 @@ composer.phar
 app/config/parameters.yml
 .DS_Store
 node_modules
+/web/i18n
 /web/css/*
 !/web/css/jquery-ui
 !/web/css/glyphicons

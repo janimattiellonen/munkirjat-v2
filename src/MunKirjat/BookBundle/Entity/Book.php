@@ -680,6 +680,24 @@ class Book implements Taggable
      */
     public function getCurrentReadingSession()
     {
+        if (!$this->hasOpenReadingSession()) {
+            return null;
+        }
+
+        foreach ($this->readingSessions as $readingSession) {
+            if ($readingSession->hasOpenSession()) {
+                return $readingSession;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * @return \MunKirjat\BookBundle\Entity\ReadingSession|null
+     */
+    public function getLatestReadingSession()
+    {
         if ($this->getReadingSessions()->count() > 0) {
             return $this->getReadingSessions()->offsetGet($this->getReadingSessions()->count() - 1);
         }

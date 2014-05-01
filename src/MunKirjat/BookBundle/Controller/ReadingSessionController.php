@@ -51,7 +51,6 @@ class ReadingSessionController extends Controller
                 $endingDate = $session->getEndingDate();
 
                 $additionalData = [
-                    'id' => $session->getId(),
                     'startingDate' => $session->getStartingDate()->format('d.m.Y'),
                     'startingTime' => $session->getStartingDate()->format('H:i'),
                     'startingPage' => $session->getStartingPage(),
@@ -59,6 +58,10 @@ class ReadingSessionController extends Controller
                     'endingTime' => isset($endingDate) ? $endingDate->format('H:i') : '',
                     'endingPage' => $session->getEndingPage(),
                 ];
+
+                if($hasOpenReadingSession) {
+                    $additionalData['id'] = $session->getId();
+                }
 
                 $data += $additionalData;
             }

@@ -298,9 +298,12 @@ class BookService extends AbstractTaggableService
 
         if ($book->hasOpenReadingSession()) {
             $currentSession = $book->getCurrentReadingSession();
+            $startingPage = $currentSession->getEndingPage();
+        } else {
+            $session = $book->getLatestReadingSession();
 
-            if ($currentSession) {
-                $startingPage = $currentSession->getEndingPage();
+            if ($session) {
+                $startingPage = $session->getEndingPage();
             }
         }
 

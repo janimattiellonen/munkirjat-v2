@@ -108,9 +108,9 @@ munkirjat_search:
     requirements: { _method: get }
 
 munkirjat_reading_session_view:
-    pattern: "/reading-session"
-    defaults: { _controller: MunKirjatBookBundle:ReadingSession:getSessionInfo, _format: 'json' }
-    requirements: { _method: get}
+    pattern: "/reading-session/{id}"
+    defaults: { _controller: MunKirjatBookBundle:ReadingSession:getSessionInfo, _format: 'json', id: null }
+    requirements: { _method: get, id: \d+}
 
 munkirjat_reading_session_new:
     pattern: "/reading-session"

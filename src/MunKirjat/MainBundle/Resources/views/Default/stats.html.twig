@@ -26,10 +26,11 @@
 
         <%
             var startedReading = moment(latest_read_book.startedReading.date);
+            var finishedReading = moment(latest_read_book.finishedReading.date);
             var now = moment(latest_read_book.finishedReading.date);
             var daysRead = now.diff(startedReading, 'days') + 1;
 
-            print(latest_read_book.title + " (" + startedReading.format('DD.MM.YYYY') + ")");
+            print(latest_read_book.title + " (" + startedReading.format('DD.MM.YYYY') + " - " + finishedReading.format('DD.MM.YYYY') + ")");
         %>
         </a><br/>
         {{ 'stats.days-read'|trans }}: <%= daysRead %>

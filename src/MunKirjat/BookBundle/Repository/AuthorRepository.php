@@ -16,8 +16,10 @@ class AuthorRepository extends BaseRepository
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
 
-        $qb->select('a.id, CONCAT_WS('. $qb->expr()->literal(' ') . ', a.firstName, a.lastName) as value')
-            ->from('MunKirjat\BookBundle\Entity\Author', 'a');
+        $qb->select('a.id, count(b.id) as amount, CONCAT_WS('. $qb->expr()->literal(' ') . ', a.firstName, a.lastName) as value')
+            ->from('MunKirjat\BookBundle\Entity\Author', 'a')
+            ->leftJoin('a.books', 'b')
+            ->groupBy('a.id');
 
         if(isset($firstName) && isset($lastName) )
         {

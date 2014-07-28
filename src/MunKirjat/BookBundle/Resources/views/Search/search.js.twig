@@ -28,7 +28,7 @@
                 <h2><%= Translator.get('Books')%></h2>
                 <ul>
                     <% if(books != null) _.each(books, function(book) { %>
-                    <li><a href="<%= Routing.getBaseUrl() + '/#book/' + book.id %>"><%= book.title %></a></li>
+                    <li><a <%= book.isRead ? '' : 'class="is-read" '%> href="<%= Routing.getBaseUrl() + '/#book/' + book.id %>"><%= book.title %></a></li>
                     <% }); %>
                 </ul>
             </div>
@@ -37,7 +37,7 @@
                 <h2><%= Translator.get('Authors')%></h2>
                 <ul>
                 <% if(authors != null) _.each(authors, function(author) { %>
-                    <li><a href="<%= Routing.getBaseUrl() + '/#author/' + author.id %>"><%= author.value %></a></li>
+                    <li><a href="<%= Routing.getBaseUrl() + '/#author/' + author.id %>"><%= author.value %></a> <% if(author.amount > 0) { %><a href="<%= Routing.getBaseUrl() + '/#books/' + author.id%>">(<%= author.amount %>)</a><% } else { print("(0)") } %></li>
                 <% }); %>
                 </ul>
             </div>

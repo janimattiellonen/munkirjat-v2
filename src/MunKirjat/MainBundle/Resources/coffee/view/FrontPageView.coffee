@@ -11,18 +11,17 @@ $ ->
             options.dispatcher.on("container:hide", @hide)
 
         render: () ->
-
-            if @loaded == false
-                template = _.template $('#stats-template').html()
-
-                self = @
-                $.ajax(
-                    url: Routing.getBaseUrl() + '/statistics',
-                    dataType: 'json'
-                    success: (data) =>
-                        self.$el.html template(data)
-                        self.loaded = true
-                )
+            console.log "Wut"
+            template = _.template $('#stats-template').html()
+            console.log "twat"
+            self = @
+            $.ajax(
+                url: Routing.getBaseUrl() + '/statistics',
+                dataType: 'json'
+                success: (data) =>
+                    console.log "Done reading data"
+                    self.$el.html template(data)
+            )
 
         show: () ->
             @$el.show()

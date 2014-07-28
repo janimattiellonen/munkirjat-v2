@@ -8,8 +8,9 @@ class SearchController extends Controller
     public function searchAction()
     {
         $term = $this->getRequest()->get('term');
+        $languages = $this->getRequest()->get('languages', array());
 
-        return $this->getJsonResponse($this->getSearchService()->searchByTerm($term) );
+        return $this->getJsonResponse($this->getSearchService()->searchByTerm($term, $languages) );
     }
 
     /**

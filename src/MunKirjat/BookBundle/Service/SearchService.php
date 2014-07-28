@@ -25,14 +25,15 @@ class SearchService
 
     /**
      * @param string $term
+     * @param array $languages
      *
      * @return array
      */
-    public function searchByTerm($term)
+    public function searchByTerm($term, array $languages = array() )
     {
         $results = array(
             'authors'   => $this->authorService->searchAuthors($term),
-            'books'     => $this->bookService->searchBooks($term),
+            'books'     => $this->bookService->searchBooks($term, $languages),
         );
 
         return $results;

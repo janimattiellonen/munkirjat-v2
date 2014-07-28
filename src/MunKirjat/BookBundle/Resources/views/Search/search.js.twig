@@ -8,6 +8,15 @@
                 <input type="text" id="searchvalue" name="search[searchvalue]" />
             </div>
 
+            <div class="section">
+                <label>{{ 'book.language'|trans}}:</label>
+                <div id="languages">
+                    <input type="checkbox" name="language" id="language1" value="fi" /><label for="language1">Finnish</label>
+                    <input type="checkbox" name="language" id="language2" value="se" /><label for="language2">Swedish</label>
+                    <input type="checkbox" name="language" id="language3" value="en" /><label for="language3">English</label>
+                </div>
+            </div>
+
             <input type="submit" id="_submit" name="_submit" value="<%= Translator.get('form.search') %>" />
         </form>
 

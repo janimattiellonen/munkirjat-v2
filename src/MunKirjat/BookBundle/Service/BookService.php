@@ -101,12 +101,12 @@ class BookService extends AbstractTaggableService
 
     /**
      * @param string $term
-     *
+     * @param array $languages
      * @return array
      */
-    public function searchBooks($term)
+    public function searchBooks($term, array $languages = array())
     {
-        return $this->bookRepository->findBooksByTitle($term);
+        return $this->bookRepository->findBooksByTitle($term, $languages);
     }
 
     /**

@@ -1,4 +1,16 @@
 <script type="text/template" id="tpl-list-books-item">
 
     <a <%= isRead ? '' : 'class="is-read" ' %>href="<%= Routing.getBaseUrl() + '/#book/' + id%>"><%= title %></a>
+
+    <% if (!_.isUndefined(authors)) { %>
+        <span class="author"><%
+        var name = '';
+
+        _.each(authors, function(author) {
+        name = name + '<a href="' + Routing.getBaseUrl() + '/#books/' + author.id + '">' + author.firstName + " " + author.lastName + '</a>, ';
+        });
+
+        print("(" + name.rtrim(', ') + ")");
+        %></span>
+    <% } %>
 </script>

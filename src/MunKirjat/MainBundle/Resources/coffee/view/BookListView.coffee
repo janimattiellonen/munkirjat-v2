@@ -42,7 +42,6 @@ $ ->
 
                     self.$el.html($(self.template()))
 
-
                     if (self.authorModel && self.showAuthor)
                         self.authorModel.fetch
                             success: (model, response) ->

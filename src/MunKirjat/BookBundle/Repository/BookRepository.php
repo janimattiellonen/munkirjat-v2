@@ -42,8 +42,9 @@ class BookRepository extends BaseRepository
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
 
-        $qb->select('b')
+        $qb->select('a, b')
             ->from('MunKirjat\BookBundle\Entity\Book', 'b')
+            ->join('b.authors', 'a')
             ->where('b.isRead != 1')
             ->orderBy('b.title');
 
@@ -62,7 +63,7 @@ class BookRepository extends BaseRepository
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
 
-        $qb->select('b')
+        $qb->select('a, b')
             ->from('MunKirjat\BookBundle\Entity\Book', 'b')
             ->join('b.authors', 'a');
 
@@ -94,10 +95,11 @@ class BookRepository extends BaseRepository
     }
 
     /**
-     * @param string $title
+     * @param string $term
+     * @param array $languages
      * @return array
      */
-    public function findBooksByTitle($title)
+    public function findBooksByTitle($title, array $languages = array())
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
 
@@ -105,6 +107,11 @@ class BookRepository extends BaseRepository
             ->from('MunKirjat\BookBundle\Entity\Book', 'b')
             ->where('b.title LIKE :title')
             ->setParameter('title', '%' . $title . '%');
+
+        if (count($languages) > 0) {
+            $qb->andWhere('b.language IN (:languages)')
+                ->setParameter('languages', $languages);
+        }
 
         return $qb->getQuery()->getResult(AbstractQuery::HYDRATE_ARRAY);
     }
@@ -117,7 +124,7 @@ class BookRepository extends BaseRepository
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
 
-        $qb->select('b')
+        $qb->select('a, b')
             ->from('MunKirjat\BookBundle\Entity\Book', 'b')
             ->leftJoin('b.authors', 'a');
 

@@ -36,3 +36,11 @@
             login_user=root
             login_password={{ db_root_pass }}
   when: db_user_add.changed
+
+
+- name: Install composer
+  shell:
+    curl -sS https://getcomposer.org/installer | /usr/bin/php && /bin/mv -f /home/vagrant/composer.phar /usr/local/bin/composer
+    creates=/usr/local/bin/composer
+  tags:
+    - composer

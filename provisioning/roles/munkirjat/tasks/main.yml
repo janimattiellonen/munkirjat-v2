@@ -62,3 +62,12 @@
     cd {{ app_path }};composer install;
   tags:
     - vendors
+
+- name: Dump js routes
+  shell:
+    cd {{ app_path }};php app/console fos:js-routing:dump;
+
+- name: Install assets
+  shell:
+    cd {{ app_path }};php app/console assets:install;
+

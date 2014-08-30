@@ -10,8 +10,21 @@
 - name: Import munkirjat nginx settings
   template: src=munkirjat.conf.j2
             dest=/etc/nginx/sites-available/{{app_name}}.conf
+
+- name: nginx | Remove default site
+  file: path=/etc/nginx/sites-enabled/default state=absent
+  tags:
+    - munkirjat
+
+- name: nginx | Enable site config
+  file: src=/etc/nginx/sites-available/{{app_name}}.conf
+        dest=/etc/nginx/sites-enabled/{{app_name}}.conf
+        state=link
   notify:
-    - restart nginx
+   - restart nginx
+   - restart php-fpm
+  tags:
+   - munkirjat
 
 - name: Create user
   mysql_user: name={{ db_user }}
@@ -37,10 +50,15 @@
             login_password={{ db_root_pass }}
   when: db_user_add.changed
 
-
 - name: Install composer
   shell:
     curl -sS https://getcomposer.org/installer | /usr/bin/php && /bin/mv -f /home/vagrant/composer.phar /usr/local/bin/composer
     creates=/usr/local/bin/composer
   tags:
     - composer
+
+- name: Install vendors
+  shell:
+    cd {{ app_path }};composer install;
+  tags:
+    - vendors

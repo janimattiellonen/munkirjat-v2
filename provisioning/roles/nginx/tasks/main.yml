@@ -14,4 +14,4 @@
        update_cache=yes
   with_items:
     - '{{ nginx_apt_packages }}'
-  tags: php
+  tags: nginx

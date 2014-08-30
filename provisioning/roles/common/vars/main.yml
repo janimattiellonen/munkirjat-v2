@@ -1,0 +1,20 @@
+---
+
+nodejs_ppa: 'ppa:chris-lea/node.js'
+
+common_apt_packages:
+  - build-essential
+  - python-software-properties
+  - memcached
+  - git
+  - curl
+  - wget
+  - nano
+  - vim
+  - locate
+  - openjdk-7-jdk
+  - nodejs
+
+npm_items:
+  - coffee-script
+  - less

@@ -4,3 +4,14 @@
   apt_repository: repo='{{ nginx_apt_repo }}'
                   state=present
                   update_cache=yes
+
+- name: update apt
+  command: /usr/bin/apt-get update
+
+- name: Install nginx packages
+  apt: pkg={{ item }}
+       state=latest
+       update_cache=yes
+  with_items:
+    - '{{ nginx_apt_packages }}'
+  tags: php

@@ -1,0 +1,6 @@
+---
+
+- name: Add nginx repositories
+  apt_repository: repo='{{ nginx_apt_repo }}'
+                  state=present
+                  update_cache=yes

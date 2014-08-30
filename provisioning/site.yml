@@ -1,0 +1,11 @@
+---
+- name: munkirjat.com
+  hosts: munkirjat
+  user: vagrant
+
+  roles:
+    - common
+    - munkirjat
+    - mysql
+    - nginx
+    - php-fpm

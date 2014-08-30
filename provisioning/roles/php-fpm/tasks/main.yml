@@ -1,0 +1,23 @@
+---
+
+- name: Install repositories
+  apt_repository:   repo='{{ item }}'
+                    state=present
+                    update_cache=yes
+  with_items:
+  - '{{ php_apt_repo }}'
+  tags: php
+
+- name: Install packages
+  apt: pkg={{ item }}
+       state=latest
+       update_cache=yes
+  with_items:
+    - '{{ php_apt_packages }}'
+  tags: php
+
+
+- name: Ensure running
+  service: name=php5-fpm
+           state=started
+  tags: php

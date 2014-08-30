@@ -1,0 +1,5 @@
+---
+
+nginx_apt_repo: 'ppa:nginx/stable'
+nginx_apt_packages:
+- nginx

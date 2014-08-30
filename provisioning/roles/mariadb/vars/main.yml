@@ -2,3 +2,7 @@
 
 mariadb_key: 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0xcbcb082a1bb943db'
 mariadb_repo: 'deb http://mirror.netinch.com/pub/mariadb/repo/5.5/ubuntu precise main'
+
+mariadb_apt_packages:
+- mariadb-server
+- python-mysqldb

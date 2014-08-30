@@ -1,0 +1,34 @@
+---
+
+- name: apt | Install mariadb key
+  apt_key: url={{ mariadb_key }}
+
+- name: apt | Install mariadb repository
+  apt_repository: repo='{{ mariadb_repo }}' state=present
+
+- name: Install Mariadb packages
+  apt: pkg={{ item }}
+       state=latest
+       update_cache=yes
+  with_items:
+    - '{{ mariadb_apt_packages }}'
+  register: mariadb_install
+  tags:
+    - mariadb
+
+- name: Ensure running
+  service: name=mysql state=started
+  tags:
+    - mariadb
+
+- name: Update root password
+  mysql_user: name=root
+    host='{{ item }}'
+    password='{{ db_root_pass }}'
+  with_items:
+    - 127.0.0.1
+    - ::1
+    - localhost
+  when: mariadb_install|changed
+  tags:
+    - mariadb

@@ -1,4 +1,4 @@
 ---
 
-
 nginx_root:     /var/www/munkirjat/web;
+db_root_pass:   ""

@@ -2,8 +2,8 @@ server {
     listen              80;
     charset             utf-8;
     root                {{ nginx_root }};
-    server_name         munkirjat.localhost;
-    error_log           /var/log/nginx/munkirjat.localhost.error.log;
+    server_name         {{ app_domain }};
+    error_log           "/var/log/nginx/{{ app_domain }}.error.log";
     gzip                on;
 
     gzip_min_length     1000;
@@ -23,7 +23,7 @@ server {
     location ~ ^/(app_dev|app)\.php(/|$) {
         fastcgi_split_path_info  ^(.+\.php)(/.*)$;
         include fastcgi_params;
-        fastcgi_pass /var/run/php-fpm/munkirjat.sock;
+        fastcgi_pass unix:/var/run/php5-fpm.sock;
         fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
         fastcgi_param HTTPS off;
     }

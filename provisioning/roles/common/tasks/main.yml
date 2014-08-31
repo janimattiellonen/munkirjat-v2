@@ -1,0 +1,26 @@
+---
+
+- name: apt | Install python-software-properties
+  apt: pkg=python-software-properties state=present update_cache=yes
+
+- name: apt | Install node.js repository
+  apt_repository: repo='{{ nodejs_ppa }}' state=present
+
+- name: Install common packages
+  apt: pkg={{ item }}
+       state=latest
+       update_cache=yes
+  with_items:
+    - '{{ common_apt_packages }}'
+  tags: common
+
+- name: Install npm items
+  npm: name={{ item }} global=yes
+  with_items: npm_items
+
+- name: update apt
+  command: /usr/bin/apt-get update
+
+- name: Upgrade apt
+  apt: upgrade=yes
+       update_cache=yes

@@ -8,7 +8,7 @@
   - '{{ php_apt_repo }}'
   tags: php
 
-- name: Install packages
+- name: Install php packages
   apt: pkg={{ item }}
        state=latest
        update_cache=yes

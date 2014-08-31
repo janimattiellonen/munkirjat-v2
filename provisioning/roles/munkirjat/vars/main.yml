@@ -1,4 +1,11 @@
 ---
 
-
-nginx_root:     /var/www/munkirjat/web;
+app_name:       munkirjat
+app_path:       /var/www
+nginx_root:     "{{ app_path }}/web"
+db_root_pass:   ""
+db_user:        munkirjat
+db_password:    munkirjat
+db_name:        munkirjat
+app_secret:     flsekhertyiuoeryt874t84y87t
+app_domain:     munkirjat.localhost

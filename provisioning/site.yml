@@ -1,11 +1,12 @@
 ---
-- name: munkirjat.com
-  hosts: munkirjat
-  user: vagrant
+- name:   munkirjat.com
+  hosts:  munkirjat
+  user:   vagrant
+  sudo:   true
 
   roles:
     - common
     - munkirjat
-    - mysql
+    - mariadb
     - nginx
     - php-fpm

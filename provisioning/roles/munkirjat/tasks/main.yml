@@ -1,0 +1,73 @@
+---
+
+- name: Create symlink
+  file: src=/vagrant dest=/var/www state=link
+
+- name: Import munkirjat config file
+  template: src=parameters.yml.dist
+            dest={{ app_path }}/app/config/parameters.yml
+
+- name: Import munkirjat nginx settings
+  template: src=munkirjat.conf.j2
+            dest=/etc/nginx/sites-available/{{app_name}}.conf
+
+- name: nginx | Remove default site
+  file: path=/etc/nginx/sites-enabled/default state=absent
+  tags:
+    - munkirjat
+
+- name: nginx | Enable site config
+  file: src=/etc/nginx/sites-available/{{app_name}}.conf
+        dest=/etc/nginx/sites-enabled/{{app_name}}.conf
+        state=link
+  notify:
+   - restart nginx
+   - restart php-fpm
+  tags:
+   - munkirjat
+
+- name: Create user
+  mysql_user: name={{ db_user }}
+              password={{ db_password }}
+              priv='{{ db_name }}.*:ALL'
+              state=present
+              login_user=root
+              login_password={{ db_root_pass }}
+  register: db_user_add
+
+- name: Create application database
+  mysql_db: db={{ db_name }}
+            state=present
+            login_user=root
+            login_password={{ db_root_pass }}
+  when: db_user_add.changed
+
+- name: Import database
+  mysql_db: db={{ db_name }}
+            state=import
+            target='/vagrant/provisioning/roles/munkirjat/templates/munkirjat.sql'
+            login_user=root
+            login_password={{ db_root_pass }}
+  when: db_user_add.changed
+
+- name: Install composer
+  shell:
+    curl -sS https://getcomposer.org/installer | /usr/bin/php && /bin/mv -f /home/vagrant/composer.phar /usr/local/bin/composer
+    creates=/usr/local/bin/composer
+  tags:
+    - composer
+
+- name: Install vendors
+  shell:
+    cd {{ app_path }};composer install;
+  tags:
+    - vendors
+
+- name: Dump js routes
+  shell:
+    cd {{ app_path }};php app/console fos:js-routing:dump;
+
+- name: Install assets
+  shell:
+    cd {{ app_path }};php app/console assets:install;
+

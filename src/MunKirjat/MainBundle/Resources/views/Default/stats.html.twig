@@ -42,7 +42,7 @@
         <h2>{{ 'stats.latest-added-book'|trans }}</h2>
 
         <% if (latest_added_book) { %>
-        <a href="<%=Routing.getBaseUrl() + '/#book/' + latest_added_book.id %>"><%= latest_added_book.title %></a>
+            <a href="<%=Routing.getBaseUrl() + '/#book/' + latest_added_book.id %>"><%= latest_added_book.title %></a>
         <% } %>
     </div>
 </article>

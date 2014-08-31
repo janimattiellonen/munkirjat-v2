@@ -3,11 +3,13 @@ namespace MunKirjat\BookBundle\Controller;
 
 use MunKirjat\Component\Controller\Controller;
 use MunKirjat\BookBundle\Entity\Genre;
+use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 class GenreController extends Controller
 {
     public function viewAction($id)
     {
+        throw new ResourceNotFoundException();
         $service    = $this->getGenreService();
         $genre     = $service->getGenre($id);
 
@@ -16,6 +18,7 @@ class GenreController extends Controller
 
     public function createAction()
     {
+        throw new ResourceNotFoundException();
         $service    = $this->getGenreService();
         $form       = $service->getGenreForm(null);
         $self       = $this;
@@ -31,6 +34,7 @@ class GenreController extends Controller
 
     public function updateAction($id)
     {
+        throw new ResourceNotFoundException();
         $service    = $this->getGenreService();
 
         return $this->process($service->getGenre($id) );

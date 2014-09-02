@@ -17,6 +17,20 @@
   tags: php
 
 
+- name: Configure php5-fpm
+  ini_file: dest=/etc/php5/fpm/pool.d/www.conf
+            section=www
+            option='{{ item.option }}'
+            value='{{ item.value }}'
+            backup=yes
+  with_items:
+    - { option: 'user', value: '{{ webserver_user }}' }
+    - { option: 'group', value: '{{ webserver_user }}' }
+    - { option: 'listen', value: '{{ phpfpm_listen }}' }
+    - { option: 'listen.owner', value: '{{ webserver_user }}' }
+    - { option: 'listen.group', value: '{{ webserver_user }}' }
+  tags: php
+
 - name: Ensure running
   service: name=php5-fpm
            state=started

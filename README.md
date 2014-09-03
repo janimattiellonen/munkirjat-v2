@@ -38,7 +38,7 @@ Verified to work with VirtualBox 4.3.10, Vagrant 1.6.3 and Ansible 1.7.1
 
 8) `/etc/init.d/php5-fpm stop`
 
-9) `usermod -u 501 vagrant` (If you get user logged in then `pkill -STOP -u vagrant`and log in again)
+9) `usermod -u 501 vagrant` (If you get user logged in then `pkill -STOP -u vagrant` and log in again)
 
 10) `find / -uid 1000 -exec chown -h 501 '{}' \+` (ignore any warnings/errors)
 

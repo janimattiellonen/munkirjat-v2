@@ -10,6 +10,8 @@
 - name: Import munkirjat nginx settings
   template: src=munkirjat.conf.j2
             dest=/etc/nginx/sites-available/{{app_name}}.conf
+  tags:
+    - munkirjat-nginx
 
 - name: nginx | Remove default site
   file: path=/etc/nginx/sites-enabled/default state=absent

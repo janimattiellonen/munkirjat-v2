@@ -9,3 +9,5 @@ db_password:    munkirjat
 db_name:        munkirjat
 app_secret:     flsekhertyiuoeryt874t84y87t
 app_domain:     munkirjat.localhost
+webserver_user:   "vagrant"
+phpfpm_listen:    "localhost:9000"

@@ -6,7 +6,7 @@
 
   roles:
     - common
-    - munkirjat
     - mariadb
     - nginx
     - php-fpm
+    - munkirjat
